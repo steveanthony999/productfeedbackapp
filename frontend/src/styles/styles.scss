@@ -8,7 +8,9 @@
 }
 
 // Variables
+
 $background-color: #f7f8fd;
+$darkest-blue: #373f68;
 $dark-blue: #4661e6;
 $light-blue: #f2f4ff;
 $hover-blue: #cfd7ff;
@@ -18,6 +20,7 @@ $margin-top-desktop: 94px;
 $border-radius: 10px;
 
 // Global
+
 body {
   background-color: $background-color;
   margin-top: $margin-top-desktop;
@@ -40,6 +43,10 @@ input[type='radio']:checked + label {
 
 .text-white {
   color: #fff;
+}
+
+.text-very-light {
+  color: #f2f4fe;
 }
 
 .text-blue {
@@ -92,7 +99,7 @@ input[type='radio']:checked + label {
   line-height: 19px;
 }
 
-// PAGES
+// PAGES =================================================================
 
 // Home Page
 .Home {
@@ -129,7 +136,7 @@ input[type='radio']:checked + label {
   }
 }
 
-// COMPONENTS
+// COMPONENTS ============================================================
 
 // Category Box Component
 .CategoryBox {
@@ -164,7 +171,31 @@ input[type='radio']:checked + label {
 
 // TopBar Component
 .TopBar {
+  width: 100%;
+  max-width: 825px;
+  padding: 24px;
+  background-color: $darkest-blue;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    select {
+      background: transparent;
+      border: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none; /* Remove default arrow */
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
 }
 
 // Product Feedback Component

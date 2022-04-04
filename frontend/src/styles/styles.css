@@ -31,6 +31,10 @@ input[type='radio']:checked + label {
   color: #fff;
 }
 
+.text-very-light {
+  color: #f2f4fe;
+}
+
 .text-blue {
   color: #4661e6;
 }
@@ -159,8 +163,48 @@ input[type='radio']:checked + label {
 }
 
 .TopBar {
+  width: 100%;
+  max-width: 825px;
+  padding: 24px;
+  background-color: #373f68;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.TopBar .left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.TopBar .left select {
+  background: transparent;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Remove default arrow */
+}
+
+.TopBar .left select:focus {
+  outline: none;
 }
 /*# sourceMappingURL=styles.css.map */
