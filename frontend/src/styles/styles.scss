@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Jost', sans-serif;
+}
+
+// Variables
+$background-color: #f7f8fd;
+$dark-blue: #4661e6;
+$light-blue: #f2f4ff;
+$hover-blue: #cfd7ff;
+
+$margin-top-desktop: 94px;
+
+$border-radius: 10px;
+
+// Global
+body {
+  background-color: $background-color;
+  margin-top: $margin-top-desktop;
+}
+
+ul li {
+  list-style: none;
+}
+
+input[type='radio'] {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+}
+
+input[type='radio']:checked + label {
+  background: $dark-blue !important;
+  color: #fff;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-blue {
+  color: #4661e6;
+}
+
+.h1 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 35px;
+  letter-spacing: -0.33px;
+}
+
+.h2 {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 29px;
+  letter-spacing: -0.25px;
+}
+
+.h3 {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -0.25px;
+}
+
+.h4 {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.2px;
+}
+
+.body-1 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+}
+
+.body-2 {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.body-3 {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 19px;
+}
+
+// PAGES
+
+// Home Page
+.Home {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    width: 1110px;
+    // margin-top: $margin-top-desktop;
+    display: flex;
+    flex-direction: row;
+
+    .left {
+      .top {
+        width: 255px;
+        padding-left: 25px;
+        border-radius: $border-radius;
+
+        h2 {
+          display: inline-block;
+          margin-top: 68px;
+        }
+
+        p {
+          display: inline-block;
+          margin-bottom: 30px;
+          opacity: 0.75;
+        }
+      }
+    }
+  }
+}
+
+// COMPONENTS
+
+// Category Box Component
+.CategoryBox {
+  margin-top: 24px;
+  background-color: #fff;
+  border-radius: $border-radius;
+
+  .container {
+    width: 255px;
+    padding: 17px;
+    // margin-top: 0;
+    display: flex;
+    flex-wrap: wrap;
+
+    .btn {
+      padding: 10px 17px;
+      margin: 7px 8px;
+      background-color: $light-blue;
+      border-radius: $border-radius;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $hover-blue;
+      }
+    }
+
+    .active {
+      background-color: red;
+    }
+  }
+}
+
+// TopBar Component
+.TopBar {
+  display: flex;
+}
+
+// Product Feedback Component
+// .ProductFeedback {
+//   .container {
+// margin-top: 0;
+//   }
+// }
