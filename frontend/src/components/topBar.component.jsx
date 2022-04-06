@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Select from './select.component';
 
 const TopBar = ({ passSortOrder }) => {
   const [sortOrder, setSortOrder] = useState('most-upvotes');
@@ -32,6 +33,7 @@ const TopBar = ({ passSortOrder }) => {
           <option value='most-comments'>Most Comments</option>
           <option value='least-comments'>Least Comments</option>
         </select>
+        <Select />
       </div>
       <div className='right'>
         <Link to='/new-feedback'>Add Feedback</Link>
