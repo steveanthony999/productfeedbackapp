@@ -39,6 +39,11 @@ input[type='radio']:checked + label {
   color: #4661e6;
 }
 
+.icon-white {
+  -webkit-filter: brightness(100);
+          filter: brightness(100);
+}
+
 .h1 {
   font-weight: 700;
   font-size: 24px;
@@ -222,6 +227,15 @@ input[type='radio']:checked + label {
   list-style: none;
   color: #647196;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .select-container .select-list-container .select-list .select-list-item:last-child {
@@ -230,6 +244,6 @@ input[type='radio']:checked + label {
 
 .select-container .select-list-container .select-list .select-list-item:hover {
   cursor: pointer;
-  color: purple;
+  color: #ad1fea;
 }
 /*# sourceMappingURL=styles.css.map */

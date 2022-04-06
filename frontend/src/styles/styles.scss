@@ -14,10 +14,11 @@ $darkest-blue: #373f68;
 $dark-blue: #4661e6;
 $light-blue: #f2f4ff;
 $hover-blue: #cfd7ff;
+$purple: #ad1fea;
 
 $margin-top-desktop: 94px;
 
-$border-radius: 10px;
+$border-rounded: 10px;
 
 // Global
 
@@ -51,6 +52,10 @@ input[type='radio']:checked + label {
 
 .text-blue {
   color: #4661e6;
+}
+
+.icon-white {
+  filter: brightness(100);
 }
 
 .h1 {
@@ -119,7 +124,7 @@ input[type='radio']:checked + label {
       .top {
         width: 255px;
         padding-left: 25px;
-        border-radius: $border-radius;
+        border-radius: $border-rounded;
 
         h2 {
           display: inline-block;
@@ -142,7 +147,7 @@ input[type='radio']:checked + label {
 .CategoryBox {
   margin-top: 24px;
   background-color: #fff;
-  border-radius: $border-radius;
+  border-radius: $border-rounded;
 
   .container {
     width: 255px;
@@ -155,7 +160,7 @@ input[type='radio']:checked + label {
       padding: 10px 17px;
       margin: 7px 8px;
       background-color: $light-blue;
-      border-radius: $border-radius;
+      border-radius: $border-rounded;
 
       &:hover {
         cursor: pointer;
@@ -204,13 +209,16 @@ input[type='radio']:checked + label {
     .select-list {
       background: #ffffff;
       box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
-      border-radius: 10px;
+      border-radius: $border-rounded;
 
       .select-list-item {
         padding: 12px 24px;
         list-style: none;
         color: #647196;
         border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
         &:last-child {
           border-bottom: none;
@@ -218,7 +226,7 @@ input[type='radio']:checked + label {
 
         &:hover {
           cursor: pointer;
-          color: purple;
+          color: $purple;
         }
       }
     }

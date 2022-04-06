@@ -1,10 +1,10 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getFeedback } from '../features/feedback/feedbackSlice';
 
 const Button = ({ name, isChecked }) => {
-  const { feedback, isLoading, isSuccess } = useSelector(
-    (state) => state.feedback
-  );
+  //   const { feedback, isLoading, isSuccess } = useSelector(
+  //     (state) => state.feedback
+  //   );
 
   const dispatch = useDispatch();
 
