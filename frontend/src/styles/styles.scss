@@ -184,15 +184,42 @@ input[type='radio']:checked + label {
     display: flex;
     flex-direction: row;
     align-items: center;
-    select {
-      background: transparent;
-      border: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none; /* Remove default arrow */
+  }
+}
 
-      &:focus {
-        outline: none;
+// Select Component
+.select-container {
+  margin-left: 36px;
+  position: relative;
+
+  .select-header {
+    cursor: pointer;
+  }
+
+  .select-list-container {
+    width: 207px;
+    position: absolute;
+    bottom: -14rem;
+
+    .select-list {
+      background: #ffffff;
+      box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
+      border-radius: 10px;
+
+      .select-list-item {
+        padding: 12px 24px;
+        list-style: none;
+        color: #647196;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover {
+          cursor: pointer;
+          color: purple;
+        }
       }
     }
   }

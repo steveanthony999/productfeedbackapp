@@ -195,16 +195,41 @@ input[type='radio']:checked + label {
           align-items: center;
 }
 
-.TopBar .left select {
-  background: transparent;
-  border: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  /* Remove default arrow */
+.select-container {
+  margin-left: 36px;
+  position: relative;
 }
 
-.TopBar .left select:focus {
-  outline: none;
+.select-container .select-header {
+  cursor: pointer;
+}
+
+.select-container .select-list-container {
+  width: 207px;
+  position: absolute;
+  bottom: -14rem;
+}
+
+.select-container .select-list-container .select-list {
+  background: #ffffff;
+  -webkit-box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+}
+
+.select-container .select-list-container .select-list .select-list-item {
+  padding: 12px 24px;
+  list-style: none;
+  color: #647196;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.select-container .select-list-container .select-list .select-list-item:last-child {
+  border-bottom: none;
+}
+
+.select-container .select-list-container .select-list .select-list-item:hover {
+  cursor: pointer;
+  color: purple;
 }
 /*# sourceMappingURL=styles.css.map */

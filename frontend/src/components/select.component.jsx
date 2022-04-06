@@ -1,43 +1,4 @@
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
-
-const DropDownContainer = styled('div')`
-  width: 10.5em;
-  margin: 0 auto;
-  position: relative;
-`;
-const DropDownHeader = styled('div')`
-  margin-bottom: 0.8em;
-  padding: 0.4em 2em 0.4em 1em;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
-  font-weight: 500;
-  font-size: 1.3rem;
-  color: #3faffa;
-  background: #ffffff;
-`;
-const DropDownListContainer = styled('div')`
-  position: absolute;
-  bottom: -400%;
-`;
-
-const DropDownList = styled('ul')`
-  padding: 0;
-  margin: 0;
-  padding-left: 1em;
-  background: #ffffff;
-  border: 2px solid #e5e5e5;
-  box-sizing: border-box;
-  color: #3faffa;
-  font-size: 1.3rem;
-  font-weight: 500;
-  &:first-child {
-    padding-top: 0.8em;
-  }
-`;
-const ListItem = styled('li')`
-  list-style: none;
-  margin-bottom: 0.8em;
-`;
 
 const options = [
   'Most Upvotes',
@@ -46,38 +7,61 @@ const options = [
   'Least Comments',
 ];
 
-const Select = () => {
+const Select = ({ passSortOrder }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [sortOrder, setSortOrder] = useState('most-upvotes');
 
-  const toggling = () => setIsOpen(!isOpen);
+  const toggling = () => {
+    setIsOpen((prevValue) => !prevValue);
+  };
 
   const onOptionClicked = (value) => () => {
     setSelectedOption(value);
+    setSortOrder(value.replace(' ', '-').toLowerCase());
+    setIsOpen(false);
+    document.removeEventListener('click', () => console.log('kk'));
+  };
+
+  const handleBodyClick = () => {
     setIsOpen(false);
   };
 
   useEffect(() => {
-    console.log(selectedOption);
-  }, [selectedOption]);
+    if (isOpen === true) {
+      document.addEventListener('click', handleBodyClick);
+    }
+    return () => document.removeEventListener('click', handleBodyClick);
+  }, [isOpen]);
+
+  useEffect(() => {
+    passSortOrder(sortOrder);
+  }, [sortOrder]);
 
   return (
-    <div>
-      <DropDownContainer>
-        <DropDownHeader onClick={toggling}>Most Upvotes</DropDownHeader>
+    <>
+      <div className='select-container'>
+        <div
+          className='select-header body-2 text-very-light'
+          onClick={toggling}>
+          Sort by: <span className='h4 text-very-light'>{selectedOption}</span>
+        </div>
         {isOpen && (
-          <DropDownListContainer>
-            <DropDownList>
+          <div className='select-list-container'>
+            <ul className='select-list'>
               {options.map((option, index) => (
-                <ListItem onClick={onOptionClicked(option)} key={index}>
+                <li
+                  className='select-list-item body-1'
+                  onClick={onOptionClicked(option)}
+                  key={index}>
                   {option}
-                </ListItem>
+                </li>
               ))}
-            </DropDownList>
-          </DropDownListContainer>
+            </ul>
+          </div>
         )}
-      </DropDownContainer>
-    </div>
+      </div>
+    </>
   );
 };
 export default Select;
