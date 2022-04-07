@@ -12,6 +12,11 @@ body {
   margin-top: 94px;
 }
 
+a {
+  text-decoration: none;
+  background: none;
+}
+
 ul li {
   list-style: none;
 }
@@ -94,6 +99,10 @@ input[type='radio']:checked + label {
   line-height: 19px;
 }
 
+.button {
+  padding: 12px 25px;
+}
+
 .Home {
   width: 100vw;
   display: -webkit-box;
@@ -136,6 +145,18 @@ input[type='radio']:checked + label {
   display: inline-block;
   margin-bottom: 30px;
   opacity: 0.75;
+}
+
+.Home .container .right {
+  margin-left: 30px;
+}
+
+.Home .container .right a {
+  background: #ad1fea;
+}
+
+.Home .container .right a:hover {
+  background: #c75af6;
 }
 
 .CategoryBox {
@@ -200,6 +221,10 @@ input[type='radio']:checked + label {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.TopBar .left h3 {
+  margin-left: 16px;
 }
 
 .select-container {
