@@ -27,6 +27,10 @@ input[type='radio']:checked + label {
   color: #fff;
 }
 
+.border {
+  border-radius: 10px;
+}
+
 .text-white {
   color: #fff;
 }
@@ -121,7 +125,6 @@ input[type='radio']:checked + label {
 .Home .container .left .top {
   width: 255px;
   padding-left: 25px;
-  border-radius: 10px;
 }
 
 .Home .container .left .top h2 {
@@ -138,7 +141,6 @@ input[type='radio']:checked + label {
 .CategoryBox {
   margin-top: 24px;
   background-color: #fff;
-  border-radius: 10px;
 }
 
 .CategoryBox .container {
@@ -219,12 +221,10 @@ input[type='radio']:checked + label {
   background: #ffffff;
   -webkit-box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
           box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
-  border-radius: 10px;
 }
 
 .select-container .select-list-container .select-list .select-list-item {
   padding: 12px 24px;
-  list-style: none;
   color: #647196;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   display: -webkit-box;

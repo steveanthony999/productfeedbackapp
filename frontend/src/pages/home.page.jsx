@@ -79,7 +79,7 @@ const Home = () => {
       <div className='container'>
         <div className='left'>
           <div
-            className='top'
+            className='top border'
             style={{
               background: `url(${BackgroundHeaderImg}) no-repeat center center/cover`,
             }}>

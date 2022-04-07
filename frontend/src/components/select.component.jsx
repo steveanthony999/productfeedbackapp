@@ -60,7 +60,7 @@ const Select = ({ passSortOrder }) => {
         </div>
         {isOpen && (
           <div className='select-list-container'>
-            <ul className='select-list'>
+            <ul className='select-list border'>
               {options.map((option, index) => (
                 <li
                   className='select-list-item body-1'

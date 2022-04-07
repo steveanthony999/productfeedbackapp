@@ -42,6 +42,10 @@ input[type='radio']:checked + label {
   color: #fff;
 }
 
+.border {
+  border-radius: $border-rounded;
+}
+
 .text-white {
   color: #fff;
 }
@@ -116,7 +120,6 @@ input[type='radio']:checked + label {
 
   .container {
     width: 1110px;
-    // margin-top: $margin-top-desktop;
     display: flex;
     flex-direction: row;
 
@@ -124,7 +127,6 @@ input[type='radio']:checked + label {
       .top {
         width: 255px;
         padding-left: 25px;
-        border-radius: $border-rounded;
 
         h2 {
           display: inline-block;
@@ -147,12 +149,10 @@ input[type='radio']:checked + label {
 .CategoryBox {
   margin-top: 24px;
   background-color: #fff;
-  border-radius: $border-rounded;
 
   .container {
     width: 255px;
     padding: 17px;
-    // margin-top: 0;
     display: flex;
     flex-wrap: wrap;
 
@@ -209,11 +209,9 @@ input[type='radio']:checked + label {
     .select-list {
       background: #ffffff;
       box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
-      border-radius: $border-rounded;
 
       .select-list-item {
         padding: 12px 24px;
-        list-style: none;
         color: #647196;
         border-bottom: 1px solid rgba(0, 0, 0, 0.15);
         display: flex;

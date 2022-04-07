@@ -35,7 +35,7 @@ const Button = ({ name, isChecked }) => {
 
 const CategoryBox = () => {
   return (
-    <div className='CategoryBox'>
+    <div className='CategoryBox border'>
       <div className='container'>
         <Button name={'All'} isChecked />
         <Button name={'UI'} />
