@@ -11,6 +11,8 @@
 
 $background-color: #f7f8fd;
 $darkest-blue: #373f68;
+$darker-blue: #3a4374;
+$grey-blue: #647196;
 $dark-blue: #4661e6;
 $light-blue: #f2f4ff;
 $hover-blue: #cfd7ff;
@@ -61,7 +63,15 @@ input[type='radio']:checked + label {
 }
 
 .text-blue {
-  color: #4661e6;
+  color: $dark-blue;
+}
+
+.text-darker-blue {
+  color: $darker-blue;
+}
+
+.text-grey-blue {
+  color: $grey-blue;
 }
 
 .icon-white {
@@ -258,8 +268,70 @@ input[type='radio']:checked + label {
 }
 
 // Product Feedback Component
-// .ProductFeedback {
-//   .container {
-// margin-top: 0;
-//   }
-// }
+.ProductFeedback {
+  display: block;
+  margin-top: 24px !important;
+
+  .container {
+    max-width: 825px;
+    padding: 28px 32px;
+    background: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    .left {
+      .btn {
+        width: 40px;
+        height: 53px;
+        background-color: $light-blue;
+        border-radius: $border-rounded;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        p {
+          margin-top: 8px;
+        }
+
+        &:hover {
+          background-color: $hover-blue;
+        }
+      }
+    }
+
+    .middle {
+      width: 100%;
+      margin-left: 40px;
+
+      p {
+        margin-top: 6px;
+      }
+
+      .btn {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 6px 14px;
+        background-color: $light-blue;
+        border-radius: $border-rounded;
+      }
+
+      div {
+        text-transform: capitalize;
+      }
+    }
+
+    .right {
+      align-self: center;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      img {
+        margin-right: 12px;
+      }
+    }
+  }
+}

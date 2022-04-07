@@ -48,6 +48,14 @@ input[type='radio']:checked + label {
   color: #4661e6;
 }
 
+.text-darker-blue {
+  color: #3a4374;
+}
+
+.text-grey-blue {
+  color: #647196;
+}
+
 .icon-white {
   -webkit-filter: brightness(100);
           filter: brightness(100);
@@ -270,5 +278,97 @@ input[type='radio']:checked + label {
 .select-container .select-list-container .select-list .select-list-item:hover {
   cursor: pointer;
   color: #ad1fea;
+}
+
+.ProductFeedback {
+  display: block;
+  margin-top: 24px !important;
+}
+
+.ProductFeedback .container {
+  max-width: 825px;
+  padding: 28px 32px;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.ProductFeedback .container .left .btn {
+  width: 40px;
+  height: 53px;
+  background-color: #f2f4ff;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.ProductFeedback .container .left .btn p {
+  margin-top: 8px;
+}
+
+.ProductFeedback .container .left .btn:hover {
+  background-color: #cfd7ff;
+}
+
+.ProductFeedback .container .middle {
+  width: 100%;
+  margin-left: 40px;
+}
+
+.ProductFeedback .container .middle p {
+  margin-top: 6px;
+}
+
+.ProductFeedback .container .middle .btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 6px 14px;
+  background-color: #f2f4ff;
+  border-radius: 10px;
+}
+
+.ProductFeedback .container .middle div {
+  text-transform: capitalize;
+}
+
+.ProductFeedback .container .right {
+  -ms-flex-item-align: center;
+      align-self: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.ProductFeedback .container .right img {
+  margin-right: 12px;
 }
 /*# sourceMappingURL=styles.css.map */
