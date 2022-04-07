@@ -7,6 +7,7 @@ import IconComments from '../assets/shared/icon-comments.svg';
 
 const ProductFeedback = ({ feedback }) => {
   const [commentsLength, setCommentsLength] = useState([]);
+  const [repliesLength, setRepliesLength] = useState([]);
   const [isHover, setIsHover] = useState(false);
   const [isUpvote, setIsUpvote] = useState(false);
 
@@ -22,6 +23,17 @@ const ProductFeedback = ({ feedback }) => {
       feedback.comments
         ? setCommentsLength(feedback.comments.length)
         : setCommentsLength(0)
+    );
+  }, [feedback]);
+
+  useEffect(() => {
+    _.find(
+      feedback,
+      feedback.comments &&
+        _.filter(
+          feedback.comments,
+          (x) => x.replies && setRepliesLength(x.replies.length)
+        )
     );
   }, [feedback]);
 
@@ -59,7 +71,9 @@ const ProductFeedback = ({ feedback }) => {
         </div>
         <div className='right'>
           <img src={IconComments} alt='bubble' />
-          <p className='text-darker-blue h4'>{commentsLength}</p>
+          <p className='text-darker-blue h4'>
+            {commentsLength + repliesLength} {repliesLength > 0 ? '*' : null}
+          </p>
         </div>
       </div>
     </Link>

@@ -46,24 +46,32 @@ const Home = () => {
         setSortedFeedback(
           _.orderBy(
             feedback,
-            [
-              function (x) {
-                return x.comments === undefined ? [] : x.comments;
-              },
-            ],
-            ['desc']
+            function (fdbk) {
+              return (
+                fdbk.comments &&
+                fdbk.comments +
+                  _.find(fdbk.comments, (cmnts) =>
+                    cmnts.replies === undefined ? 0 : cmnts.replies.length
+                  )
+              );
+            },
+            ['asc']
           )
         );
       } else if (sortOrder === 'least-comments') {
         setSortedFeedback(
           _.orderBy(
             feedback,
-            [
-              function (x) {
-                return x.comments === undefined ? [] : x.comments;
-              },
-            ],
-            ['asc']
+            function (fdbk) {
+              return (
+                fdbk.comments &&
+                fdbk.comments +
+                  _.find(fdbk.comments, (cmnts) =>
+                    cmnts.replies === undefined ? 0 : cmnts.replies.length
+                  )
+              );
+            },
+            ['desc']
           )
         );
       }
