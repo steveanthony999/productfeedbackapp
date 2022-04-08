@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
+import axios from 'axios';
 
 import IconArrowUp from '../assets/shared/icon-arrow-up.svg';
 import IconComments from '../assets/shared/icon-comments.svg';
@@ -9,7 +10,25 @@ const ProductFeedback = ({ feedback }) => {
   const [commentsLength, setCommentsLength] = useState([]);
   const [repliesLength, setRepliesLength] = useState([]);
   const [isHover, setIsHover] = useState(false);
-  const [isUpvote, setIsUpvote] = useState(false);
+  const [isUpvote, setIsUpvote] = useState();
+
+  useEffect(() => {
+    if (isUpvote === true) {
+      const newVote = { upvotes: feedback.upvotes + 1 };
+      axios.put(
+        'https://productfeedbackapp.herokuapp.com/productRequests/' +
+          feedback.id,
+        newVote
+      );
+    } else if (isUpvote === false) {
+      const newVote = { upvotes: feedback.upvotes - 1 };
+      axios.put(
+        'https://productfeedbackapp.herokuapp.com/productRequests/' +
+          feedback.id,
+        newVote
+      );
+    }
+  }, [isUpvote]);
 
   const handleUpvoteClick = (e) => {
     e.preventDefault();
@@ -72,7 +91,7 @@ const ProductFeedback = ({ feedback }) => {
         <div className='right'>
           <img src={IconComments} alt='bubble' />
           <p className='text-darker-blue h4'>
-            {commentsLength + repliesLength} {repliesLength > 0 ? '*' : null}
+            {commentsLength + repliesLength}
           </p>
         </div>
       </div>
