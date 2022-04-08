@@ -11,6 +11,7 @@ const ProductFeedback = ({ feedback }) => {
   const [repliesLength, setRepliesLength] = useState([]);
   const [isHover, setIsHover] = useState(false);
   const [isUpvote, setIsUpvote] = useState();
+  const [feedbackUpvotes, setFeedbackUpvotes] = useState(feedback.upvotes);
 
   const handleUpvoteClick = (e) => {
     e.preventDefault();
@@ -20,15 +21,19 @@ const ProductFeedback = ({ feedback }) => {
 
   useEffect(() => {
     if (isUpvote === true) {
-      axios.patch(
-        `https://productfeedbackapp.herokuapp.com/productRequests/${feedback.id}`,
-        { upvotes: feedback.upvotes + 1 }
-      );
+      axios
+        .patch(
+          `https://productfeedbackapp.herokuapp.com/productRequests/${feedback.id}`,
+          { upvotes: feedback.upvotes + 1 }
+        )
+        .then((res) => setFeedbackUpvotes(res.data.upvotes));
     } else if (isUpvote === false) {
-      axios.patch(
-        `https://productfeedbackapp.herokuapp.com/productRequests/${feedback.id}`,
-        { upvotes: feedback.upvotes - 1 }
-      );
+      axios
+        .patch(
+          `https://productfeedbackapp.herokuapp.com/productRequests/${feedback.id}`,
+          { upvotes: feedback.upvotes }
+        )
+        .then((res) => setFeedbackUpvotes(res.data.upvotes));
     }
   }, [isUpvote]);
 
@@ -73,7 +78,8 @@ const ProductFeedback = ({ feedback }) => {
             <p
               className='h4 text-darker-blue'
               style={{ color: isUpvote && '#fff' }}>
-              {feedback.upvotes}
+              {/* {feedback.upvotes} */}
+              {feedbackUpvotes}
             </p>
           </div>
         </div>
