@@ -31,6 +31,10 @@ const getSingleFeedback = async (feedbackId) => {
   return res.data;
 };
 
-const feedbackService = { createFeedback, getFeedback, getSingleFeedback };
+const feedbackService = {
+  createFeedback,
+  getFeedback,
+  getSingleFeedback,
+};
 
 export default feedbackService;

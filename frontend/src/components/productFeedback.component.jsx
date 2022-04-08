@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import axios from 'axios';
 
 import IconArrowUp from '../assets/shared/icon-arrow-up.svg';
 import IconComments from '../assets/shared/icon-comments.svg';
+import axios from 'axios';
 
 const ProductFeedback = ({ feedback }) => {
   const [commentsLength, setCommentsLength] = useState([]);
@@ -12,29 +12,25 @@ const ProductFeedback = ({ feedback }) => {
   const [isHover, setIsHover] = useState(false);
   const [isUpvote, setIsUpvote] = useState();
 
-  useEffect(() => {
-    if (isUpvote === true) {
-      const newVote = { upvotes: feedback.upvotes + 1 };
-      axios.put(
-        'https://productfeedbackapp.herokuapp.com/productRequests/' +
-          feedback.id,
-        newVote
-      );
-    } else if (isUpvote === false) {
-      const newVote = { upvotes: feedback.upvotes - 1 };
-      axios.put(
-        'https://productfeedbackapp.herokuapp.com/productRequests/' +
-          feedback.id,
-        newVote
-      );
-    }
-  }, [isUpvote]);
-
   const handleUpvoteClick = (e) => {
     e.preventDefault();
     setIsUpvote((prevState) => !prevState);
     // Dispatch upvote
   };
+
+  //   useEffect(() => {
+  //     if (isUpvote === true) {
+  //       axios.put(
+  //         `https://productfeedbackapp.herokuapp.com/productRequests/${feedback.id}`,
+  //         { upvotes: upvotes + 1 }
+  //       );
+  //     } else if (isUpvote === false) {
+  //       axios.put(
+  //         `https://productfeedbackapp.herokuapp.com/productRequests/${feedback.id}`,
+  //         { upvotes: upvotes - 1 }
+  //       );
+  //     }
+  //   }, [isUpvote]);
 
   useEffect(() => {
     _.find(
