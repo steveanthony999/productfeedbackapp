@@ -18,19 +18,19 @@ const ProductFeedback = ({ feedback }) => {
     // Dispatch upvote
   };
 
-  //   useEffect(() => {
-  //     if (isUpvote === true) {
-  //       axios.put(
-  //         `https://productfeedbackapp.herokuapp.com/productRequests/${feedback.id}`,
-  //         { upvotes: upvotes + 1 }
-  //       );
-  //     } else if (isUpvote === false) {
-  //       axios.put(
-  //         `https://productfeedbackapp.herokuapp.com/productRequests/${feedback.id}`,
-  //         { upvotes: upvotes - 1 }
-  //       );
-  //     }
-  //   }, [isUpvote]);
+  useEffect(() => {
+    if (isUpvote === true) {
+      axios.patch(
+        `https://productfeedbackapp.herokuapp.com/productRequests/${feedback.id}`,
+        { upvotes: feedback.upvotes + 1 }
+      );
+    } else if (isUpvote === false) {
+      axios.patch(
+        `https://productfeedbackapp.herokuapp.com/productRequests/${feedback.id}`,
+        { upvotes: feedback.upvotes - 1 }
+      );
+    }
+  }, [isUpvote]);
 
   useEffect(() => {
     _.find(
