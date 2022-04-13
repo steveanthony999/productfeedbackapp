@@ -14,10 +14,13 @@ $darkest-blue: #373f68;
 $darker-blue: #3a4374;
 $grey-blue: #647196;
 $dark-blue: #4661e6;
-$light-blue: #f2f4ff;
+$med-blue: #8397f8;
+$light-blue: #62bcfa;
+$white-blue: #f2f4ff;
 $hover-blue: #cfd7ff;
 $purple: #ad1fea;
 $light-purple: #c75af6;
+$orange: #f49f85;
 
 $margin-top-desktop: 94px;
 
@@ -128,6 +131,18 @@ input[type='radio']:checked + label {
   padding: 12px 25px;
 }
 
+.bullet-orange {
+  background-color: $orange;
+}
+
+.bullet-purple {
+  background-color: $purple;
+}
+
+.bullet-blue {
+  background-color: $light-blue;
+}
+
 // PAGES =================================================================
 
 // Home Page
@@ -191,7 +206,7 @@ input[type='radio']:checked + label {
     .btn {
       padding: 10px 17px;
       margin: 7px 8px;
-      background-color: $light-blue;
+      background-color: $white-blue;
       border-radius: $border-rounded;
 
       &:hover {
@@ -202,6 +217,54 @@ input[type='radio']:checked + label {
 
     .active {
       background-color: red;
+    }
+  }
+}
+
+// Roadmap Box Component
+.RoadmapBox {
+  width: 255px;
+  margin-top: 24px;
+  padding: 24px;
+  background-color: #fff;
+
+  .RoadmapBox-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      text-decoration: underline;
+
+      &:hover {
+        color: $med-blue;
+      }
+    }
+  }
+
+  .RoadmapBox-middle {
+    margin-top: 32px;
+
+    ul {
+      li {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        span {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          .bullet {
+            width: 8px;
+            height: 8px;
+            margin-right: 17px;
+            border-radius: 50%;
+          }
+        }
+      }
     }
   }
 }
@@ -285,7 +348,7 @@ input[type='radio']:checked + label {
       .btn {
         width: 40px;
         height: 53px;
-        background-color: $light-blue;
+        background-color: $white-blue;
         border-radius: $border-rounded;
         display: flex;
         flex-direction: column;
@@ -314,7 +377,7 @@ input[type='radio']:checked + label {
         display: inline-block;
         margin-top: 12px;
         padding: 6px 14px;
-        background-color: $light-blue;
+        background-color: $white-blue;
         border-radius: $border-rounded;
       }
 

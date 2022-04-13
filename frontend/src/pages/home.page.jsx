@@ -5,6 +5,7 @@ import _ from 'lodash';
 import { getFeedback, reset } from '../features/feedback/feedbackSlice';
 
 import CategoryBox from '../components/categoryBox.component';
+import RoadmapBox from '../components/roadmapBox.component';
 import TopBar from '../components/topBar.component';
 import ProductFeedback from '../components/productFeedback.component';
 import EmptyFeedback from '../components/emptyFeedback.component';
@@ -98,7 +99,9 @@ const Home = () => {
           <div className='middle'>
             <CategoryBox />
           </div>
-          <div className='bottom'>bottom</div>
+          <div className='bottom border'>
+            <RoadmapBox />
+          </div>
         </div>
         <div className='right'>
           <TopBar passSortOrder={passSortOrder} />

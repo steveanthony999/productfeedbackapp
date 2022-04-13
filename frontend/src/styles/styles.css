@@ -111,6 +111,18 @@ input[type='radio']:checked + label {
   padding: 12px 25px;
 }
 
+.bullet-orange {
+  background-color: #f49f85;
+}
+
+.bullet-purple {
+  background-color: #ad1fea;
+}
+
+.bullet-blue {
+  background-color: #62bcfa;
+}
+
 .Home {
   width: 100vw;
   display: -webkit-box;
@@ -196,6 +208,74 @@ input[type='radio']:checked + label {
 
 .CategoryBox .container .active {
   background-color: red;
+}
+
+.RoadmapBox {
+  width: 255px;
+  margin-top: 24px;
+  padding: 24px;
+  background-color: #fff;
+}
+
+.RoadmapBox .RoadmapBox-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.RoadmapBox .RoadmapBox-top a {
+  text-decoration: underline;
+}
+
+.RoadmapBox .RoadmapBox-top a:hover {
+  color: #8397f8;
+}
+
+.RoadmapBox .RoadmapBox-middle {
+  margin-top: 32px;
+}
+
+.RoadmapBox .RoadmapBox-middle ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.RoadmapBox .RoadmapBox-middle ul li span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.RoadmapBox .RoadmapBox-middle ul li span .bullet {
+  width: 8px;
+  height: 8px;
+  margin-right: 17px;
+  border-radius: 50%;
 }
 
 .TopBar {
