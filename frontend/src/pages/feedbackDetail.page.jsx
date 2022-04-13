@@ -3,10 +3,16 @@ import { Link, useLocation } from 'react-router-dom';
 import Comments from '../components/comments.component';
 
 import IconArrowLeft from '../assets/shared/icon-arrow-left.svg';
+import { useEffect } from 'react';
+import ProductFeedback from '../components/productFeedback.component';
 
 const FeedbackDetail = () => {
   const location = useLocation();
   const { feedback } = location.state;
+
+  useEffect(() => {
+    console.log(feedback.comments);
+  }, [feedback]);
 
   return (
     <div className='FeedbackDetailPage'>
@@ -21,15 +27,16 @@ const FeedbackDetail = () => {
             Edit Feedback
           </Link>
         </div>
-        <div className='feedback-item'>
+        {/* <div className='feedback-item border'>
           <div className='left'>{feedback.upvotes}</div>
           <div className='middle'>
             <h3>{feedback.title}</h3>
             <p>{feedback.description}</p>
             <div>{feedback.category}</div>
           </div>
-          <div className='right'>{/*  */}</div>
-        </div>
+          <div className='right'></div>
+        </div> */}
+        <ProductFeedback feedback={feedback} />
         <div className='comments-container'>
           {feedback.comments &&
             feedback.comments.map((commentItem) => (
