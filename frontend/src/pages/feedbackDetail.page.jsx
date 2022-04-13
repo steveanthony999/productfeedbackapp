@@ -2,6 +2,8 @@ import { Link, useLocation } from 'react-router-dom';
 
 import Comments from '../components/comments.component';
 
+import IconArrowLeft from '../assets/shared/icon-arrow-left.svg';
+
 const FeedbackDetail = () => {
   const location = useLocation();
   const { feedback } = location.state;
@@ -10,9 +12,14 @@ const FeedbackDetail = () => {
     <div className='FeedbackDetailPage'>
       <div className='container'>
         <div className='top-bar'>
-          <Link to={'/'}>Back</Link>
-          <br />
-          <Link to={`/edit-feedback${location.pathname}`}>Edit Feedback</Link>
+          <Link to={'/'} className='text-grey-blue h4'>
+            <img src={IconArrowLeft} alt='<' /> <span>Go Back</span>
+          </Link>
+          <Link
+            to={`/edit-feedback${location.pathname}`}
+            className='button border h4 text-very-light'>
+            Edit Feedback
+          </Link>
         </div>
         <div className='feedback-item'>
           <div className='left'>{feedback.upvotes}</div>

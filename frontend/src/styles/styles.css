@@ -179,6 +179,66 @@ input[type='radio']:checked + label {
   background: #c75af6;
 }
 
+.FeedbackDetailPage {
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.FeedbackDetailPage .container {
+  width: 730px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.FeedbackDetailPage .container .top-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.FeedbackDetailPage .container .top-bar a span {
+  margin-left: 1rem;
+}
+
+.FeedbackDetailPage .container .top-bar a:first-child span:hover {
+  text-decoration: underline;
+}
+
+.FeedbackDetailPage .container .top-bar a:last-child {
+  background: #4661e6;
+}
+
+.FeedbackDetailPage .container .top-bar a:last-child:hover {
+  background: #8397f8;
+}
+
 .CategoryBox {
   margin-top: 24px;
   background-color: #fff;
