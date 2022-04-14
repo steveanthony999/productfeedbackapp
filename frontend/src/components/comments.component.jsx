@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const Comments = ({ commentProps }) => {
   useEffect(() => {
-    console.log(`require/(${commentProps.user.image})`);
+    console.log(`${__dirname}${commentProps.user.image}`);
   }, [commentProps]);
 
   return (
