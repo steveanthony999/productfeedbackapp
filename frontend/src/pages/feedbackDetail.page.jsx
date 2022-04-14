@@ -1,17 +1,27 @@
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import _ from 'lodash';
 
 import Comments from '../components/comments.component';
 
 import IconArrowLeft from '../assets/shared/icon-arrow-left.svg';
-import { useEffect } from 'react';
 import ProductFeedback from '../components/productFeedback.component';
 
 const FeedbackDetail = () => {
   const location = useLocation();
   const { feedback } = location.state;
 
+  const [repliesLength, setRepliesLength] = useState(0);
+
   useEffect(() => {
-    console.log(feedback.comments);
+    _.find(
+      feedback,
+      feedback.comments &&
+        _.filter(
+          feedback.comments,
+          (x) => x.replies && setRepliesLength(x.replies.length)
+        )
+    );
   }, [feedback]);
 
   return (
@@ -27,21 +37,19 @@ const FeedbackDetail = () => {
             Edit Feedback
           </Link>
         </div>
-        {/* <div className='feedback-item border'>
-          <div className='left'>{feedback.upvotes}</div>
-          <div className='middle'>
-            <h3>{feedback.title}</h3>
-            <p>{feedback.description}</p>
-            <div>{feedback.category}</div>
-          </div>
-          <div className='right'></div>
-        </div> */}
         <ProductFeedback feedback={feedback} />
-        <div className='comments-container'>
-          {feedback.comments &&
-            feedback.comments.map((commentItem) => (
-              <Comments key={commentItem.id} commentProps={commentItem} />
-            ))}
+        <div className='comments-container border'>
+          <div className='top'>
+            <h3 className='h3 text-darker-blue'>
+              {feedback.comments.length + repliesLength} Comments
+            </h3>
+          </div>
+          <div className='middle'>
+            {feedback.comments &&
+              feedback.comments.map((commentItem) => (
+                <Comments key={commentItem.id} commentProps={commentItem} />
+              ))}
+          </div>
         </div>
         <div className='add-comment'>
           <h3>Add Comment</h3>

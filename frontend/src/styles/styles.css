@@ -239,6 +239,16 @@ input[type='radio']:checked + label {
   background: #8397f8;
 }
 
+.FeedbackDetailPage .container .comments-container {
+  background: #fff;
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.FeedbackDetailPage .container .comments-container .middle {
+  margin-top: 35px;
+}
+
 .CategoryBox {
   margin-top: 24px;
   background-color: #fff;

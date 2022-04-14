@@ -2,11 +2,14 @@ import { useEffect } from 'react';
 
 const Comments = ({ commentProps }) => {
   useEffect(() => {
-    console.log(commentProps.replies);
+    console.log(commentProps);
   }, [commentProps]);
 
   return (
     <div className='Comments'>
+      <div className='top'>
+        <img src={commentProps.user.image} alt='usr' />
+      </div>
       <p>{commentProps.content}</p>
       <hr />
       {commentProps.replies &&
