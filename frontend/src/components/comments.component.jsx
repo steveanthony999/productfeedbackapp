@@ -6,12 +6,19 @@ const Comments = ({ commentProps }) => {
   return (
     <div className='Comments'>
       <div className='top'>
-        <img src={commentProps.user.image} alt='usr' crossOrigin='anonymous' />
+        <img
+          src={commentProps.user.image}
+          alt='usr'
+          className='user-image'
+          crossOrigin='anonymous'
+        />
         <div className='user-info'>
           <h4 className='h4 text-darker-blue'>{commentProps.user.name}</h4>
           <p className='body3 text-grey-blue'>@{commentProps.user.username}</p>
         </div>
-        <button onClick={() => setIsReply((prevState) => !prevState)}>
+        <button
+          className='text-blue body-3'
+          onClick={() => setIsReply((prevState) => !prevState)}>
           Reply
         </button>
       </div>

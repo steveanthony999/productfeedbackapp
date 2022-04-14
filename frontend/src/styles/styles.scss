@@ -143,6 +143,11 @@ input[type='radio']:checked + label {
   background-color: $light-blue;
 }
 
+.user-image {
+  width: 40px;
+  border-radius: 50%;
+}
+
 // PAGES =================================================================
 
 // Home Page
@@ -234,7 +239,7 @@ input[type='radio']:checked + label {
 
     .comments-container {
       background: #fff;
-      padding: 24px;
+      padding: 28px 32px;
       margin-top: 24px;
 
       .middle {
@@ -448,6 +453,30 @@ input[type='radio']:checked + label {
 
       img {
         margin-right: 12px;
+      }
+    }
+  }
+}
+
+// Comments Component
+.Comments {
+  .top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .user-info {
+      margin-left: 32px;
+    }
+
+    button {
+      background: none;
+      border: none;
+      margin-left: auto;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
       }
     }
   }
