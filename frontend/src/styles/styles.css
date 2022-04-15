@@ -56,6 +56,10 @@ input[type='radio']:checked + label {
   color: #647196;
 }
 
+.text-purple {
+  color: #ad1fea;
+}
+
 .icon-white {
   -webkit-filter: brightness(100);
           filter: brightness(100);
@@ -527,6 +531,10 @@ input[type='radio']:checked + label {
   margin-right: 12px;
 }
 
+.Comments {
+  margin-top: 35px;
+}
+
 .Comments .top {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -551,6 +559,66 @@ input[type='radio']:checked + label {
 }
 
 .Comments .top button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.Comments .middle {
+  margin-top: 23px !important;
+}
+
+.Comments .middle p {
+  margin-left: 73px;
+}
+
+.Comments .middle hr {
+  margin-top: 35px;
+  border-top: 1px solid #8c92b3;
+  opacity: 0.35;
+}
+
+.Replies {
+  width: 621px;
+  margin-top: 35px;
+  margin-left: auto;
+}
+
+.Reply {
+  margin-top: 26px;
+  margin-left: 73px;
+}
+
+.Reply form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.Reply form textarea {
+  width: 75%;
+  padding: 19px 24px;
+  background: #f7f8fd;
+  resize: none;
+}
+
+.Reply form button {
+  background: #ad1fea;
+  padding: 16px 24px;
+  margin-left: 16px;
+  border: none;
+}
+
+.Reply form button:hover {
   cursor: pointer;
   text-decoration: underline;
 }

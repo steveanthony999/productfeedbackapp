@@ -77,6 +77,10 @@ input[type='radio']:checked + label {
   color: $grey-blue;
 }
 
+.text-purple {
+  color: $purple;
+}
+
 .icon-white {
   filter: brightness(100);
 }
@@ -460,6 +464,8 @@ input[type='radio']:checked + label {
 
 // Comments Component
 .Comments {
+  margin-top: 35px;
+
   .top {
     display: flex;
     flex-direction: row;
@@ -480,11 +486,63 @@ input[type='radio']:checked + label {
       }
     }
   }
+
+  .middle {
+    margin-top: 23px !important;
+
+    p {
+      margin-left: 73px;
+    }
+
+    hr {
+      margin-top: 35px;
+      border-top: 1px solid #8c92b3;
+      opacity: 0.35;
+    }
+  }
+}
+
+// Replies Component
+.Replies {
+  width: 621px;
+  margin-top: 35px;
+  margin-left: auto;
+}
+
+// Reply Component
+.Reply {
+  margin-top: 26px;
+  margin-left: 73px;
+
+  form {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    textarea {
+      width: 75%;
+      padding: 19px 24px;
+      background: $background-color;
+      resize: none;
+    }
+
+    button {
+      background: $purple;
+      padding: 16px 24px;
+      margin-left: 16px;
+      border: none;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 // EmptyFeedback Component
 .EmptyFeedback {
-  //   width: 100%;
   width: 825px;
   height: 600px;
   margin-top: 24px;
@@ -494,7 +552,6 @@ input[type='radio']:checked + label {
   justify-content: center;
 
   .container {
-    // width: 100%;
     max-width: 410px;
     display: flex;
     flex-direction: column;
