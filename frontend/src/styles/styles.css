@@ -134,6 +134,7 @@ input[type='radio']:checked + label {
 
 .Home {
   width: 100vw;
+  margin-bottom: 129px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -256,6 +257,52 @@ input[type='radio']:checked + label {
 
 .FeedbackDetailPage .container .comments-container .middle {
   margin-top: 35px;
+}
+
+.FeedbackDetailPage .container .add-comment {
+  margin-top: 24px;
+  margin-bottom: 137px;
+  padding: 28px 32px;
+  background: #fff;
+}
+
+.FeedbackDetailPage .container .add-comment form {
+  margin-top: 31px;
+}
+
+.FeedbackDetailPage .container .add-comment form textarea {
+  width: 100%;
+  padding: 19px 24px;
+  background: #f7f8fd;
+  border: none;
+  resize: none;
+}
+
+.FeedbackDetailPage .container .add-comment form .bottom {
+  margin-top: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.FeedbackDetailPage .container .add-comment form .bottom .button {
+  background: #ad1fea;
+  border: none;
+}
+
+.FeedbackDetailPage .container .add-comment form .bottom .button:hover {
+  cursor: pointer;
+  background: #c75af6;
 }
 
 .CategoryBox {
@@ -608,6 +655,7 @@ input[type='radio']:checked + label {
   width: 75%;
   padding: 19px 24px;
   background: #f7f8fd;
+  border: none;
   resize: none;
 }
 
@@ -620,7 +668,6 @@ input[type='radio']:checked + label {
 
 .Reply form button:hover {
   cursor: pointer;
-  text-decoration: underline;
 }
 
 .EmptyFeedback {

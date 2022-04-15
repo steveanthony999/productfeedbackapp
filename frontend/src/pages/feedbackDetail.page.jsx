@@ -12,6 +12,23 @@ const FeedbackDetail = () => {
   const { feedback } = location.state;
 
   const [repliesLength, setRepliesLength] = useState(0);
+  const [text, setText] = useState('');
+  const [textLength, setTextLength] = useState(0);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log('submitted commented');
+    setText('');
+  };
+
+  const handleChange = (e) => {
+    setText(e.target.value);
+  };
+
+  useEffect(() => {
+    setTextLength(text.length);
+  }, [text, textLength]);
 
   useEffect(() => {
     _.find(
@@ -51,14 +68,27 @@ const FeedbackDetail = () => {
               ))}
           </div>
         </div>
-        <div className='add-comment'>
-          <h3>Add Comment</h3>
-          <textarea
-            name=''
-            id=''
-            placeholder='Type your comment here'></textarea>
-          <p>250 Characters left</p>
-          <button>Post Comment</button>
+        <div className='add-comment border'>
+          <h3 className='h3 text-darker-blue'>Add Comment</h3>
+          <form onSubmit={handleSubmit}>
+            <textarea
+              className='border body-2 text-darker-blue'
+              name='comment'
+              id='comment'
+              value={text}
+              placeholder='Type your comment here'
+              onChange={handleChange}></textarea>
+            <div className='bottom'>
+              <p
+                className='body-2'
+                style={{ color: textLength > 255 ? 'red' : '#647196' }}>
+                {255 - textLength} Characters left
+              </p>
+              <button className='button border h4 text-very-light'>
+                Post Comment
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
