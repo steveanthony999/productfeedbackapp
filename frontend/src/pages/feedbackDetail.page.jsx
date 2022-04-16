@@ -58,13 +58,21 @@ const FeedbackDetail = () => {
         <div className='comments-container border'>
           <div className='top'>
             <h3 className='h3 text-darker-blue'>
-              {feedback.comments.length + repliesLength} Comments
+              {feedback.comments ? feedback.comments.length + repliesLength : 0}{' '}
+              {feedback.comments &&
+              feedback.comments.length + repliesLength === 1
+                ? 'Comment'
+                : 'Comments'}
             </h3>
           </div>
           <div className='middle'>
             {feedback.comments &&
-              feedback.comments.map((commentItem) => (
-                <Comments key={commentItem.id} commentProps={commentItem} />
+              feedback.comments.map((commentItem, index) => (
+                <Comments
+                  key={commentItem.id}
+                  commentProps={commentItem}
+                  hrIndex={index}
+                />
               ))}
           </div>
         </div>

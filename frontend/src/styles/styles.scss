@@ -533,9 +533,22 @@ input[type='radio']:checked + label {
     }
 
     hr {
+      display: none;
+    }
+  }
+
+  &:first-child {
+    hr {
+      display: block;
       margin-top: 35px;
       border-top: 1px solid #8c92b3;
       opacity: 0.35;
+    }
+  }
+
+  &:last-child {
+    hr {
+      display: none;
     }
   }
 }
