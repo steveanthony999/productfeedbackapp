@@ -305,6 +305,53 @@ input[type='radio']:checked + label {
   background: #c75af6;
 }
 
+.NewFeedbackPage {
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.NewFeedbackPage .container {
+  width: 540px;
+}
+
+.NewFeedbackPage .container .top-bar a span {
+  margin-left: 1rem;
+}
+
+.NewFeedbackPage .container .top-bar a span:hover {
+  text-decoration: underline;
+}
+
+.NewFeedbackPage .container .middle {
+  width: 100%;
+  margin-top: 72px;
+  padding: 40px 42px;
+  padding-top: 48px;
+  background: #fff;
+  position: relative;
+}
+
+.NewFeedbackPage .container .middle img {
+  position: absolute;
+  top: -31px;
+}
+
+.NewFeedbackPage .container .middle form h4 {
+  margin-top: 40px;
+}
+
 .CategoryBox {
   margin-top: 24px;
   background-color: #fff;

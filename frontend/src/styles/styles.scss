@@ -291,6 +291,53 @@ input[type='radio']:checked + label {
   }
 }
 
+// New Feedback Page
+.NewFeedbackPage {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    width: 540px;
+
+    .top-bar {
+      a {
+        span {
+          margin-left: 1rem;
+        }
+
+        span {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .middle {
+      width: 100%;
+      margin-top: 72px;
+      padding: 40px 42px;
+      padding-top: 48px;
+      background: #fff;
+      position: relative;
+
+      img {
+        position: absolute;
+        top: -31px;
+      }
+
+      form {
+        h4 {
+          margin-top: 40px;
+        }
+      }
+    }
+  }
+}
+
 // COMPONENTS ============================================================
 
 // Category Box Component

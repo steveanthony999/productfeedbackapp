@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 const Reply = () => {
   const [text, setText] = useState('');
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
