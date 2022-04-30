@@ -480,6 +480,39 @@ input[type='radio']:checked + label {
   background-color: #c75af6;
 }
 
+.EditFeedbackPage {
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.EditFeedbackPage .container {
+  width: 540px;
+}
+
+.EditFeedbackPage .container .top-bar .navBack {
+  cursor: pointer;
+}
+
+.EditFeedbackPage .container .top-bar .navBack span {
+  margin-left: 1rem;
+}
+
+.EditFeedbackPage .container .top-bar .navBack span:hover {
+  text-decoration: underline;
+}
+
 .CategoryBox {
   margin-top: 24px;
   background-color: #fff;

@@ -449,6 +449,35 @@ input[type='radio']:checked + label {
   }
 }
 
+// Edit Feedback Page
+.EditFeedbackPage {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    width: 540px;
+
+    .top-bar {
+      .navBack {
+        cursor: pointer;
+
+        span {
+          margin-left: 1rem;
+        }
+
+        span {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
 // COMPONENTS ============================================================
 
 // Category Box Component

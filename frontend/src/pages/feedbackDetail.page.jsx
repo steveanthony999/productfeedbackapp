@@ -50,6 +50,7 @@ const FeedbackDetail = () => {
           </Link>
           <Link
             to={`/edit-feedback${location.pathname}`}
+            state={{ feedback }}
             className='button border h4 text-very-light'>
             Edit Feedback
           </Link>
