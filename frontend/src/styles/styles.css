@@ -647,14 +647,6 @@ input[type='radio']:checked + label {
           justify-content: flex-end;
 }
 
-.EditFeedbackPage .container .middle form .edit-feedback-buttons a {
-  background-color: #3a4374;
-}
-
-.EditFeedbackPage .container .middle form .edit-feedback-buttons a:hover {
-  background-color: #656ea3;
-}
-
 .EditFeedbackPage .container .middle form .edit-feedback-buttons button {
   margin-left: 16px;
   background-color: #ad1fea;
@@ -668,8 +660,16 @@ input[type='radio']:checked + label {
   margin-left: 0;
 }
 
+.EditFeedbackPage .container .middle form .edit-feedback-buttons button:first-child:hover {
+  background-color: #e98888;
+}
+
 .EditFeedbackPage .container .middle form .edit-feedback-buttons button:nth-child(2) {
   background-color: #3a4374;
+}
+
+.EditFeedbackPage .container .middle form .edit-feedback-buttons button:nth-child(2):hover {
+  background-color: #656ea3;
 }
 
 .EditFeedbackPage .container .middle form .edit-feedback-buttons button:hover {

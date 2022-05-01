@@ -593,23 +593,23 @@ input[type='radio']:checked + label {
           align-items: center;
           justify-content: flex-end;
 
-          a {
-            background-color: $darker-blue;
-
-            &:hover {
-              background-color: #656ea3;
-            }
-          }
-
           button {
             &:first-child {
               background-color: #d73737;
               margin-right: auto;
               margin-left: 0;
+
+              &:hover {
+                background-color: #e98888;
+              }
             }
 
             &:nth-child(2) {
               background-color: $darker-blue;
+
+              &:hover {
+                background-color: #656ea3;
+              }
             }
 
             margin-left: 16px;
