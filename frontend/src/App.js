@@ -4,6 +4,7 @@ import Home from './pages/home.page';
 import FeedbackDetail from './pages/feedbackDetail.page';
 import NewFeedback from './pages/new-feedback.page';
 import EditFeedback from './pages/edit-feedback.page';
+import Roadmap from './pages/roadmap.page';
 
 import './styles/styles.css';
 
@@ -18,6 +19,7 @@ function App() {
           path='/edit-feedback/feedback/:feedbackId'
           element={<EditFeedback />}
         />
+        <Route path='/roadmap' element={<Roadmap />} />
       </Routes>
     </Router>
   );

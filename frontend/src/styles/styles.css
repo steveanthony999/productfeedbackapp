@@ -676,6 +676,82 @@ input[type='radio']:checked + label {
   background-color: #c75af6;
 }
 
+.RoadmapPage {
+  width: 100vw;
+  margin-bottom: 129px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.RoadmapPage .container {
+  width: 1110px;
+}
+
+.RoadmapPage .container .top-bar {
+  width: 100%;
+  padding: 32px;
+  background-color: #373f68;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.RoadmapPage .container .top-bar .left .navBack {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.RoadmapPage .container .top-bar .left .navBack img {
+  -webkit-filter: brightness(100);
+          filter: brightness(100);
+}
+
+.RoadmapPage .container .top-bar .left .navBack span {
+  margin-left: 1rem;
+}
+
+.RoadmapPage .container .top-bar .left .navBack span:hover {
+  text-decoration: underline;
+}
+
+.RoadmapPage .container .top-bar .left h1 {
+  margin-top: 12px;
+}
+
+.RoadmapPage .container .top-bar .right a {
+  background-color: #ad1fea;
+}
+
 .CategoryBox {
   margin-top: 24px;
   background-color: #fff;

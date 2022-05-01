@@ -627,6 +627,63 @@ input[type='radio']:checked + label {
   }
 }
 
+// Roadmap Page
+.RoadmapPage {
+  width: 100vw;
+  margin-bottom: 129px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    width: 1110px;
+
+    .top-bar {
+      width: 100%;
+      padding: 32px;
+      background-color: $darkest-blue;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      .left {
+        .navBack {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          cursor: pointer;
+
+          img {
+            filter: brightness(100);
+          }
+
+          span {
+            margin-left: 1rem;
+          }
+
+          span {
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        h1 {
+          margin-top: 12px;
+        }
+      }
+
+      .right {
+        a {
+          background-color: $purple;
+        }
+      }
+    }
+  }
+}
+
 // COMPONENTS ============================================================
 
 // Category Box Component
