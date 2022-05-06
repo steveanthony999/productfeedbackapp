@@ -1178,4 +1178,9 @@ input[type='radio']:checked + label {
 .EmptyFeedback .container .button {
   margin-top: 50px;
 }
+
+.RoadmapCard {
+  max-width: 350px;
+  background: #fff;
+}
 /*# sourceMappingURL=styles.css.map */

@@ -1,6 +1,6 @@
 const RoadmapCard = () => {
   return (
-    <div>
+    <div className='RoadmapCard border'>
       <div>Roadmap Card</div>
     </div>
   );

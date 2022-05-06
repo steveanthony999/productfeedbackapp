@@ -13,18 +13,21 @@ const RoadmapBox = ({ feedback }) => {
       if (fb.status === 'planned') {
         return true;
       }
+      return false;
     }).length;
 
     const inProgressLength = feedback.filter((fb) => {
       if (fb.status === 'in-progress') {
         return true;
       }
+      return false;
     }).length;
 
     const liveLength = feedback.filter((fb) => {
       if (fb.status === 'live') {
         return true;
       }
+      return false;
     }).length;
 
     setStatusCount({
@@ -33,13 +36,14 @@ const RoadmapBox = ({ feedback }) => {
       inProgress: inProgressLength,
       live: liveLength,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [feedback]);
 
   return (
     <div className='RoadmapBox border'>
       <div className='RoadmapBox-top'>
         <h3 className='h3 text-darker-blue'>Roadmap</h3>
-        <Link to='/roadmap' className='body-3 text-blue'>
+        <Link to='/roadmap' className='body-3 text-blue' state={{ feedback }}>
           View
         </Link>
       </div>
