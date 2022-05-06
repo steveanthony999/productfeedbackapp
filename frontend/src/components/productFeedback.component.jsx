@@ -78,7 +78,6 @@ const ProductFeedback = ({ feedback }) => {
             <p
               className='h4 text-darker-blue'
               style={{ color: isUpvote && '#fff' }}>
-              {/* {feedback.upvotes} */}
               {feedbackUpvotes}
             </p>
           </div>

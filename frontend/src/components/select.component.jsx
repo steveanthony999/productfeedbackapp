@@ -25,7 +25,7 @@ const Select = ({ passSortOrder }) => {
     setSortOrder(value.replace(' ', '-').toLowerCase());
     setIsOpen(false);
     setIsChecked(value);
-    document.removeEventListener('click', () => console.log('kk'));
+    document.removeEventListener('click', () => console.log('done'));
   };
 
   const handleBodyClick = () => {

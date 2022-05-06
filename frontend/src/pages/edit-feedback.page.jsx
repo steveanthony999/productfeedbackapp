@@ -41,7 +41,7 @@ const EditFeedback = () => {
     setSelectedCategoryOption(value);
     setIsCategoryOpen(false);
     setIsCategoryChecked(value);
-    document.removeEventListener('click', () => console.log('kk'));
+    document.removeEventListener('click', () => console.log('done'));
   };
 
   const handleBodyClick = () => {
@@ -57,7 +57,7 @@ const EditFeedback = () => {
     setSelectedStatusOption(value);
     setIsStatusOpen(false);
     setIsStatusChecked(value);
-    document.removeEventListener('click', () => console.log('kk'));
+    document.removeEventListener('click', () => console.log('done'));
   };
 
   const handleSubmit = (e) => {

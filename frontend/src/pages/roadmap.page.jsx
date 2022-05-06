@@ -21,6 +21,22 @@ const Roadmap = () => {
             </Link>
           </div>
         </div>
+        <div className='middle-container'>
+          <div>
+            <h3 className='h3 text-darker-blue'>Planned</h3>
+            <p className='body-1 text-grey-blue'>
+              Ideas prioritized for research
+            </p>
+          </div>
+          <div>
+            <h3 className='h3 text-darker-blue'>In-Progress</h3>
+            <p className='body-1 text-grey-blue'>Currently being developed</p>
+          </div>
+          <div>
+            <h3 className='h3 text-darker-blue'>Live</h3>
+            <p className='body-1 text-grey-blue'>Released features</p>
+          </div>
+        </div>
       </div>
     </div>
   );

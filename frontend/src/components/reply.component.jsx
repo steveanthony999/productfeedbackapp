@@ -6,7 +6,6 @@ const Reply = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(text);
     setText('');
   };
 

@@ -681,6 +681,12 @@ input[type='radio']:checked + label {
         }
       }
     }
+
+    .middle-container {
+      margin-top: 53px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 }
 

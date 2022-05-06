@@ -22,7 +22,7 @@ const NewFeedback = () => {
     setSelectedOption(value);
     setIsOpen(false);
     setIsChecked(value);
-    document.removeEventListener('click', () => console.log('kk'));
+    document.removeEventListener('click', () => console.log('done'));
   };
 
   const handleBodyClick = () => {

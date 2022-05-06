@@ -100,7 +100,7 @@ const Home = () => {
             <CategoryBox />
           </div>
           <div className='bottom border'>
-            <RoadmapBox />
+            <RoadmapBox feedback={feedback} />
           </div>
         </div>
         <div className='right'>

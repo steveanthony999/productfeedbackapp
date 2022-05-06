@@ -752,6 +752,14 @@ input[type='radio']:checked + label {
   background-color: #ad1fea;
 }
 
+.RoadmapPage .container .middle-container {
+  margin-top: 53px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+}
+
 .CategoryBox {
   margin-top: 24px;
   background-color: #fff;

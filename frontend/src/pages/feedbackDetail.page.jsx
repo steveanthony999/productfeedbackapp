@@ -18,7 +18,6 @@ const FeedbackDetail = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log('submitted commented');
     setText('');
   };
 

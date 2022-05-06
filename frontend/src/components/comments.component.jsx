@@ -1,14 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Replies from './replies.component';
 import Reply from './reply.component';
 
 const Comments = ({ commentProps, hrIndex }) => {
   const [isReply, setIsReply] = useState(false);
-
-  useEffect(() => {
-    console.log(hrIndex);
-  }, [hrIndex]);
 
   return (
     <div className='Comments'>

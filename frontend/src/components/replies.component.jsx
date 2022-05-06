@@ -1,13 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Reply from './reply.component';
 
 const Replies = ({ reply }) => {
   const [isReply, setIsReply] = useState(false);
-
-  useEffect(() => {
-    console.log(reply);
-  }, [reply]);
 
   return (
     <div className='Replies'>
