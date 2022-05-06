@@ -2,40 +2,37 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const RoadmapBox = ({ feedback }) => {
-  const [plannedCount, setPlannedCount] = useState(0);
-  const [inProgressCount, setInProgressCount] = useState(0);
-  const [liveCount, setLiveCount] = useState(0);
+  const [statusCount, setStatusCount] = useState({
+    planned: 0,
+    inProgress: 0,
+    live: 0,
+  });
 
   useEffect(() => {
-    setPlannedCount(
-      feedback.filter((fb) => {
-        if (fb.status === 'planned') {
-          return true;
-        }
+    const plannedLength = feedback.filter((fb) => {
+      if (fb.status === 'planned') {
+        return true;
+      }
+    }).length;
 
-        return false;
-      }).length
-    );
+    const inProgressLength = feedback.filter((fb) => {
+      if (fb.status === 'in-progress') {
+        return true;
+      }
+    }).length;
 
-    setInProgressCount(
-      feedback.filter((fb) => {
-        if (fb.status === 'in-progress') {
-          return true;
-        }
+    const liveLength = feedback.filter((fb) => {
+      if (fb.status === 'live') {
+        return true;
+      }
+    }).length;
 
-        return false;
-      }).length
-    );
-
-    setLiveCount(
-      feedback.filter((fb) => {
-        if (fb.status === 'live') {
-          return true;
-        }
-
-        return false;
-      }).length
-    );
+    setStatusCount({
+      ...statusCount,
+      planned: plannedLength,
+      inProgress: inProgressLength,
+      live: liveLength,
+    });
   }, [feedback]);
 
   return (
@@ -52,19 +49,19 @@ const RoadmapBox = ({ feedback }) => {
             <span className='body-1'>
               <div className='bullet bullet-orange'></div>Planned
             </span>
-            <span className='h4'>{plannedCount}</span>
+            <span className='h4'>{statusCount.planned}</span>
           </li>
           <li>
             <span className='body-1'>
               <div className='bullet bullet-purple'></div>In-Progress
             </span>
-            <span className='h4'>{inProgressCount}</span>
+            <span className='h4'>{statusCount.inProgress}</span>
           </li>
           <li>
             <span className='body-1'>
               <div className='bullet bullet-blue'></div>Live
             </span>
-            <span className='h4'>{liveCount}</span>
+            <span className='h4'>{statusCount.live}</span>
           </li>
         </ul>
       </div>
