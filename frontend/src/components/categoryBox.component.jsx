@@ -2,10 +2,6 @@ import { useDispatch } from 'react-redux';
 import { getFeedback } from '../features/feedback/feedbackSlice';
 
 const Button = ({ name, isChecked }) => {
-  //   const { feedback, isLoading, isSuccess } = useSelector(
-  //     (state) => state.feedback
-  //   );
-
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
