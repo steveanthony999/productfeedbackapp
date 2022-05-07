@@ -1,14 +1,28 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import { getFeedback, reset } from '../features/feedback/feedbackSlice';
 
 import IconArrowLeft from '../assets/shared/icon-arrow-left.svg';
 import RoadmapCard from '../components/roadmapCard.component';
 
 const Roadmap = () => {
-  const location = useLocation();
-  const { feedback } = location.state;
+  const { feedback, isSuccess } = useSelector((state) => state.feedback);
 
-  //   useEffect(() => console.log(feedback), [feedback]);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      if (isSuccess) {
+        dispatch(reset());
+      }
+    };
+  }, [dispatch, isSuccess]);
+
+  useEffect(() => {
+    dispatch(getFeedback());
+  }, [dispatch]);
 
   const [statusCount, setStatusCount] = useState({
     planned: 0,

@@ -43,7 +43,7 @@ const RoadmapBox = ({ feedback }) => {
     <div className='RoadmapBox border'>
       <div className='RoadmapBox-top'>
         <h3 className='h3 text-darker-blue'>Roadmap</h3>
-        <Link to='/roadmap' className='body-3 text-blue' state={{ feedback }}>
+        <Link to='/roadmap' className='body-3 text-blue'>
           View
         </Link>
       </div>
