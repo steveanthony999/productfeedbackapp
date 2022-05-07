@@ -8,6 +8,8 @@ const Roadmap = () => {
   const location = useLocation();
   const { feedback } = location.state;
 
+  //   useEffect(() => console.log(feedback), [feedback]);
+
   const [statusCount, setStatusCount] = useState({
     planned: 0,
     inProgress: 0,
@@ -73,7 +75,16 @@ const Roadmap = () => {
             {feedback
               .filter((fb) => fb.status === 'planned')
               .map((fdbk) => (
-                <RoadmapCard key={fdbk.id} />
+                <RoadmapCard
+                  key={fdbk.id}
+                  status='Planned'
+                  color='orange'
+                  title={fdbk.title}
+                  description={fdbk.description}
+                  category={fdbk.category}
+                  upvotes={fdbk.upvotes}
+                  commentsLength={fdbk.comments ? fdbk.comments.length : 0}
+                />
               ))}
           </div>
           <div>
@@ -84,7 +95,16 @@ const Roadmap = () => {
             {feedback
               .filter((fb) => fb.status === 'in-progress')
               .map((fdbk) => (
-                <RoadmapCard key={fdbk.id} />
+                <RoadmapCard
+                  key={fdbk.id}
+                  status='In Progress'
+                  color='purple'
+                  title={fdbk.title}
+                  description={fdbk.description}
+                  category={fdbk.category}
+                  upvotes={fdbk.upvotes}
+                  commentsLength={fdbk.comments ? fdbk.comments.length : 0}
+                />
               ))}
           </div>
           <div>
@@ -93,7 +113,16 @@ const Roadmap = () => {
             {feedback
               .filter((fb) => fb.status === 'live')
               .map((fdbk) => (
-                <RoadmapCard key={fdbk.id} />
+                <RoadmapCard
+                  key={fdbk.id}
+                  status='Live'
+                  color='light-blue'
+                  title={fdbk.title}
+                  description={fdbk.description}
+                  category={fdbk.category}
+                  upvotes={fdbk.upvotes}
+                  commentsLength={fdbk.comments ? fdbk.comments.length : 0}
+                />
               ))}
           </div>
         </div>

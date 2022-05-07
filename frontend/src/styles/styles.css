@@ -1181,6 +1181,111 @@ input[type='radio']:checked + label {
 
 .RoadmapCard {
   max-width: 350px;
+  padding: 32px;
+  margin-top: 34px;
   background: #fff;
+}
+
+.RoadmapCard .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.RoadmapCard .top .bullet {
+  width: 8px;
+  height: 8px;
+  margin-right: 17px;
+  border-radius: 50%;
+}
+
+.RoadmapCard .middle {
+  margin-top: 16px;
+}
+
+.RoadmapCard .middle p {
+  margin-top: 16px;
+}
+
+.RoadmapCard .middle .btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 6px 14px;
+  background-color: #f2f4ff;
+  border-radius: 10px;
+}
+
+.RoadmapCard .middle div {
+  text-transform: capitalize;
+}
+
+.RoadmapCard .bottom {
+  margin-top: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.RoadmapCard .bottom .btn {
+  width: 40px;
+  height: 53px;
+  background-color: #f2f4ff;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.RoadmapCard .bottom .btn p {
+  margin-top: 8px;
+}
+
+.RoadmapCard .bottom .btn:hover {
+  cursor: pointer;
+  background-color: #cfd7ff;
+}
+
+.RoadmapCard .bottom .comments {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.RoadmapCard .bottom .comments img {
+  margin-right: 12px;
 }
 /*# sourceMappingURL=styles.css.map */
