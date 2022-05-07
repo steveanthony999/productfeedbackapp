@@ -93,6 +93,7 @@ const Roadmap = () => {
                   key={fdbk.id}
                   status='Planned'
                   color='orange'
+                  feedbackId={fdbk.id}
                   title={fdbk.title}
                   description={fdbk.description}
                   category={fdbk.category}
@@ -113,6 +114,7 @@ const Roadmap = () => {
                   key={fdbk.id}
                   status='In Progress'
                   color='purple'
+                  feedbackId={fdbk.id}
                   title={fdbk.title}
                   description={fdbk.description}
                   category={fdbk.category}
@@ -131,6 +133,7 @@ const Roadmap = () => {
                   key={fdbk.id}
                   status='Live'
                   color='light-blue'
+                  feedbackId={fdbk.id}
                   title={fdbk.title}
                   description={fdbk.description}
                   category={fdbk.category}
