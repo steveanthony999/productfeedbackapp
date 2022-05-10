@@ -1,0 +1,25 @@
+.Marquee {
+  width: 255px;
+  padding-left: 25px;
+
+  .Marquee-h2 {
+    display: inline-block;
+    margin-top: 68px;
+  }
+
+  .Marquee-p {
+    display: inline-block;
+    margin-bottom: 30px;
+    opacity: 0.75;
+  }
+}
+
+@media screen and (max-width: 1110px) {
+  .Marquee {
+    width: 223px;
+
+    .Marquee-h2 {
+      margin-top: 108px;
+    }
+  }
+}

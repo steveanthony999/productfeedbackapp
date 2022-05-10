@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { getFeedback } from '../features/feedback/feedbackSlice';
 
+import '../styles/components/categoryBox.css';
+
 const Button = ({ name, isChecked }) => {
   const dispatch = useDispatch();
 
@@ -32,7 +34,7 @@ const Button = ({ name, isChecked }) => {
 const CategoryBox = () => {
   return (
     <div className='CategoryBox border'>
-      <div className='container'>
+      <div className='CategoryBox-container'>
         <Button name={'All'} isChecked />
         <Button name={'UI'} />
         <Button name={'UX'} />

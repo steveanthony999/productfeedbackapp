@@ -7,6 +7,8 @@ import Comments from '../components/comments.component';
 import IconArrowLeft from '../assets/shared/icon-arrow-left.svg';
 import ProductFeedback from '../components/productFeedback.component';
 
+import '../styles/pages/feedbackPage.css';
+
 const FeedbackDetail = () => {
   const location = useLocation();
   const { feedback } = location.state;

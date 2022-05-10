@@ -1,0 +1,45 @@
+@import '../helpers/variables.scss';
+@import '../helpers/mixins.scss';
+
+.Home {
+  @include mainContainerStyle();
+
+  .Home-container {
+    width: 1110px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    .Home-left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .Home-right {
+      width: 825px;
+      margin-left: 30px;
+    }
+  }
+}
+
+@media screen and (max-width: 1110px) {
+  .Home {
+    .Home-container {
+      flex-direction: column;
+      align-items: center;
+
+      .Home-left {
+        width: 739px;
+        max-height: 178px;
+        margin-bottom: 40px;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .Home-right {
+        width: 739px;
+        margin-left: 0;
+      }
+    }
+  }
+}

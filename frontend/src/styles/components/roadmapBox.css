@@ -1,0 +1,68 @@
+.RoadmapBox {
+  width: 255px;
+  margin-top: 24px;
+  padding: 24px;
+  background-color: #fff;
+}
+
+.RoadmapBox .RoadmapBox-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.RoadmapBox .RoadmapBox-top a {
+  text-decoration: underline;
+}
+
+.RoadmapBox .RoadmapBox-top a:hover {
+  color: #8397f8;
+}
+
+.RoadmapBox .RoadmapBox-middle {
+  margin-top: 32px;
+}
+
+.RoadmapBox .RoadmapBox-middle .RoadmapBox-ul .RoadmapBox-li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.RoadmapBox .RoadmapBox-middle .RoadmapBox-ul .RoadmapBox-li .RoadmapBox-span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media screen and (max-width: 1110px) {
+  .RoadmapBox {
+    width: 223px;
+    margin-top: 0;
+  }
+}
+/*# sourceMappingURL=roadmapBox.css.map */

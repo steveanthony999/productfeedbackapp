@@ -4,13 +4,14 @@ import _ from 'lodash';
 
 import { getFeedback, reset } from '../features/feedback/feedbackSlice';
 
+import Marquee from '../components/marquee.component';
 import CategoryBox from '../components/categoryBox.component';
 import RoadmapBox from '../components/roadmapBox.component';
-import TopBar from '../components/topBar.component';
+import TopBarHome from '../components/topBarHome.component';
 import ProductFeedback from '../components/productFeedback.component';
 import EmptyFeedback from '../components/emptyFeedback.component';
 
-import BackgroundHeaderImg from '../assets/suggestions/desktop/background-header.png';
+import '../styles/pages/home.css';
 
 const Home = () => {
   const { feedback, isSuccess } = useSelector((state) => state.feedback);
@@ -85,26 +86,14 @@ const Home = () => {
 
   return (
     <div className='Home'>
-      <div className='container'>
-        <div className='left'>
-          <div
-            className='top border'
-            style={{
-              background: `url(${BackgroundHeaderImg}) no-repeat center center/cover`,
-            }}>
-            <h2 className='h2 text-white'>Frontend Mentor</h2>
-            <br />
-            <p className='body-2 text-white'>Feedback Board</p>
-          </div>
-          <div className='middle'>
-            <CategoryBox />
-          </div>
-          <div className='bottom border'>
-            <RoadmapBox feedback={feedback} />
-          </div>
+      <div className='Home-container'>
+        <div className='Home-left'>
+          <Marquee />
+          <CategoryBox />
+          <RoadmapBox feedback={feedback} />
         </div>
-        <div className='right'>
-          <TopBar passSortOrder={passSortOrder} />
+        <div className='Home-right'>
+          <TopBarHome passSortOrder={passSortOrder} />
           {feedback.length === 0 ? (
             <EmptyFeedback />
           ) : (

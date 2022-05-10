@@ -4,22 +4,27 @@ import Select from './select.component';
 
 import SuggestionsIcon from '../assets/suggestions/icon-suggestions.svg';
 
-const TopBar = ({ passSortOrder }) => {
+import '../styles/helpers/globals.css';
+import '../styles/components/topBarHome.css';
+
+const TopBarHome = ({ passSortOrder }) => {
   const { feedback } = useSelector((state) => state.feedback);
 
   return (
-    <div className='TopBar border'>
-      <div className='left'>
+    <div className='TopBarHome border'>
+      <div className='TopBarHome-left'>
         <img src={SuggestionsIcon} alt='bulb' />
         <h3 className='h3 text-white'>{feedback.length} Suggestions</h3>
         <Select passSortOrder={passSortOrder} />
       </div>
-      <div className='right'>
-        <Link to='/new-feedback' className='button border h4 text-very-light'>
-          + Add Feedback
+      <div className='TopBarHome-right'>
+        <Link to='/new-feedback'>
+          <button className='button button-purple border h4 text-very-light'>
+            + Add Feedback
+          </button>
         </Link>
       </div>
     </div>
   );
 };
-export default TopBar;
+export default TopBarHome;

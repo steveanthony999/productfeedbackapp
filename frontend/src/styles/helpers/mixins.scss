@@ -1,0 +1,17 @@
+@import './variables.scss';
+
+@mixin mainContainerStyle {
+  width: 100vw;
+  margin-bottom: 129px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin categoryPillStyle {
+  padding: 8px 16px;
+  margin: 7px 8px;
+  background-color: $white-blue;
+  border-radius: $border-rounded;
+}

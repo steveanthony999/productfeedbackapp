@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import '../styles/components/roadmapBox.css';
+
 const RoadmapBox = ({ feedback }) => {
   const [statusCount, setStatusCount] = useState({
     planned: 0,
@@ -48,21 +50,21 @@ const RoadmapBox = ({ feedback }) => {
         </Link>
       </div>
       <div className='RoadmapBox-middle'>
-        <ul className='text-grey-blue'>
-          <li>
-            <span className='body-1'>
+        <ul className='RoadmapBox-ul text-grey-blue'>
+          <li className='RoadmapBox-li'>
+            <span className='RoadmapBox-span body-1'>
               <div className='bullet bullet-orange'></div>Planned
             </span>
             <span className='h4'>{statusCount.planned}</span>
           </li>
-          <li>
-            <span className='body-1'>
+          <li className='RoadmapBox-li'>
+            <span className='RoadmapBox-span body-1'>
               <div className='bullet bullet-purple'></div>In-Progress
             </span>
             <span className='h4'>{statusCount.inProgress}</span>
           </li>
-          <li>
-            <span className='body-1'>
+          <li className='RoadmapBox-li'>
+            <span className='RoadmapBox-span body-1'>
               <div className='bullet bullet-blue'></div>Live
             </span>
             <span className='h4'>{statusCount.live}</span>

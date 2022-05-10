@@ -1,0 +1,88 @@
+@import '../helpers/variables.scss';
+@import '../helpers/mixins.scss';
+
+.FeedbackDetailPage {
+  @include mainContainerStyle();
+
+  .container {
+    width: 730px;
+    display: flex;
+    flex-direction: column;
+
+    .top-bar {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      a {
+        span {
+          margin-left: 1rem;
+        }
+
+        &:first-child {
+          span {
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        &:last-child {
+          background: $dark-blue;
+
+          &:hover {
+            background: $med-blue;
+          }
+        }
+      }
+    }
+
+    .comments-container {
+      background: #fff;
+      padding: 28px 32px;
+      margin-top: 24px;
+
+      .middle {
+        margin-top: 35px;
+      }
+    }
+
+    .add-comment {
+      margin-top: 24px;
+      margin-bottom: 137px;
+      padding: 28px 32px;
+      background: #fff;
+
+      form {
+        margin-top: 31px;
+
+        textarea {
+          width: 100%;
+          padding: 19px 24px;
+          background: $background-color;
+          border: none;
+          resize: none;
+        }
+
+        .bottom {
+          margin-top: 16px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+
+          .button {
+            background: $purple;
+            border: none;
+
+            &:hover {
+              cursor: pointer;
+              background: $light-purple;
+            }
+          }
+        }
+      }
+    }
+  }
+}

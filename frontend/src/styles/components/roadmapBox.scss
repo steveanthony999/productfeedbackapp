@@ -1,0 +1,48 @@
+@import '../helpers/variables.scss';
+
+.RoadmapBox {
+  width: 255px;
+  margin-top: 24px;
+  padding: 24px;
+  background-color: #fff;
+
+  .RoadmapBox-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      text-decoration: underline;
+
+      &:hover {
+        color: $med-blue;
+      }
+    }
+  }
+
+  .RoadmapBox-middle {
+    margin-top: 32px;
+
+    .RoadmapBox-ul {
+      .RoadmapBox-li {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .RoadmapBox-span {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1110px) {
+  .RoadmapBox {
+    width: 223px;
+    margin-top: 0;
+  }
+}

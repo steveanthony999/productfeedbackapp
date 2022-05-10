@@ -1,0 +1,143 @@
+@import './variables.scss';
+
+body {
+  background-color: $background-color;
+  margin-top: $margin-top-desktop;
+}
+
+a {
+  text-decoration: none;
+  background: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+input[type='radio'] {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+}
+
+input[type='radio']:checked + label {
+  background: $dark-blue !important;
+  color: #fff;
+}
+
+.border {
+  border-radius: $border-rounded;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-very-light {
+  color: #f2f4fe;
+}
+
+.text-blue {
+  color: $dark-blue;
+}
+
+.text-darker-blue {
+  color: $darker-blue;
+}
+
+.text-grey-blue {
+  color: $grey-blue;
+}
+
+.text-purple {
+  color: $purple;
+}
+
+.icon-white {
+  filter: brightness(100);
+}
+
+.h1 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 35px;
+  letter-spacing: -0.33px;
+}
+
+.h2 {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 29px;
+  letter-spacing: -0.25px;
+}
+
+.h3 {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -0.25px;
+}
+
+.h4 {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.2px;
+}
+
+.body-1 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+}
+
+.body-2 {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.body-3 {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.button {
+  padding: 12px 25px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.button-purple {
+  background: $purple;
+
+  &:hover {
+    background: $light-purple;
+  }
+}
+
+.bullet-orange {
+  background-color: $orange;
+}
+
+.bullet-purple {
+  background-color: $purple;
+}
+
+.bullet-blue {
+  background-color: $light-blue;
+}
+
+.user-image {
+  width: 40px;
+  border-radius: 50%;
+}
+
+.bullet {
+  width: 8px;
+  height: 8px;
+  margin-right: 17px;
+  border-radius: 50%;
+}

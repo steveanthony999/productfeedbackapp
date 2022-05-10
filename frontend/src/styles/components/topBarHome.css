@@ -1,0 +1,38 @@
+.TopBarHome {
+  width: 100%;
+  max-width: 825px;
+  max-height: 72px;
+  padding: 24px;
+  background-color: #373f68;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.TopBarHome .TopBarHome-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.TopBarHome .TopBarHome-left h3 {
+  margin-left: 16px;
+}
+/*# sourceMappingURL=topBarHome.css.map */
