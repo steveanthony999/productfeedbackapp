@@ -98,7 +98,7 @@ const EditFeedback = () => {
             </p>
             <input
               type='text'
-              className='border body-2 text-darker-blue'
+              className='input-field border body-2 text-darker-blue'
               value={feedbackTitle}
               onChange={(e) => setFeedbackTitle(e.target.value)}
             />

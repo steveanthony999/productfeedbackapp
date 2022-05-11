@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 
 import IconArrowDown from '../assets/shared/icon-arrow-down.svg';
 import IconArrowUp from '../assets/shared/icon-arrow-up.svg';
-import IconArrowLeft from '../assets/shared/icon-arrow-left.svg';
 import IconNewFeedback from '../assets/shared/icon-new-feedback.svg';
 import IconCheck from '../assets/shared/icon-check.svg';
+
+import '../styles/pages/newFeedbackPage.css';
+import GoBack from '../components/goBack.component';
 
 const options = ['Feature', 'UI', 'UX', 'Enhancement', 'Bug'];
 
@@ -42,21 +44,26 @@ const NewFeedback = () => {
 
   return (
     <div className='NewFeedbackPage'>
-      <div className='container'>
-        <div className='top-bar'>
-          <Link to={'/'} className='text-grey-blue h4'>
-            <img src={IconArrowLeft} alt='<' /> <span>Go Back</span>
-          </Link>
+      <div className='NewFeedbackPage-container'>
+        <div className='NewFeedbackPage-top-bar'>
+          <GoBack to='/' styles='text-grey-blue h4' />
         </div>
-        <div className='middle border'>
-          <img src={IconNewFeedback} alt='+' />
+        <div className='NewFeedbackPage-middle border'>
+          <img
+            className='NewFeedbackPage-top-icon'
+            src={IconNewFeedback}
+            alt='+'
+          />
           <h1 className='h1 text-darker-blue'>Create New Feedback</h1>
-          <form onSubmit={handleSubmit}>
+          <form className='NewFeedbackPage-form' onSubmit={handleSubmit}>
             <h4 className='h4 text-darker-blue'>Feedback Title</h4>
             <p className='body-2 text-grey-blue'>
               Add a short, descriptive headline
             </p>
-            <input type='text' className='border body-2 text-darker-blue' />
+            <input
+              type='text'
+              className='input-field border body-2 text-darker-blue'
+            />
             {/* SELECT */}
             <div className='new-feedback-select-container'>
               <h4 className='h4 text-darker-blue'>Category</h4>
@@ -72,7 +79,11 @@ const NewFeedback = () => {
                 <span className='body-2 text-darker-blue'>
                   {selectedOption}
                 </span>
-                <img src={isOpen ? IconArrowUp : IconArrowDown} alt='arrow' />
+                <img
+                  className='select-field-img'
+                  src={isOpen ? IconArrowUp : IconArrowDown}
+                  alt='arrow'
+                />
               </div>
               {isOpen && (
                 <div className='select-list-container'>

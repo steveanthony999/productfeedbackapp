@@ -141,3 +141,11 @@ input[type='radio']:checked + label {
   margin-right: 17px;
   border-radius: 50%;
 }
+
+.input-field {
+  width: 100%;
+  padding: 15px 23px;
+  margin-top: 18px;
+  background: $background-color;
+  border: none;
+}

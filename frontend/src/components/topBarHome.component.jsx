@@ -4,6 +4,8 @@ import Select from './select.component';
 
 import SuggestionsIcon from '../assets/suggestions/icon-suggestions.svg';
 
+import options from '../options.json';
+
 import '../styles/helpers/globals.css';
 import '../styles/components/topBarHome.css';
 
@@ -15,7 +17,11 @@ const TopBarHome = ({ passSortOrder }) => {
       <div className='TopBarHome-left'>
         <img src={SuggestionsIcon} alt='bulb' />
         <h3 className='h3 text-white'>{feedback.length} Suggestions</h3>
-        <Select passSortOrder={passSortOrder} />
+        <Select
+          options={options['home-top-bar-options']}
+          passSortOrder={passSortOrder}
+          origin='home-top-bar'
+        />
       </div>
       <div className='TopBarHome-right'>
         <Link to='/new-feedback'>

@@ -4,10 +4,10 @@ import _ from 'lodash';
 
 import Comments from '../components/comments.component';
 
-import IconArrowLeft from '../assets/shared/icon-arrow-left.svg';
 import ProductFeedback from '../components/productFeedback.component';
 
 import '../styles/pages/feedbackPage.css';
+import GoBack from '../components/goBack.component';
 
 const FeedbackDetail = () => {
   const location = useLocation();
@@ -46,9 +46,7 @@ const FeedbackDetail = () => {
     <div className='FeedbackDetailPage'>
       <div className='container'>
         <div className='top-bar'>
-          <Link to={'/'} className='text-grey-blue h4'>
-            <img src={IconArrowLeft} alt='<' /> <span>Go Back</span>
-          </Link>
+          <GoBack to='/' styles='text-grey-blue h4' />
           <Link
             to={`/edit-feedback${location.pathname}`}
             state={{ feedback }}

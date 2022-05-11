@@ -3,14 +3,7 @@ import IconArrowDown from '../assets/shared/icon-arrow-down.svg';
 import IconArrowUp from '../assets/shared/icon-arrow-up.svg';
 import IconCheck from '../assets/shared/icon-check.svg';
 
-const options = [
-  'Most Upvotes',
-  'Least Upvotes',
-  'Most Comments',
-  'Least Comments',
-];
-
-const Select = ({ passSortOrder }) => {
+const Select = ({ passSortOrder, options, origin }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [sortOrder, setSortOrder] = useState('most-upvotes');
@@ -50,7 +43,8 @@ const Select = ({ passSortOrder }) => {
           className='select-header body-2 text-very-light'
           onClick={toggling}
           style={{ opacity: isOpen ? 0.8 : 1 }}>
-          Sort by : <span className='h4 text-very-light'>{selectedOption}</span>
+          {origin === 'home-top-bar' && 'Sort by : '}
+          <span className='h4 text-very-light'>{selectedOption}</span>
           &nbsp;&nbsp;
           <img
             src={isOpen ? IconArrowUp : IconArrowDown}

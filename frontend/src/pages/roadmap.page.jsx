@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { getFeedback, reset } from '../features/feedback/feedbackSlice';
 
-import IconArrowLeft from '../assets/shared/icon-arrow-left.svg';
 import RoadmapCard from '../components/roadmapCard.component';
+import GoBack from '../components/goBack.component';
 
 const Roadmap = () => {
   const { feedback, isSuccess } = useSelector((state) => state.feedback);
@@ -65,9 +65,7 @@ const Roadmap = () => {
       <div className='container'>
         <div className='top-bar border'>
           <div className='left'>
-            <Link className='navBack text-white h4' to='/'>
-              <img src={IconArrowLeft} alt='<' /> <span>Go Back</span>
-            </Link>
+            <GoBack to='/' styles='navBack text-white h4' />
             <h1 className='h1 text-white'>Roadmap</h1>
           </div>
           <div className='right'>

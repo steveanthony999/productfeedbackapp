@@ -1,0 +1,168 @@
+.NewFeedbackPage {
+  width: 100vw;
+  margin-bottom: 129px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container {
+  width: 540px;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-top-bar a span {
+  margin-left: 1rem;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-top-bar a span:hover {
+  text-decoration: underline;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle {
+  width: 100%;
+  margin-top: 72px;
+  padding: 40px 42px;
+  padding-top: 48px;
+  background: #fff;
+  position: relative;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-top-icon {
+  position: absolute;
+  top: -31px;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form h4 {
+  margin-top: 40px;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-select-container {
+  position: relative;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-select-container h4 {
+  margin-top: 29px;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-select-container .select-field {
+  width: 100%;
+  padding: 15px 23px;
+  margin-top: 18px;
+  background: #f7f8fd;
+  border: 2px solid transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-select-container .select-field .select-field-img {
+  position: absolute;
+  right: 23px;
+  top: 24px;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-select-container .new-feedback-select-active {
+  border: 2px solid blue;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-select-container .select-list-container {
+  width: 100%;
+  position: absolute;
+  bottom: -16rem;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-select-container .select-list-container .select-list {
+  background: #ffffff;
+  -webkit-box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-select-container .select-list-container .select-list .select-list-item {
+  padding: 12px 24px;
+  color: #647196;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-select-container .select-list-container .select-list .select-list-item:last-child {
+  border-bottom: none;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-select-container .select-list-container .select-list .select-list-item:hover {
+  cursor: pointer;
+  color: #ad1fea;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-select-container .select-list-container .select-list img {
+  position: static;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-detail {
+  width: 100%;
+  margin-top: 28px !important;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-detail textarea {
+  width: 100%;
+  height: 96px;
+  margin-top: 18px;
+  padding: 15px 23px;
+  background: #f7f8fd;
+  border: none;
+  resize: none;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-buttons {
+  width: 100%;
+  margin-top: 32px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-buttons a {
+  background-color: #3a4374;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-buttons a:hover {
+  background-color: #656ea3;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-buttons button {
+  margin-left: 16px;
+  background-color: #ad1fea;
+  border: none;
+  cursor: pointer;
+}
+
+.NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-buttons button:hover {
+  background-color: #c75af6;
+}
+/*# sourceMappingURL=newFeedbackPage.css.map */

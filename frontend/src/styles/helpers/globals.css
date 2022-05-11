@@ -140,4 +140,12 @@ input[type='radio']:checked + label {
   margin-right: 17px;
   border-radius: 50%;
 }
+
+.input-field {
+  width: 100%;
+  padding: 15px 23px;
+  margin-top: 18px;
+  background: #f7f8fd;
+  border: none;
+}
 /*# sourceMappingURL=globals.css.map */

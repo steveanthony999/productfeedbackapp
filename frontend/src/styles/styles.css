@@ -105,6 +105,17 @@ input[type='radio']:checked + label {
 
 .button {
   padding: 12px 25px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.button-purple {
+  background: #ad1fea;
+}
+
+.button-purple:hover {
+  background: #c75af6;
 }
 
 .bullet-orange {
@@ -131,188 +142,20 @@ input[type='radio']:checked + label {
   border-radius: 50%;
 }
 
+.input-field {
+  width: 100%;
+  padding: 15px 23px;
+  margin-top: 18px;
+  background: #f7f8fd;
+  border: none;
+}
+
 * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: 'Jost', sans-serif;
-}
-
-.NewFeedbackPage {
-  width: 100vw;
-  margin-bottom: 129px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.NewFeedbackPage .container {
-  width: 540px;
-}
-
-.NewFeedbackPage .container .top-bar a span {
-  margin-left: 1rem;
-}
-
-.NewFeedbackPage .container .top-bar a span:hover {
-  text-decoration: underline;
-}
-
-.NewFeedbackPage .container .middle {
-  width: 100%;
-  margin-top: 72px;
-  padding: 40px 42px;
-  padding-top: 48px;
-  background: #fff;
-  position: relative;
-}
-
-.NewFeedbackPage .container .middle img {
-  position: absolute;
-  top: -31px;
-}
-
-.NewFeedbackPage .container .middle form h4 {
-  margin-top: 40px;
-}
-
-.NewFeedbackPage .container .middle form input {
-  width: 100%;
-  padding: 15px 23px;
-  margin-top: 18px;
-  background: #f7f8fd;
-  border: none;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-select-container {
-  position: relative;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-select-container h4 {
-  margin-top: 29px;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-select-container .select-field {
-  width: 100%;
-  padding: 15px 23px;
-  margin-top: 18px;
-  background: #f7f8fd;
-  border: 2px solid transparent;
-  position: relative;
-  cursor: pointer;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-select-container .select-field img {
-  position: absolute;
-  right: 23px;
-  top: 24px;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-select-container .new-feedback-select-active {
-  border: 2px solid blue;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-select-container .select-list-container {
-  width: 100%;
-  position: absolute;
-  bottom: -16rem;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-select-container .select-list-container .select-list {
-  background: #ffffff;
-  -webkit-box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
-          box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-select-container .select-list-container .select-list .select-list-item {
-  padding: 12px 24px;
-  color: #647196;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-select-container .select-list-container .select-list .select-list-item:last-child {
-  border-bottom: none;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-select-container .select-list-container .select-list .select-list-item:hover {
-  cursor: pointer;
-  color: #ad1fea;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-select-container .select-list-container .select-list img {
-  position: static;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-detail {
-  width: 100%;
-  margin-top: 28px !important;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-detail textarea {
-  width: 100%;
-  height: 96px;
-  margin-top: 18px;
-  padding: 15px 23px;
-  background: #f7f8fd;
-  border: none;
-  resize: none;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-buttons {
-  width: 100%;
-  margin-top: 32px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-buttons a {
-  background-color: #3a4374;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-buttons a:hover {
-  background-color: #656ea3;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-buttons button {
-  margin-left: 16px;
-  background-color: #ad1fea;
-  border: none;
-  cursor: pointer;
-}
-
-.NewFeedbackPage .container .middle form .new-feedback-buttons button:hover {
-  background-color: #c75af6;
 }
 
 .EditFeedbackPage {
@@ -367,36 +210,12 @@ input[type='radio']:checked + label {
   margin-top: 40px;
 }
 
-.EditFeedbackPage .container .middle form input {
-  width: 100%;
-  padding: 15px 23px;
-  margin-top: 18px;
-  background: #f7f8fd;
-  border: none;
-}
-
 .EditFeedbackPage .container .middle form .edit-feedback-select-container {
   position: relative;
 }
 
 .EditFeedbackPage .container .middle form .edit-feedback-select-container h4 {
   margin-top: 29px;
-}
-
-.EditFeedbackPage .container .middle form .edit-feedback-select-container .select-field {
-  width: 100%;
-  padding: 15px 23px;
-  margin-top: 18px;
-  background: #f7f8fd;
-  border: 2px solid transparent;
-  position: relative;
-  cursor: pointer;
-}
-
-.EditFeedbackPage .container .middle form .edit-feedback-select-container .select-field img {
-  position: absolute;
-  right: 23px;
-  top: 24px;
 }
 
 .EditFeedbackPage .container .middle form .edit-feedback-select-container .edit-feedback-select-active {
