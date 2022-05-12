@@ -34,53 +34,6 @@
           margin-top: 40px;
         }
 
-        .new-feedback-select-container {
-          position: relative;
-
-          h4 {
-            margin-top: 29px;
-          }
-
-          @include selectField();
-
-          .new-feedback-select-active {
-            border: 2px solid blue;
-          }
-
-          .select-list-container {
-            width: 100%;
-            position: absolute;
-            bottom: -16rem;
-
-            .select-list {
-              background: #ffffff;
-              box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
-
-              .select-list-item {
-                padding: 12px 24px;
-                color: #647196;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-
-                &:last-child {
-                  border-bottom: none;
-                }
-
-                &:hover {
-                  cursor: pointer;
-                  color: $purple;
-                }
-              }
-
-              img {
-                position: static;
-              }
-            }
-          }
-        }
-
         .new-feedback-detail {
           width: 100%;
           margin-top: 28px !important;

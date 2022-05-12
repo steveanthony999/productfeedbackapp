@@ -1,0 +1,62 @@
+@import '../helpers/variables.scss';
+
+.category-status-select-container {
+  position: relative;
+
+  h4 {
+    margin-top: 29px;
+  }
+
+  .category-status-select-field {
+    width: 100%;
+    padding: 15px 23px;
+    margin-top: 18px;
+    background: $background-color;
+    border: 2px solid transparent;
+    position: relative;
+    cursor: pointer;
+
+    .category-status-select-field-img {
+      position: absolute;
+      right: 23px;
+      top: 24px;
+    }
+  }
+
+  .category-status-select-active {
+    border: 2px solid blue;
+  }
+
+  .category-status-select-list-container {
+    width: 100%;
+    position: absolute;
+    bottom: -16rem;
+
+    .category-status-select-list {
+      background: #ffffff;
+      box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
+
+      .category-status-select-list-item {
+        padding: 12px 24px;
+        color: #647196;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover {
+          cursor: pointer;
+          color: $purple;
+        }
+      }
+
+      img {
+        position: static;
+      }
+    }
+  }
+}

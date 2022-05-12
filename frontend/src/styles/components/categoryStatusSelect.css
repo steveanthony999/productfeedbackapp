@@ -1,0 +1,68 @@
+.category-status-select-container {
+  position: relative;
+}
+
+.category-status-select-container h4 {
+  margin-top: 29px;
+}
+
+.category-status-select-container .category-status-select-field {
+  width: 100%;
+  padding: 15px 23px;
+  margin-top: 18px;
+  background: #f7f8fd;
+  border: 2px solid transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+.category-status-select-container .category-status-select-field .category-status-select-field-img {
+  position: absolute;
+  right: 23px;
+  top: 24px;
+}
+
+.category-status-select-container .category-status-select-active {
+  border: 2px solid blue;
+}
+
+.category-status-select-container .category-status-select-list-container {
+  width: 100%;
+  position: absolute;
+  bottom: -16rem;
+}
+
+.category-status-select-container .category-status-select-list-container .category-status-select-list {
+  background: #ffffff;
+  -webkit-box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
+}
+
+.category-status-select-container .category-status-select-list-container .category-status-select-list .category-status-select-list-item {
+  padding: 12px 24px;
+  color: #647196;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.category-status-select-container .category-status-select-list-container .category-status-select-list .category-status-select-list-item:last-child {
+  border-bottom: none;
+}
+
+.category-status-select-container .category-status-select-list-container .category-status-select-list .category-status-select-list-item:hover {
+  cursor: pointer;
+  color: #ad1fea;
+}
+
+.category-status-select-container .category-status-select-list-container .category-status-select-list img {
+  position: static;
+}
+/*# sourceMappingURL=categoryStatusSelect.css.map */
