@@ -218,6 +218,22 @@ input[type='radio']:checked + label {
   margin-top: 29px;
 }
 
+.EditFeedbackPage .container .middle form .edit-feedback-select-container .select-field {
+  width: 100%;
+  padding: 15px 23px;
+  margin-top: 18px;
+  background: #f7f8fd;
+  border: 2px solid transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+.EditFeedbackPage .container .middle form .edit-feedback-select-container .select-field img {
+  position: absolute;
+  right: 23px;
+  top: 24px;
+}
+
 .EditFeedbackPage .container .middle form .edit-feedback-select-container .edit-feedback-select-active {
   border: 2px solid blue;
 }
@@ -411,51 +427,6 @@ input[type='radio']:checked + label {
   display: grid;
   -ms-grid-columns: (1fr)[3];
       grid-template-columns: repeat(3, 1fr);
-}
-
-.select-container {
-  margin-left: 36px;
-  position: relative;
-}
-
-.select-container .select-header {
-  cursor: pointer;
-}
-
-.select-container .select-list-container {
-  width: 207px;
-  position: absolute;
-  bottom: -14rem;
-}
-
-.select-container .select-list-container .select-list {
-  background: #ffffff;
-  -webkit-box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
-          box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
-}
-
-.select-container .select-list-container .select-list .select-list-item {
-  padding: 12px 24px;
-  color: #647196;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.select-container .select-list-container .select-list .select-list-item:last-child {
-  border-bottom: none;
-}
-
-.select-container .select-list-container .select-list .select-list-item:hover {
-  cursor: pointer;
-  color: #ad1fea;
 }
 
 .ProductFeedback {

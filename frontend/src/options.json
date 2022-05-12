@@ -4,5 +4,7 @@
     "Least Upvotes",
     "Most Comments",
     "Least Comments"
-  ]
+  ],
+
+  "feedback-categories": ["Feature", "UI", "UX", "Enhancement", "Bug"]
 }

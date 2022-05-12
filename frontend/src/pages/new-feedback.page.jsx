@@ -9,11 +9,15 @@ import IconCheck from '../assets/shared/icon-check.svg';
 import '../styles/pages/newFeedbackPage.css';
 import GoBack from '../components/goBack.component';
 
-const options = ['Feature', 'UI', 'UX', 'Enhancement', 'Bug'];
+// const options = ['Feature', 'UI', 'UX', 'Enhancement', 'Bug'];
+
+import options from '../options.json';
 
 const NewFeedback = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [selectedOption, setSelectedOption] = useState(
+    options['feedback-categories'][0]
+  );
   const [isChecked, setIsChecked] = useState('Feature');
 
   const toggling = () => {
@@ -88,7 +92,7 @@ const NewFeedback = () => {
               {isOpen && (
                 <div className='select-list-container'>
                   <ul className='select-list border'>
-                    {options.map((option, index) => (
+                    {options['feedback-categories'].map((option, index) => (
                       <li
                         className='select-list-item body-1'
                         onClick={onOptionClicked(option)}

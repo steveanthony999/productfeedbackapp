@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Select from './select.component';
+import TopbarSelect from './topbarSelect.component';
 
 import SuggestionsIcon from '../assets/suggestions/icon-suggestions.svg';
 
@@ -17,7 +17,7 @@ const TopBarHome = ({ passSortOrder }) => {
       <div className='TopBarHome-left'>
         <img src={SuggestionsIcon} alt='bulb' />
         <h3 className='h3 text-white'>{feedback.length} Suggestions</h3>
-        <Select
+        <TopbarSelect
           options={options['home-top-bar-options']}
           passSortOrder={passSortOrder}
           origin='home-top-bar'

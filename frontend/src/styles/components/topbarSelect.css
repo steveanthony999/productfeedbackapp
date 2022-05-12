@@ -1,0 +1,45 @@
+.select-container {
+  margin-left: 36px;
+  position: relative;
+}
+
+.select-container .select-header {
+  cursor: pointer;
+}
+
+.select-container .select-list-container {
+  width: 207px;
+  position: absolute;
+  bottom: -14rem;
+}
+
+.select-container .select-list-container .select-list {
+  background: #ffffff;
+  -webkit-box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 10px 40px -7px rgba(0, 0, 0, 0.35);
+}
+
+.select-container .select-list-container .select-list .select-list-item {
+  padding: 12px 24px;
+  color: #647196;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.select-container .select-list-container .select-list .select-list-item:last-child {
+  border-bottom: none;
+}
+
+.select-container .select-list-container .select-list .select-list-item:hover {
+  cursor: pointer;
+  color: #ad1fea;
+}
+/*# sourceMappingURL=topbarSelect.css.map */
