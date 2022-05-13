@@ -1,0 +1,45 @@
+@import '../helpers/variables.scss';
+@import '../helpers/mixins.scss';
+
+.RoadmapPage {
+  width: 100vw;
+  margin-bottom: 129px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .RoadmapPage-container {
+    width: 1110px;
+
+    .RoadmapPage-top-bar {
+      width: 100%;
+      padding: 32px;
+      background-color: $darkest-blue;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      .RoadmapPage-left {
+        @include goBack();
+
+        h1 {
+          margin-top: 12px;
+        }
+      }
+
+      .RoadmapPage-right {
+        a {
+          background-color: $purple;
+        }
+      }
+    }
+
+    .RoadmapPage-middle-container {
+      margin-top: 53px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

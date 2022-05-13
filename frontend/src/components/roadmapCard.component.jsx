@@ -4,6 +4,8 @@ import axios from 'axios';
 import IconArrowUp from '../assets/shared/icon-arrow-up.svg';
 import IconComments from '../assets/shared/icon-comments.svg';
 
+import '../styles/components/roadmapCard.css';
+
 const RoadmapCard = ({
   color,
   status,
@@ -39,6 +41,7 @@ const RoadmapCard = ({
         )
         .then((res) => setFeedbackUpvotes(res.data.upvotes));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isUpvote]);
 
   return (
@@ -53,7 +56,7 @@ const RoadmapCard = ({
             : color === 'light-blue' && '#62BCFA'
         }`,
       }}>
-      <div className='top'>
+      <div className='RoadmapCard-top'>
         <div
           className={`bullet bullet-${
             color === 'orange'
@@ -64,12 +67,12 @@ const RoadmapCard = ({
           }`}></div>
         <p className='text-grey-blue body-1'>{status}</p>
       </div>
-      <div className='middle'>
+      <div className='RoadmapCard-middle'>
         <h3 className='h3 text-darker-blue'>{title}</h3>
         <p className='body-1 text-grey-blue'>{description}</p>
         <div className='btn text-blue body-3'>{category}</div>
       </div>
-      <div className='bottom'>
+      <div className='RoadmapCard-bottom'>
         <div
           className='btn'
           style={{ background: isUpvote && '#4661e6' }}
@@ -87,7 +90,7 @@ const RoadmapCard = ({
           </p>
         </div>
 
-        <div className='comments'>
+        <div className='RoadmapCard-comments'>
           <img src={IconComments} alt='bubble' />
           <p className='text-darker-blue h4'>{commentsLength}</p>
         </div>

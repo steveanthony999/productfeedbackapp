@@ -6,5 +6,7 @@
     "Least Comments"
   ],
 
-  "feedback-categories": ["Feature", "UI", "UX", "Enhancement", "Bug"]
+  "feedback-categories": ["Feature", "UI", "UX", "Enhancement", "Bug"],
+
+  "feedback-status": ["Suggestion", "Planned", "In-Progress", "Live"]
 }

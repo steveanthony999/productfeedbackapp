@@ -7,6 +7,8 @@ import { getFeedback, reset } from '../features/feedback/feedbackSlice';
 import RoadmapCard from '../components/roadmapCard.component';
 import GoBack from '../components/goBack.component';
 
+import '../styles/pages/roadmapPage.css';
+
 const Roadmap = () => {
   const { feedback, isSuccess } = useSelector((state) => state.feedback);
 
@@ -62,13 +64,13 @@ const Roadmap = () => {
   }, [feedback]);
   return (
     <div className='RoadmapPage'>
-      <div className='container'>
-        <div className='top-bar border'>
-          <div className='left'>
-            <GoBack to='/' styles='navBack text-white h4' />
+      <div className='RoadmapPage-container'>
+        <div className='RoadmapPage-top-bar border'>
+          <div className='RoadmapPage-left'>
+            <GoBack to='/' styles='text-white h4' options='darkBg' />
             <h1 className='h1 text-white'>Roadmap</h1>
           </div>
-          <div className='right'>
+          <div className='RoadmapPage-right'>
             <Link
               to='/new-feedback'
               className='button border h4 text-very-light'>
@@ -76,7 +78,7 @@ const Roadmap = () => {
             </Link>
           </div>
         </div>
-        <div className='middle-container'>
+        <div className='RoadmapPage-middle-container'>
           <div>
             <h3 className='h3 text-darker-blue'>
               Planned ({statusCount.planned})
