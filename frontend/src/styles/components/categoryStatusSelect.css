@@ -30,6 +30,7 @@
   width: 100%;
   position: absolute;
   bottom: -16rem;
+  z-index: 1;
 }
 
 .category-status-select-container .category-status-select-list-container .category-status-select-list {

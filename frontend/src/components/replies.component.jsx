@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import Reply from './reply.component';
 
+import '../styles/components/replies.css';
+
 const Replies = ({ reply }) => {
   const [isReply, setIsReply] = useState(false);
 

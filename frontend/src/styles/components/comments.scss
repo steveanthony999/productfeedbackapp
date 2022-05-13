@@ -1,0 +1,51 @@
+.Comments {
+  margin-top: 35px;
+
+  .top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .user-info {
+      margin-left: 32px;
+    }
+
+    button {
+      background: none;
+      border: none;
+      margin-left: auto;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .middle {
+    margin-top: 23px !important;
+
+    p {
+      margin-left: 73px;
+    }
+
+    hr {
+      display: none;
+    }
+  }
+
+  &:first-child {
+    hr {
+      display: block;
+      margin-top: 35px;
+      border-top: 1px solid #8c92b3;
+      opacity: 0.35;
+    }
+  }
+
+  &:last-child {
+    hr {
+      display: none;
+    }
+  }
+}

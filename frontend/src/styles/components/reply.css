@@ -1,0 +1,40 @@
+.Reply {
+  margin-top: 26px;
+  margin-left: 73px;
+}
+
+.Reply form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.Reply form textarea {
+  width: 75%;
+  padding: 19px 24px;
+  background: #f7f8fd;
+  border: none;
+  resize: none;
+}
+
+.Reply form button {
+  background: #ad1fea;
+  padding: 16px 24px;
+  margin-left: 16px;
+  border: none;
+}
+
+.Reply form button:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=reply.css.map */

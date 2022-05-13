@@ -68,6 +68,7 @@ const EditFeedback = () => {
               subtitle='Change feedback state'
               options={options['feedback-status']}
               initialCategoryStatus={options['feedback-status'][0]}
+              secondary
             />
             <div className='edit-feedback-detail'>
               <h4 className='h4 text-darker-blue'>Feedback Detail</h4>

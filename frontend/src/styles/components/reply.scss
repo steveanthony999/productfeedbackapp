@@ -1,0 +1,32 @@
+@import '../helpers/variables.scss';
+
+.Reply {
+  margin-top: 26px;
+  margin-left: 73px;
+
+  form {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    textarea {
+      width: 75%;
+      padding: 19px 24px;
+      background: $background-color;
+      border: none;
+      resize: none;
+    }
+
+    button {
+      background: $purple;
+      padding: 16px 24px;
+      margin-left: 16px;
+      border: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -3,6 +3,8 @@ import { useState } from 'react';
 import Replies from './replies.component';
 import Reply from './reply.component';
 
+import '../styles/components/comments.css';
+
 const Comments = ({ commentProps, hrIndex }) => {
   const [isReply, setIsReply] = useState(false);
 

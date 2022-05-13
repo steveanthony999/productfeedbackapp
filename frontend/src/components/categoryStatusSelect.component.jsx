@@ -11,6 +11,7 @@ const CategoryStatusSelect = ({
   subtitle,
   options,
   initialCategoryStatus,
+  secondary,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[0]);
@@ -56,7 +57,9 @@ const CategoryStatusSelect = ({
         />
       </div>
       {isOpen && (
-        <div className='category-status-select-list-container'>
+        <div
+          className='category-status-select-list-container'
+          style={{ bottom: secondary === true && '-13rem' }}>
           <ul className='category-status-select-list border'>
             {options.map((option, index) => (
               <li

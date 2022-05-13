@@ -1,0 +1,55 @@
+.Comments {
+  margin-top: 35px;
+}
+
+.Comments .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Comments .top .user-info {
+  margin-left: 32px;
+}
+
+.Comments .top button {
+  background: none;
+  border: none;
+  margin-left: auto;
+}
+
+.Comments .top button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.Comments .middle {
+  margin-top: 23px !important;
+}
+
+.Comments .middle p {
+  margin-left: 73px;
+}
+
+.Comments .middle hr {
+  display: none;
+}
+
+.Comments:first-child hr {
+  display: block;
+  margin-top: 35px;
+  border-top: 1px solid #8c92b3;
+  opacity: 0.35;
+}
+
+.Comments:last-child hr {
+  display: none;
+}
+/*# sourceMappingURL=comments.css.map */

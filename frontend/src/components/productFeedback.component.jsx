@@ -6,6 +6,8 @@ import IconArrowUp from '../assets/shared/icon-arrow-up.svg';
 import IconComments from '../assets/shared/icon-comments.svg';
 import axios from 'axios';
 
+import '../styles/components/productFeedback.css';
+
 const ProductFeedback = ({ feedback }) => {
   const [commentsLength, setCommentsLength] = useState([]);
   const [repliesLength, setRepliesLength] = useState([]);
@@ -35,6 +37,7 @@ const ProductFeedback = ({ feedback }) => {
         )
         .then((res) => setFeedbackUpvotes(res.data.upvotes));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isUpvote]);
 
   useEffect(() => {
@@ -64,8 +67,8 @@ const ProductFeedback = ({ feedback }) => {
       className='ProductFeedback border'
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}>
-      <div className='container border'>
-        <div className='left'>
+      <div className='ProductFeedback-container border'>
+        <div className='ProductFeedback-left'>
           <div
             className='btn'
             style={{ background: isUpvote && '#4661e6' }}
@@ -82,14 +85,14 @@ const ProductFeedback = ({ feedback }) => {
             </p>
           </div>
         </div>
-        <div className='middle'>
+        <div className='ProductFeedback-middle'>
           <h3 className={`h3 ${isHover ? 'text-blue' : 'text-darker-blue'}`}>
             {feedback.title}
           </h3>
           <p className='body-1 text-grey-blue'>{feedback.description}</p>
           <div className='btn text-blue body-3'>{feedback.category}</div>
         </div>
-        <div className='right'>
+        <div className='ProductFeedback-right'>
           <img src={IconComments} alt='bubble' />
           <p className='text-darker-blue h4'>
             {commentsLength + repliesLength}

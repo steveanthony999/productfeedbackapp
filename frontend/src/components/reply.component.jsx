@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import '../styles/components/reply.css';
+
 const Reply = () => {
   const [text, setText] = useState('');
 

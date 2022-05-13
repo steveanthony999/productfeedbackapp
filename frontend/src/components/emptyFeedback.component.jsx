@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import IllustrationEmpty from '../assets/suggestions/illustration-empty.svg';
 
+import '../styles/components/emptyFeedback.css';
+
 const EmptyFeedback = () => {
   return (
     <div className='EmptyFeedback border'>
