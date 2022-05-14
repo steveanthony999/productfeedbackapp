@@ -1,0 +1,13 @@
+.HamburgerMenu {
+  display: none;
+}
+
+@media screen and (max-width: 738px) {
+  .HamburgerMenu {
+    display: block;
+
+    .HamburgerMenu-icon {
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+@import '../helpers/variables.scss';
+
+@media screen and (max-width: 738px) {
+  .Sidebar {
+    width: 100vw;
+    height: calc(100vh - 72px);
+    background: rgba(0, 0, 0, 0.75);
+    position: absolute;
+    top: 0;
+    z-index: 2;
+
+    .Sidebar-container {
+      width: 75vw;
+      height: 100%;
+      padding: 24px;
+      background: $background-color;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 3;
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
+import { useMediaQuery } from 'react-responsive';
 
 import { getFeedback, reset } from '../features/feedback/feedbackSlice';
 
@@ -12,14 +13,18 @@ import ProductFeedback from '../components/productFeedback.component';
 import EmptyFeedback from '../components/emptyFeedback.component';
 
 import '../styles/pages/home.css';
+import Sidebar from '../components/sidebar';
 
 const Home = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
+
   const { feedback, isSuccess } = useSelector((state) => state.feedback);
 
   const dispatch = useDispatch();
 
   const [sortOrder, setSortOrder] = useState();
   const [sortedFeedback, setSortedFeedback] = useState(feedback);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -84,15 +89,28 @@ const Home = () => {
     setSortOrder(e);
   };
 
+  const passIsMenuOpen = (e) => {
+    setIsMenuOpen(e);
+  };
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => (document.body.style.overflow = 'unset');
+  }, [isMenuOpen]);
+
   return (
     <div className='Home'>
       <div className='Home-container'>
         <div className='Home-left'>
-          <Marquee />
-          <CategoryBox />
-          <RoadmapBox feedback={feedback} />
+          <Marquee passIsMenuOpen={passIsMenuOpen} />
+          {!isMobile && <CategoryBox />}
+          {!isMobile && <RoadmapBox feedback={feedback} />}
         </div>
         <div className='Home-right'>
+          <Sidebar isMenuOpen={isMenuOpen} feedback={feedback} />
           <TopBarHome passSortOrder={passSortOrder} />
           {feedback.length === 0 ? (
             <EmptyFeedback />

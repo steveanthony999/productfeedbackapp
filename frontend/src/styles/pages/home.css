@@ -72,4 +72,23 @@
     margin-left: 0;
   }
 }
+
+@media screen and (max-width: 738px) {
+  .Home {
+    position: absolute;
+    top: 0;
+    overflow-x: hidden;
+  }
+  .Home .Home-container {
+    width: 100%;
+  }
+  .Home .Home-container .Home-left {
+    width: 100%;
+    margin-bottom: 0;
+  }
+  .Home .Home-container .Home-right {
+    width: 100%;
+    position: relative;
+  }
+}
 /*# sourceMappingURL=home.css.map */
