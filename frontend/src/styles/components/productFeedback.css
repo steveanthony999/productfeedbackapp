@@ -90,4 +90,14 @@
 .ProductFeedback .ProductFeedback-container .ProductFeedback-right img {
   margin-right: 12px;
 }
+
+@media screen and (max-width: 738px) {
+  .ProductFeedback {
+    width: calc(100% - 48px);
+    margin-left: 24px;
+  }
+  .ProductFeedback:last-child {
+    margin-bottom: 129px;
+  }
+}
 /*# sourceMappingURL=productFeedback.css.map */
