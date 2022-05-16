@@ -42,4 +42,10 @@
   cursor: pointer;
   color: #ad1fea;
 }
+
+@media screen and (max-width: 738px) {
+  .select-container {
+    margin-left: 0;
+  }
+}
 /*# sourceMappingURL=topbarSelect.css.map */

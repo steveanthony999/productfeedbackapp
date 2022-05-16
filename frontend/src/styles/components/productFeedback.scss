@@ -6,7 +6,7 @@
 
   .ProductFeedback-container {
     max-width: 825px;
-    max-height: 151px;
+    // max-height: 151px;
     padding: 28px 32px;
     background: #fff;
     display: flex;
@@ -70,12 +70,74 @@
 }
 
 @media screen and (max-width: 738px) {
-  .ProductFeedback {
+  .ProductFeedback-mobile {
+    display: block;
     width: calc(100% - 48px);
     margin-left: 24px;
+    margin-top: 24px;
 
     &:last-child {
       margin-bottom: 129px;
+    }
+
+    .ProductFeedback-container-mobile {
+      max-width: 738px;
+      padding: 28px 32px;
+      background: #fff;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      .ProductFeedback-middle-mobile {
+        width: 100%;
+
+        .upvote-btn {
+          width: 69px;
+          height: 32px;
+          background-color: $white-blue;
+          border-radius: $border-rounded;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+
+          p {
+            margin-left: 8px;
+          }
+
+          &:hover {
+            background-color: $hover-blue;
+          }
+        }
+
+        .btn {
+          display: inline-block;
+          margin-top: 12px;
+          padding: 6px 14px;
+          background-color: $white-blue;
+          border-radius: $border-rounded;
+        }
+      }
+
+      .ProductFeedback-bottom-mobile {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .ProductFeedback-right-mobile {
+          align-self: center;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          img {
+            margin-right: 12px;
+          }
+        }
+      }
     }
   }
 }
