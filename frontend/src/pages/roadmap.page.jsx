@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 import { getFeedback, reset } from '../features/feedback/feedbackSlice';
 
@@ -10,7 +11,10 @@ import GoBack from '../components/goBack.component';
 import '../styles/pages/roadmapPage.css';
 
 const Roadmap = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
   const { feedback, isSuccess } = useSelector((state) => state.feedback);
+
+  const [isActive, setIsActive] = useState('planned');
 
   const dispatch = useDispatch();
 
@@ -62,6 +66,59 @@ const Roadmap = () => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [feedback]);
+
+  const handleClick = (e) => {
+    setIsActive(e.target.id);
+  };
+
+  if (isMobile) {
+    return (
+      <div className='RoadmapPage'>
+        <div className='RoadmapPage-container'>
+          <div className='RoadmapPage-top-bar border'>
+            <div className='RoadmapPage-top-bar-container'>
+              <div className='RoadmapPage-left'>
+                <GoBack to='/' styles='text-white h4' options='darkBg' />
+                <h1 className='h1 text-white'>Roadmap</h1>
+              </div>
+              <div className='RoadmapPage-right'>
+                <Link
+                  to='/new-feedback'
+                  className='button border h4 text-very-light'>
+                  + Add Feedback
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className='RoadmapPage-nav'>
+            <div
+              id='planned'
+              className='RoadmapPage-nav-category h4 text-darker-blue'
+              onClick={handleClick}
+              style={{ opacity: isActive === 'planned' ? 1 : 0.4 }}>
+              Planned ({statusCount.planned})
+            </div>
+            <div
+              id='in-progress'
+              className='RoadmapPage-nav-category h4 text-darker-blue'
+              onClick={handleClick}
+              style={{ opacity: isActive === 'in-progress' ? 1 : 0.4 }}>
+              In-Progress ({statusCount.inProgress})
+            </div>
+            <div
+              id='live'
+              className='RoadmapPage-nav-category h4 text-darker-blue'
+              onClick={handleClick}
+              style={{ opacity: isActive === 'live' ? 1 : 0.4 }}>
+              Live ({statusCount.live})
+            </div>
+          </div>
+          <hr />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className='RoadmapPage'>
       <div className='RoadmapPage-container'>

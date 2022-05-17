@@ -97,4 +97,31 @@
 .NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-buttons button:hover {
   background-color: #c75af6;
 }
+
+@media screen and (max-width: 588px) {
+  .NewFeedbackPage .NewFeedbackPage-container {
+    width: calc(100% - 48px);
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+  .NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-buttons {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-flow: column-reverse;
+        flex-flow: column-reverse;
+  }
+  .NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-buttons a {
+    width: 100%;
+    margin-top: 16px;
+    display: block;
+    text-align: center;
+  }
+  .NewFeedbackPage .NewFeedbackPage-container .NewFeedbackPage-middle .NewFeedbackPage-form .new-feedback-buttons button {
+    width: 100%;
+    margin-left: 0;
+    display: block;
+  }
+}
 /*# sourceMappingURL=newFeedbackPage.css.map */

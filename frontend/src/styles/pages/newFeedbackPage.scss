@@ -79,3 +79,35 @@
     }
   }
 }
+
+@media screen and (max-width: 588px) {
+  .NewFeedbackPage {
+    .NewFeedbackPage-container {
+      width: calc(100% - 48px);
+      margin-left: 24px;
+      margin-right: 24px;
+
+      .NewFeedbackPage-middle {
+        .NewFeedbackPage-form {
+          .new-feedback-buttons {
+            flex-direction: column;
+            flex-flow: column-reverse;
+
+            a {
+              width: 100%;
+              margin-top: 16px;
+              display: block;
+              text-align: center;
+            }
+
+            button {
+              width: 100%;
+              margin-left: 0;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -13,7 +13,9 @@ const EmptyFeedback = () => {
           Got a suggestion? Found a bug that needs to be squashed? We love
           hearing about new ideas to improve our app.
         </p>
-        <Link to='/new-feedback' className='button border h4 text-very-light'>
+        <Link
+          to='/new-feedback'
+          className='button button-purple border h4 text-very-light'>
           + Add Feedback
         </Link>
       </div>
