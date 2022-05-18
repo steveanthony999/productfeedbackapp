@@ -100,4 +100,34 @@
 .RoadmapCard .RoadmapCard-bottom .RoadmapCard-comments img {
   margin-right: 12px;
 }
+
+.RoadmapCard:last-child {
+  margin-bottom: 129px;
+}
+
+@media screen and (max-width: 738px) {
+  .RoadmapCard .RoadmapCard-bottom .btn {
+    width: 69px;
+    height: 32px;
+    background-color: #f2f4ff;
+    border-radius: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .RoadmapCard .RoadmapCard-bottom .btn p {
+    margin-left: 8px;
+    margin-top: 0 !important;
+  }
+}
 /*# sourceMappingURL=roadmapCard.css.map */

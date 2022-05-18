@@ -2,5 +2,32 @@
   width: 621px;
   margin-top: 35px;
   margin-left: auto;
+  position: relative;
+}
+
+.Replies .Replies-line-single {
+  width: 1px;
+  height: 100%;
+  background-color: white;
+  opacity: 1;
+  position: absolute;
+  top: 22px;
+  left: -27px;
+}
+
+.Replies .Replies-line-multi:last-child {
+  width: 1px;
+  height: 100%;
+  background-color: white;
+  opacity: 1;
+  position: absolute;
+  top: 22px;
+  left: -27px;
+}
+
+@media screen and (max-width: 738px) {
+  .Replies {
+    width: calc(100% - 45px);
+  }
 }
 /*# sourceMappingURL=replies.css.map */

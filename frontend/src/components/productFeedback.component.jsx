@@ -76,7 +76,9 @@ const ProductFeedback = ({ feedback }) => {
             <h3 className={`h3 ${isHover ? 'text-blue' : 'text-darker-blue'}`}>
               {feedback.title}
             </h3>
-            <p className='body-1 text-grey-blue'>{feedback.description}</p>
+            <p className='ProductFeedback-description body-1 text-grey-blue'>
+              {feedback.description}
+            </p>
             <div className='btn text-blue body-3'>{feedback.category}</div>
             <div className='ProductFeedback-bottom-mobile'>
               <div className='ProductFeedback-bottom-container-mobile'>

@@ -10,13 +10,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-
-    // .bullet {
-    //   width: 8px;
-    //   height: 8px;
-    //   margin-right: 17px;
-    //   border-radius: 50%;
-    // }
   }
 
   .RoadmapCard-middle {
@@ -73,6 +66,32 @@
 
       img {
         margin-right: 12px;
+      }
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 129px;
+  }
+}
+
+@media screen and (max-width: 738px) {
+  .RoadmapCard {
+    .RoadmapCard-bottom {
+      .btn {
+        width: 69px;
+        height: 32px;
+        background-color: $white-blue;
+        border-radius: $border-rounded;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        p {
+          margin-left: 8px;
+          margin-top: 0 !important;
+        }
       }
     }
   }

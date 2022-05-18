@@ -130,5 +130,19 @@
     border-top: 1px solid #8c92b3;
     opacity: 0.35;
   }
+  .RoadmapPage .RoadmapPage-container .RoadmapPage-middle-mobile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .RoadmapPage .RoadmapPage-container .RoadmapPage-middle-mobile .RoadmapPage-cards h3 {
+    margin-top: 30px;
+  }
+  .RoadmapPage .RoadmapPage-container .RoadmapPage-middle-mobile .RoadmapPage-cards .RoadmapPage-cards-description {
+    margin-top: 10px;
+  }
 }
 /*# sourceMappingURL=roadmapPage.css.map */

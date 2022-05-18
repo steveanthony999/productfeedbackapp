@@ -30,3 +30,23 @@
     }
   }
 }
+
+@media screen and (max-width: 738px) {
+  .Reply {
+    margin-left: 0;
+
+    form {
+      width: 100%;
+      flex-direction: column;
+      textarea {
+        width: 100%;
+      }
+
+      button {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 16px;
+      }
+    }
+  }
+}

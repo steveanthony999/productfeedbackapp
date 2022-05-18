@@ -37,4 +37,25 @@
 .Reply form button:hover {
   cursor: pointer;
 }
+
+@media screen and (max-width: 738px) {
+  .Reply {
+    margin-left: 0;
+  }
+  .Reply form {
+    width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .Reply form textarea {
+    width: 100%;
+  }
+  .Reply form button {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 16px;
+  }
+}
 /*# sourceMappingURL=reply.css.map */

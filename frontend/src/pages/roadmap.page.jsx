@@ -114,6 +114,85 @@ const Roadmap = () => {
             </div>
           </div>
           <hr />
+          <div className='RoadmapPage-middle-mobile'>
+            {isActive === 'planned' ? (
+              <div className='RoadmapPage-cards'>
+                <h3 className='h3 text-darker-blue'>
+                  Planned ({statusCount.planned})
+                </h3>
+                <p className='RoadmapPage-cards-description body-1 text-grey-blue'>
+                  Ideas prioritized for research
+                </p>
+                {feedback
+                  .filter((fb) => fb.status === 'planned')
+                  .map((fdbk) => (
+                    <RoadmapCard
+                      key={fdbk.id}
+                      status='Planned'
+                      color='orange'
+                      feedbackId={fdbk.id}
+                      title={fdbk.title}
+                      description={fdbk.description}
+                      category={fdbk.category}
+                      upvotes={fdbk.upvotes}
+                      commentsLength={fdbk.comments ? fdbk.comments.length : 0}
+                    />
+                  ))}
+              </div>
+            ) : isActive === 'in-progress' ? (
+              <div className='RoadmapPage-cards'>
+                <h3 className='h3 text-darker-blue'>
+                  In-Progress ({statusCount.inProgress})
+                </h3>
+                <p className='RoadmapPage-cards-description body-1 text-grey-blue'>
+                  Currently being developed
+                </p>
+                {feedback
+                  .filter((fb) => fb.status === 'in-progress')
+                  .map((fdbk) => (
+                    <RoadmapCard
+                      key={fdbk.id}
+                      status='In Progress'
+                      color='purple'
+                      feedbackId={fdbk.id}
+                      title={fdbk.title}
+                      description={fdbk.description}
+                      category={fdbk.category}
+                      upvotes={fdbk.upvotes}
+                      commentsLength={fdbk.comments ? fdbk.comments.length : 0}
+                    />
+                  ))}
+              </div>
+            ) : (
+              isActive === 'live' && (
+                <div className='RoadmapPage-cards'>
+                  <h3 className='h3 text-darker-blue'>
+                    Live ({statusCount.live})
+                  </h3>
+                  <p className='RoadmapPage-cards-description body-1 text-grey-blue'>
+                    Released features
+                  </p>
+                  {feedback
+                    .filter((fb) => fb.status === 'live')
+                    .map((fdbk) => (
+                      <RoadmapCard
+                        key={fdbk.id}
+                        status='Live'
+                        color='light-blue'
+                        feedbackId={fdbk.id}
+                        title={fdbk.title}
+                        description={fdbk.description}
+                        category={fdbk.category}
+                        upvotes={fdbk.upvotes}
+                        commentsLength={
+                          fdbk.comments ? fdbk.comments.length : 0
+                        }
+                      />
+                    ))}
+                </div>
+              )
+            )}
+          </div>
         </div>
       </div>
     );

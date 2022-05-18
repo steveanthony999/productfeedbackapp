@@ -153,6 +153,9 @@
     background-color: #f2f4ff;
     border-radius: 10px;
   }
+  .ProductFeedback-mobile .ProductFeedback-container-mobile .ProductFeedback-middle-mobile .ProductFeedback-description {
+    margin-top: 14px;
+  }
   .ProductFeedback-mobile .ProductFeedback-container-mobile .ProductFeedback-bottom-mobile {
     margin-top: 16px;
     display: -webkit-box;

@@ -1,15 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Replies from './replies.component';
 import Reply from './reply.component';
 
 import '../styles/components/comments.css';
 
-const Comments = ({ commentProps, hrIndex }) => {
+const Comments = ({ commentProps }) => {
   const [isReply, setIsReply] = useState(false);
+  const [repliesLength, setRepliesLength] = useState(0);
+
+  useEffect(() => {
+    commentProps.replies && setRepliesLength(commentProps.replies.length);
+  }, [commentProps]);
 
   return (
     <div className='Comments'>
+      {commentProps.replies && (
+        <div className='line' style={{ height: '63%' }}></div>
+      )}
       <div className='top'>
         <img
           src={commentProps.user.image}
@@ -38,7 +46,7 @@ const Comments = ({ commentProps, hrIndex }) => {
       </div>
       {commentProps.replies &&
         commentProps.replies.map((reply, index) => (
-          <Replies key={index} reply={reply} />
+          <Replies key={index} reply={reply} repliesLength={repliesLength} />
         ))}
     </div>
   );

@@ -4,11 +4,16 @@ import Reply from './reply.component';
 
 import '../styles/components/replies.css';
 
-const Replies = ({ reply }) => {
+const Replies = ({ reply, repliesLength }) => {
   const [isReply, setIsReply] = useState(false);
 
   return (
     <div className='Replies'>
+      {repliesLength > 1 ? (
+        <div className='Replies-line-multi'></div>
+      ) : (
+        <div className='Replies-line-single'></div>
+      )}
       <div className='top'>
         <img
           src={reply.user.image}
