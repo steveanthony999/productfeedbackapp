@@ -16,6 +16,7 @@ const EditFeedback = () => {
   const { feedback } = location.state;
 
   const [feedbackTitle, setFeedbackTitle] = useState(feedback.title);
+  const [feedbackDetail, setFeedbackDetail] = useState(feedback.description);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +28,8 @@ const EditFeedback = () => {
         <div className='EditFeedbackPage-top-bar'>
           <div
             className='navBack text-grey-blue h4'
-            onClick={() => navigate(-1)}>
+            onClick={() => navigate(-1)}
+          >
             <img src={IconArrowLeft} alt='<' /> <span>Go Back</span>
           </div>
         </div>
@@ -76,7 +78,11 @@ const EditFeedback = () => {
                 Include any specific comments on what should be improved, added,
                 etc.
               </p>
-              <textarea className='border body-2 text-darker-blue'></textarea>
+              <textarea
+                className='border body-2 text-darker-blue'
+                value={feedbackDetail}
+                onChange={(e) => setFeedbackDetail(e.target.value)}
+              ></textarea>
             </div>
             <div className='edit-feedback-buttons'>
               <button className='button border h4 text-very-light'>
@@ -84,7 +90,8 @@ const EditFeedback = () => {
               </button>
               <button
                 className='button border h4 text-very-light'
-                onClick={() => navigate(-1)}>
+                onClick={() => navigate(-1)}
+              >
                 Cancel
               </button>
               <button className='button border h4 text-very-light'>
