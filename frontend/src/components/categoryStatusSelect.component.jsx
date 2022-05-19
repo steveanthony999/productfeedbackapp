@@ -10,12 +10,19 @@ const CategoryStatusSelect = ({
   title,
   subtitle,
   options,
+  optionsIndex,
   initialCategoryStatus,
   secondary,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[0]);
-  const [isChecked, setIsChecked] = useState(initialCategoryStatus);
+  const [selectedOption, setSelectedOption] = useState(
+    initialCategoryStatus === undefined
+      ? 'In-Progress'
+      : options[optionsIndex ? options.indexOf(optionsIndex) : 0]
+  );
+  const [isChecked, setIsChecked] = useState(
+    initialCategoryStatus === undefined ? 'In-Progress' : initialCategoryStatus
+  );
 
   const toggling = () => {
     setIsOpen((prevValue) => !prevValue);
@@ -48,7 +55,8 @@ const CategoryStatusSelect = ({
           isOpen && 'category-status-select-active'
         }`}
         onClick={toggling}
-        style={{ opacity: isOpen ? 0.8 : 1 }}>
+        style={{ opacity: isOpen ? 0.8 : 1 }}
+      >
         <span className='body-2 text-darker-blue'>{selectedOption}</span>
         <img
           className='category-status-select-field-img'
@@ -59,13 +67,15 @@ const CategoryStatusSelect = ({
       {isOpen && (
         <div
           className='category-status-select-list-container'
-          style={{ bottom: secondary === true && '-13rem' }}>
+          style={{ bottom: secondary === true && '-13rem' }}
+        >
           <ul className='category-status-select-list border'>
             {options.map((option, index) => (
               <li
                 className='category-status-select-list-item body-1'
                 onClick={onOptionClicked(option)}
-                key={index}>
+                key={index}
+              >
                 {option}
                 {isChecked === option && <img src={IconCheck} alt='check' />}
               </li>

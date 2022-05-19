@@ -56,6 +56,14 @@ const EditFeedback = () => {
               title='Category'
               subtitle='Choose a category for your feedback'
               options={options['feedback-categories']}
+              optionsIndex={
+                options['feedback-categories'][
+                  options['feedback-categories'].indexOf(
+                    feedback.category.charAt(0).toUpperCase() +
+                      feedback.category.slice(1)
+                  )
+                ]
+              }
               initialCategoryStatus={
                 options['feedback-categories'][
                   options['feedback-categories'].indexOf(
@@ -69,7 +77,22 @@ const EditFeedback = () => {
               title='Update Status'
               subtitle='Change feedback state'
               options={options['feedback-status']}
-              initialCategoryStatus={options['feedback-status'][0]}
+              optionsIndex={
+                options['feedback-status'][
+                  options['feedback-status'].indexOf(
+                    feedback.status.charAt(0).toUpperCase() +
+                      feedback.status.slice(1)
+                  )
+                ]
+              }
+              initialCategoryStatus={
+                options['feedback-status'][
+                  options['feedback-status'].indexOf(
+                    feedback.status.charAt(0).toUpperCase() +
+                      feedback.status.slice(1)
+                  )
+                ]
+              }
               secondary
             />
             <div className='edit-feedback-detail'>

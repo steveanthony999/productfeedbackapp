@@ -50,7 +50,8 @@ const FeedbackDetail = () => {
           <Link
             to={`/edit-feedback${location.pathname}`}
             state={{ feedback }}
-            className='button border h4 text-very-light'>
+            className='button border h4 text-very-light'
+          >
             Edit Feedback
           </Link>
         </div>
@@ -85,11 +86,13 @@ const FeedbackDetail = () => {
               id='comment'
               value={text}
               placeholder='Type your comment here'
-              onChange={handleChange}></textarea>
+              onChange={handleChange}
+            ></textarea>
             <div className='bottom'>
               <p
                 className='body-2'
-                style={{ color: textLength > 255 ? 'red' : '#647196' }}>
+                style={{ color: textLength > 255 ? 'red' : '#647196' }}
+              >
                 {255 - textLength} Characters left
               </p>
               <button className='button border h4 text-very-light'>
