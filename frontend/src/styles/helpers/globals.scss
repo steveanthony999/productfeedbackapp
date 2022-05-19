@@ -110,6 +110,22 @@ input[type='radio']:checked + label {
   cursor: pointer;
 }
 
+.button-red {
+  background: $red;
+
+  &:hover {
+    background: $hover-red;
+  }
+}
+
+.button-dark-blue {
+  background: $darker-blue;
+
+  &:hover {
+    background: $hover-darker-blue;
+  }
+}
+
 .button-purple {
   background: $purple;
 

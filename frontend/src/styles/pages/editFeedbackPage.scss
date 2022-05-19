@@ -74,30 +74,8 @@
 
           button {
             &:first-child {
-              background-color: #d73737;
               margin-right: auto;
               margin-left: 0;
-
-              &:hover {
-                background-color: #e98888;
-              }
-            }
-
-            &:nth-child(2) {
-              background-color: $darker-blue;
-
-              &:hover {
-                background-color: #656ea3;
-              }
-            }
-
-            margin-left: 16px;
-            background-color: $purple;
-            border: none;
-            cursor: pointer;
-
-            &:hover {
-              background-color: $light-purple;
             }
           }
         }

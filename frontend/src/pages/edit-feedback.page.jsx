@@ -85,16 +85,16 @@ const EditFeedback = () => {
               ></textarea>
             </div>
             <div className='edit-feedback-buttons'>
-              <button className='button border h4 text-very-light'>
+              <button className='button button-red border h4 text-very-light'>
                 Delete
               </button>
               <button
-                className='button border h4 text-very-light'
+                className='button button-dark-blue border h4 text-very-light'
                 onClick={() => navigate(-1)}
               >
                 Cancel
               </button>
-              <button className='button border h4 text-very-light'>
+              <button className='button button-purple border h4 text-very-light'>
                 Add Feedback
               </button>
             </div>
