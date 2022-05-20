@@ -22,6 +22,11 @@ const EditFeedback = () => {
     e.preventDefault();
   };
 
+  const passSelectedOption = (e) => {
+    // setCategory(e);
+    console.log(e);
+  };
+
   return (
     <div className='EditFeedbackPage'>
       <div className='EditFeedbackPage-container'>
@@ -72,6 +77,7 @@ const EditFeedback = () => {
                   )
                 ]
               }
+              passSelectedOption={passSelectedOption}
             />
             <CategoryStatusSelect
               title='Update Status'
@@ -93,6 +99,7 @@ const EditFeedback = () => {
                   )
                 ]
               }
+              passSelectedOption={passSelectedOption}
               secondary
             />
             <div className='edit-feedback-detail'>

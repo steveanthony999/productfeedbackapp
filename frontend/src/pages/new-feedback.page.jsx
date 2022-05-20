@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import IconNewFeedback from '../assets/shared/icon-new-feedback.svg';
@@ -10,9 +11,34 @@ import options from '../options.json';
 import '../styles/pages/newFeedbackPage.css';
 
 const NewFeedback = () => {
+  const [category, setCategory] = useState('Feature');
+
+  const [formItems, setFormItems] = useState({
+    feedbackTitle: '',
+    feedbackCategory: 'Feature',
+    feedbackDetail: '',
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Dispatch
+    console.log(formItems);
+    setFormItems({
+      ...formItems,
+      feedbackTitle: '',
+      feedbackCategory: 'Feature',
+      feedbackDetail: '',
+    });
   };
+
+  const passSelectedOption = (e) => {
+    setCategory(e);
+  };
+
+  useEffect(() => {
+    setFormItems({ ...formItems, feedbackCategory: category });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [category]);
 
   return (
     <div className='NewFeedbackPage'>
@@ -35,12 +61,18 @@ const NewFeedback = () => {
             <input
               type='text'
               className='input-field border body-2 text-darker-blue'
+              value={formItems.feedbackTitle}
+              onChange={(e) =>
+                setFormItems({ ...formItems, feedbackTitle: e.target.value })
+              }
             />
             <CategoryStatusSelect
               title='Category'
               subtitle='Choose a category for your feedback'
               options={options['feedback-categories']}
-              initialCategoryStatus='Feature'
+              optionsIndex={category}
+              initialCategoryStatus={category}
+              passSelectedOption={passSelectedOption}
             />
             <div className='new-feedback-detail'>
               <h4 className='h4 text-darker-blue'>Feedback Detail</h4>
@@ -48,7 +80,16 @@ const NewFeedback = () => {
                 Include any specific comments on what should be improved, added,
                 etc.
               </p>
-              <textarea className='border body-2 text-darker-blue'></textarea>
+              <textarea
+                className='border body-2 text-darker-blue'
+                value={formItems.feedbackDetail}
+                onChange={(e) =>
+                  setFormItems({
+                    ...formItems,
+                    feedbackDetail: e.target.value,
+                  })
+                }
+              ></textarea>
             </div>
             <div className='new-feedback-buttons'>
               <Link to='/' className='button border h4 text-very-light'>

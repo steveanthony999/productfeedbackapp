@@ -13,6 +13,7 @@ const CategoryStatusSelect = ({
   optionsIndex,
   initialCategoryStatus,
   secondary,
+  passSelectedOption,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(
@@ -45,6 +46,10 @@ const CategoryStatusSelect = ({
     }
     return () => document.removeEventListener('click', handleBodyClick);
   }, [isOpen]);
+
+  useEffect(() => {
+    passSelectedOption(selectedOption);
+  }, [selectedOption, passSelectedOption]);
 
   return (
     <div className='category-status-select-container'>
