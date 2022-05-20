@@ -67,6 +67,25 @@ export const getSingleFeedback = createAsyncThunk(
   }
 );
 
+// Delete Feedback
+export const deleteFeedback = createAsyncThunk(
+  'feedback/delete',
+  async (feedbackId, thunkAPI) => {
+    try {
+      return await feedbackService.deleteFeedback(feedbackId);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const feedbackSlice = createSlice({
   name: 'feedback',
   initialState,
@@ -112,6 +131,14 @@ export const feedbackSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+      })
+      .addCase(deleteFeedback.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.feedback.map((feedback) =>
+          feedback._id === action.payload._id
+            ? (feedback.status = 'closed')
+            : feedback
+        );
       });
   },
 });

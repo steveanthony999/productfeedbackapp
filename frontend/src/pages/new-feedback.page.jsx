@@ -23,6 +23,7 @@ const NewFeedback = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const upvotes = 0;
+  const status = 'Suggestion';
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const NewFeedback = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    dispatch(createFeedback({ title, description, category, upvotes }));
+    dispatch(createFeedback({ title, description, category, upvotes, status }));
     setTitle('');
     setDescription('');
     setCategory('Feature');

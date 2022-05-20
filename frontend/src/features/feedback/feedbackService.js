@@ -6,7 +6,6 @@ const API_URL = 'https://productfeedbackapp.herokuapp.com/productRequests/';
 const createFeedback = async (feedbackData) => {
   const res = await axios.post(API_URL, feedbackData);
 
-  console.log(res.data);
   return res.data;
 };
 
@@ -32,10 +31,18 @@ const getSingleFeedback = async (feedbackId) => {
   return res.data;
 };
 
+// Delete Feedback
+const deleteFeedback = async (feedbackId) => {
+  const res = await axios.delete(API_URL + feedbackId);
+
+  return res.data;
+};
+
 const feedbackService = {
   createFeedback,
   getFeedback,
   getSingleFeedback,
+  deleteFeedback,
 };
 
 export default feedbackService;

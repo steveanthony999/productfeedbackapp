@@ -13,7 +13,6 @@ const CategoryStatusSelect = ({
   optionsIndex,
   initialCategoryStatus,
   secondary,
-  passSelectedOption,
   submitted,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,12 +48,7 @@ const CategoryStatusSelect = ({
   }, [isOpen]);
 
   useEffect(() => {
-    passSelectedOption(selectedOption);
-  }, [selectedOption, passSelectedOption]);
-
-  useEffect(() => {
     if (submitted) {
-      console.log('submitted');
       setSelectedOption(options[0]);
       setIsChecked(options[0]);
     }

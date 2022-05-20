@@ -1,5 +1,11 @@
-import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
+import {
+  getFeedback,
+  deleteFeedback,
+} from '../features/feedback/feedbackSlice';
 
 import CategoryStatusSelect from '../components/categoryStatusSelect.component';
 
@@ -15,16 +21,31 @@ const EditFeedback = () => {
   const navigate = useNavigate();
   const { feedback } = location.state;
 
+  const { isError, message } = useSelector((state) => state.feedback);
+
+  const dispatch = useDispatch();
+  const { feedbackId } = useParams();
+
   const [feedbackTitle, setFeedbackTitle] = useState(feedback.title);
   const [feedbackDetail, setFeedbackDetail] = useState(feedback.description);
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+
+    dispatch(getFeedback(feedbackId));
+  }, [dispatch, isError, message, feedbackId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
-  const passSelectedOption = (e) => {
-    // setCategory(e);
-    console.log(e);
+  const onDeleteFeedback = () => {
+    dispatch(deleteFeedback(feedbackId));
+    setTimeout(() => {
+      navigate('/');
+    }, 1000);
   };
 
   return (
@@ -33,8 +54,7 @@ const EditFeedback = () => {
         <div className='EditFeedbackPage-top-bar'>
           <div
             className='navBack text-grey-blue h4'
-            onClick={() => navigate(-1)}
-          >
+            onClick={() => navigate(-1)}>
             <img src={IconArrowLeft} alt='<' /> <span>Go Back</span>
           </div>
         </div>
@@ -77,7 +97,6 @@ const EditFeedback = () => {
                   )
                 ]
               }
-              passSelectedOption={passSelectedOption}
             />
             <CategoryStatusSelect
               title='Update Status'
@@ -99,7 +118,6 @@ const EditFeedback = () => {
                   )
                 ]
               }
-              passSelectedOption={passSelectedOption}
               secondary
             />
             <div className='edit-feedback-detail'>
@@ -111,17 +129,17 @@ const EditFeedback = () => {
               <textarea
                 className='border body-2 text-darker-blue'
                 value={feedbackDetail}
-                onChange={(e) => setFeedbackDetail(e.target.value)}
-              ></textarea>
+                onChange={(e) => setFeedbackDetail(e.target.value)}></textarea>
             </div>
             <div className='edit-feedback-buttons'>
-              <button className='button button-red border h4 text-very-light'>
+              <button
+                className='button button-red border h4 text-very-light'
+                onClick={onDeleteFeedback}>
                 Delete
               </button>
               <button
                 className='button button-dark-blue border h4 text-very-light'
-                onClick={() => navigate(-1)}
-              >
+                onClick={() => navigate(-1)}>
                 Cancel
               </button>
               <button className='button button-purple border h4 text-very-light'>
