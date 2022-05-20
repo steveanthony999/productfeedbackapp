@@ -41,6 +41,11 @@ const EditFeedback = () => {
     e.preventDefault();
   };
 
+  const passSelectedOption = (e) => {
+    // console.log(e);
+    // For whatever reason, the functionality of the category selection is dependent on this function, though it does nothing
+  };
+
   const onDeleteFeedback = () => {
     dispatch(deleteFeedback(feedbackId));
     setTimeout(() => {
@@ -97,6 +102,7 @@ const EditFeedback = () => {
                   )
                 ]
               }
+              passSelectedOption={passSelectedOption}
             />
             <CategoryStatusSelect
               title='Update Status'
@@ -118,6 +124,7 @@ const EditFeedback = () => {
                   )
                 ]
               }
+              passSelectedOption={passSelectedOption}
               secondary
             />
             <div className='edit-feedback-detail'>
