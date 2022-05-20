@@ -15,7 +15,7 @@ const getFeedback = async (filteredItem) => {
 
   if (filteredItem) {
     const newProductRequests = res.data.filter(
-      (item) => item.category === filteredItem
+      (item) => item.category.toLowerCase() === filteredItem.toLowerCase()
     );
 
     return newProductRequests;
