@@ -12,6 +12,7 @@ import '../styles/pages/newFeedbackPage.css';
 
 const NewFeedback = () => {
   const [category, setCategory] = useState('Feature');
+  const [submitted, setSubmitted] = useState(false);
 
   const [formItems, setFormItems] = useState({
     feedbackTitle: '',
@@ -22,6 +23,7 @@ const NewFeedback = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Dispatch
+    setSubmitted(true);
     console.log(formItems);
     setFormItems({
       ...formItems,
@@ -73,6 +75,7 @@ const NewFeedback = () => {
               optionsIndex={category}
               initialCategoryStatus={category}
               passSelectedOption={passSelectedOption}
+              submitted={submitted}
             />
             <div className='new-feedback-detail'>
               <h4 className='h4 text-darker-blue'>Feedback Detail</h4>
@@ -88,8 +91,7 @@ const NewFeedback = () => {
                     ...formItems,
                     feedbackDetail: e.target.value,
                   })
-                }
-              ></textarea>
+                }></textarea>
             </div>
             <div className='new-feedback-buttons'>
               <Link to='/' className='button border h4 text-very-light'>
