@@ -6,6 +6,7 @@ const API_URL = 'https://productfeedbackapp.herokuapp.com/productRequests/';
 const createFeedback = async (feedbackData) => {
   const res = await axios.post(API_URL, feedbackData);
 
+  console.log(res.data);
   return res.data;
 };
 

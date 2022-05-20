@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { createFeedback, reset } from '../features/feedback/feedbackSlice';
 
 import IconNewFeedback from '../assets/shared/icon-new-feedback.svg';
 
@@ -11,26 +14,41 @@ import options from '../options.json';
 import '../styles/pages/newFeedbackPage.css';
 
 const NewFeedback = () => {
+  const { isError, isSuccess, message } = useSelector(
+    (state) => state.feedback
+  );
+
   const [category, setCategory] = useState('Feature');
   const [submitted, setSubmitted] = useState(false);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const upvotes = 0;
 
-  const [formItems, setFormItems] = useState({
-    feedbackTitle: '',
-    feedbackCategory: 'Feature',
-    feedbackDetail: '',
-  });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+
+    if (isSuccess) {
+      dispatch(reset);
+    }
+
+    dispatch(reset);
+  }, [dispatch, isError, isSuccess, navigate, message]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Dispatch
     setSubmitted(true);
-    console.log(formItems);
-    setFormItems({
-      ...formItems,
-      feedbackTitle: '',
-      feedbackCategory: 'Feature',
-      feedbackDetail: '',
-    });
+    dispatch(createFeedback({ title, description, category, upvotes }));
+    setTitle('');
+    setDescription('');
+    setCategory('Feature');
+    setTimeout(() => {
+      navigate('/');
+    }, 1000);
   };
 
   const passSelectedOption = (e) => {
@@ -38,7 +56,8 @@ const NewFeedback = () => {
   };
 
   useEffect(() => {
-    setFormItems({ ...formItems, feedbackCategory: category });
+    // setFormItems({ ...formItems, category: category });
+    setCategory(category);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
 
@@ -63,9 +82,10 @@ const NewFeedback = () => {
             <input
               type='text'
               className='input-field border body-2 text-darker-blue'
-              value={formItems.feedbackTitle}
+              value={title}
               onChange={(e) =>
-                setFormItems({ ...formItems, feedbackTitle: e.target.value })
+                // setFormItems({ ...formItems, title: e.target.value })
+                setTitle(e.target.value)
               }
             />
             <CategoryStatusSelect
@@ -85,12 +105,13 @@ const NewFeedback = () => {
               </p>
               <textarea
                 className='border body-2 text-darker-blue'
-                value={formItems.feedbackDetail}
+                value={description}
                 onChange={(e) =>
-                  setFormItems({
-                    ...formItems,
-                    feedbackDetail: e.target.value,
-                  })
+                  // setFormItems({
+                  //   ...formItems,
+                  //   description: e.target.value,
+                  // })
+                  setDescription(e.target.value)
                 }></textarea>
             </div>
             <div className='new-feedback-buttons'>
