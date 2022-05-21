@@ -142,7 +142,7 @@ const ProductFeedback = ({ feedback }) => {
           </h3>
           <p className='body-1 text-grey-blue'>{feedback.description}</p>
           <div className='btn text-blue body-3'>
-            {feedback.category && feedback.category === 'ux'
+            {feedback.category === 'ux'
               ? feedback.category.toUpperCase()
               : feedback.category === 'ui'
               ? feedback.category.toUpperCase()

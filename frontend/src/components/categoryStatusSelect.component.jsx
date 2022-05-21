@@ -20,6 +20,10 @@ const CategoryStatusSelect = ({
   const [selectedOption, setSelectedOption] = useState(
     initialCategoryStatus === undefined
       ? 'In-Progress'
+      : initialCategoryStatus === 'UX'
+      ? 'UX'
+      : initialCategoryStatus === 'UI'
+      ? 'UI'
       : options[optionsIndex ? options.indexOf(optionsIndex) : 0]
   );
   const [isChecked, setIsChecked] = useState(
@@ -54,7 +58,6 @@ const CategoryStatusSelect = ({
 
   useEffect(() => {
     if (submitted) {
-      console.log('submitted');
       setSelectedOption(options[0]);
       setIsChecked(options[0]);
     }

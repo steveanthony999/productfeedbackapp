@@ -125,12 +125,24 @@ const EditFeedback = () => {
               options={options['feedback-categories']}
               optionsIndex={category}
               initialCategoryStatus={
-                options['feedback-categories'][
-                  options['feedback-categories'].indexOf(
-                    feedback.category.charAt(0).toUpperCase() +
-                      feedback.category.slice(1)
-                  )
-                ]
+                feedback.category === 'ux'
+                  ? options['feedback-categories'][
+                      options['feedback-categories'].indexOf(
+                        feedback.category.toUpperCase()
+                      )
+                    ]
+                  : feedback.category === 'ui'
+                  ? options['feedback-categories'][
+                      options['feedback-categories'].indexOf(
+                        feedback.category.toUpperCase()
+                      )
+                    ]
+                  : options['feedback-categories'][
+                      options['feedback-categories'].indexOf(
+                        feedback.category.charAt(0).toUpperCase() +
+                          feedback.category.slice(1)
+                      )
+                    ]
               }
               passSelectedOption={(e) => setCategory(e.toLowerCase())}
               submitted={submitted}
