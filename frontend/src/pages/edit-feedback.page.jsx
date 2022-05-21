@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   getFeedback,
   deleteFeedback,
+  updateFeedback,
+  reset,
 } from '../features/feedback/feedbackSlice';
 
 import CategoryStatusSelect from '../components/categoryStatusSelect.component';
@@ -21,29 +23,64 @@ const EditFeedback = () => {
   const navigate = useNavigate();
   const { feedback } = location.state;
 
-  const { isError, message } = useSelector((state) => state.feedback);
+  const { isError, isSuccess, message } = useSelector(
+    (state) => state.feedback
+  );
 
   const dispatch = useDispatch();
   const { feedbackId } = useParams();
 
-  const [feedbackTitle, setFeedbackTitle] = useState(feedback.title);
-  const [feedbackDetail, setFeedbackDetail] = useState(feedback.description);
+  const [title, setTitle] = useState(feedback.title);
+  const [category, setCategory] = useState(
+    options['feedback-categories'][
+      options['feedback-categories'].indexOf(
+        feedback.category.charAt(0).toUpperCase() + feedback.category.slice(1)
+      )
+    ]
+  );
+  const [description, setDescription] = useState(feedback.description);
+  const [status, setStatus] = useState(
+    options['feedback-status'][
+      options['feedback-status'].indexOf(
+        feedback.status.charAt(0).toUpperCase() + feedback.status.slice(1)
+      )
+    ]
+  );
+  const [submitted, setSubmitted] = useState(false);
+  const upvotes = feedback.upvotes;
 
   useEffect(() => {
     if (isError) {
       console.log(message);
     }
 
+    if (isSuccess) {
+      dispatch(reset);
+    }
+
     dispatch(getFeedback(feedbackId));
-  }, [dispatch, isError, message, feedbackId]);
+  }, [dispatch, isError, message, isSuccess, feedbackId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  };
 
-  const passSelectedOption = (e) => {
-    // console.log(e);
-    // For whatever reason, the functionality of the category selection is dependent on this function, though it does nothing
+    setSubmitted(true);
+    dispatch(
+      updateFeedback({
+        feedbackId,
+        title,
+        category,
+        description,
+        upvotes,
+        status,
+      })
+    );
+    setTitle('');
+    setDescription('');
+    setCategory('Feature');
+    setTimeout(() => {
+      navigate('/');
+    }, 1000);
   };
 
   const onDeleteFeedback = () => {
@@ -79,21 +116,14 @@ const EditFeedback = () => {
             <input
               type='text'
               className='input-field border body-2 text-darker-blue'
-              value={feedbackTitle}
-              onChange={(e) => setFeedbackTitle(e.target.value)}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
             <CategoryStatusSelect
               title='Category'
               subtitle='Choose a category for your feedback'
               options={options['feedback-categories']}
-              optionsIndex={
-                options['feedback-categories'][
-                  options['feedback-categories'].indexOf(
-                    feedback.category.charAt(0).toUpperCase() +
-                      feedback.category.slice(1)
-                  )
-                ]
-              }
+              optionsIndex={category}
               initialCategoryStatus={
                 options['feedback-categories'][
                   options['feedback-categories'].indexOf(
@@ -102,20 +132,14 @@ const EditFeedback = () => {
                   )
                 ]
               }
-              passSelectedOption={passSelectedOption}
+              passSelectedOption={(e) => setCategory(e.toLowerCase())}
+              submitted={submitted}
             />
             <CategoryStatusSelect
               title='Update Status'
               subtitle='Change feedback state'
               options={options['feedback-status']}
-              optionsIndex={
-                options['feedback-status'][
-                  options['feedback-status'].indexOf(
-                    feedback.status.charAt(0).toUpperCase() +
-                      feedback.status.slice(1)
-                  )
-                ]
-              }
+              optionsIndex={status}
               initialCategoryStatus={
                 options['feedback-status'][
                   options['feedback-status'].indexOf(
@@ -124,7 +148,8 @@ const EditFeedback = () => {
                   )
                 ]
               }
-              passSelectedOption={passSelectedOption}
+              passSelectedOption={(e) => setStatus(e)}
+              submitted={submitted}
               secondary
             />
             <div className='edit-feedback-detail'>
@@ -135,8 +160,8 @@ const EditFeedback = () => {
               </p>
               <textarea
                 className='border body-2 text-darker-blue'
-                value={feedbackDetail}
-                onChange={(e) => setFeedbackDetail(e.target.value)}></textarea>
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}></textarea>
             </div>
             <div className='edit-feedback-buttons'>
               <button

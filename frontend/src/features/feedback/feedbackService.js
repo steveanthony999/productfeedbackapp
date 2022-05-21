@@ -15,7 +15,7 @@ const getFeedback = async (filteredItem) => {
 
   if (filteredItem) {
     const newProductRequests = res.data.filter(
-      (item) => item.category.toLowerCase() === filteredItem.toLowerCase()
+      (item) => item.category === filteredItem
     );
 
     return newProductRequests;
@@ -38,11 +38,19 @@ const deleteFeedback = async (feedbackId) => {
   return res.data;
 };
 
+// Update Feedback
+const updateFeedback = async (feedbackId, feedbackData) => {
+  const res = await axios.patch(API_URL + feedbackId, feedbackData);
+
+  return res.data;
+};
+
 const feedbackService = {
   createFeedback,
   getFeedback,
   getSingleFeedback,
   deleteFeedback,
+  updateFeedback,
 };
 
 export default feedbackService;

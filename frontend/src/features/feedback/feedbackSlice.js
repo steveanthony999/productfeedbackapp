@@ -86,6 +86,25 @@ export const deleteFeedback = createAsyncThunk(
   }
 );
 
+// Update Feedback
+export const updateFeedback = createAsyncThunk(
+  'feedback/update',
+  async ({ feedbackId, ...feedbackData }, thunkAPI) => {
+    try {
+      return await feedbackService.updateFeedback(feedbackId, feedbackData);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const feedbackSlice = createSlice({
   name: 'feedback',
   initialState,
@@ -125,7 +144,7 @@ export const feedbackSlice = createSlice({
       .addCase(getSingleFeedback.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.feedbacks = action.payload;
+        state.feedback = action.payload;
       })
       .addCase(getSingleFeedback.rejected, (state, action) => {
         state.isLoading = false;
@@ -139,6 +158,18 @@ export const feedbackSlice = createSlice({
             ? (feedback.status = 'closed')
             : feedback
         );
+      })
+      .addCase(updateFeedback.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateFeedback.fulfilled, (state) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+      })
+      .addCase(updateFeedback.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       });
   },
 });

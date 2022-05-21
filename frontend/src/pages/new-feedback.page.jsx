@@ -57,8 +57,7 @@ const NewFeedback = () => {
   };
 
   useEffect(() => {
-    // setFormItems({ ...formItems, category: category });
-    setCategory(category);
+    setCategory(category.toLowerCase());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
 
@@ -84,10 +83,7 @@ const NewFeedback = () => {
               type='text'
               className='input-field border body-2 text-darker-blue'
               value={title}
-              onChange={(e) =>
-                // setFormItems({ ...formItems, title: e.target.value })
-                setTitle(e.target.value)
-              }
+              onChange={(e) => setTitle(e.target.value)}
             />
             <CategoryStatusSelect
               title='Category'
@@ -107,13 +103,7 @@ const NewFeedback = () => {
               <textarea
                 className='border body-2 text-darker-blue'
                 value={description}
-                onChange={(e) =>
-                  // setFormItems({
-                  //   ...formItems,
-                  //   description: e.target.value,
-                  // })
-                  setDescription(e.target.value)
-                }></textarea>
+                onChange={(e) => setDescription(e.target.value)}></textarea>
             </div>
             <div className='new-feedback-buttons'>
               <Link to='/' className='button border h4 text-very-light'>
