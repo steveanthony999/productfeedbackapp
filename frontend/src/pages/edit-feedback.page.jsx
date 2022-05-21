@@ -160,7 +160,7 @@ const EditFeedback = () => {
                   )
                 ]
               }
-              passSelectedOption={(e) => setStatus(e)}
+              passSelectedOption={(e) => setStatus(e.toLowerCase())}
               submitted={submitted}
               secondary
             />
