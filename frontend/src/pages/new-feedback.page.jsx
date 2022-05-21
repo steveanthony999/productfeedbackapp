@@ -43,7 +43,16 @@ const NewFeedback = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    dispatch(createFeedback({ title, description, category, upvotes, status }));
+    dispatch(
+      createFeedback({
+        title,
+        description,
+        category,
+        upvotes,
+        status,
+        comments: [],
+      })
+    );
     setTitle('');
     setDescription('');
     setCategory('Feature');
