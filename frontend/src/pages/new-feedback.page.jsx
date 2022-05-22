@@ -50,7 +50,7 @@ const NewFeedback = () => {
         category,
         upvotes,
         status,
-        comments: [],
+        comments: [], // Adds comment array on newly created feedback items
       })
     );
     setTitle('');
