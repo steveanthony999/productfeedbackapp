@@ -9,7 +9,7 @@ import axios from 'axios';
 
 import '../styles/components/productFeedback.css';
 
-const ProductFeedback = ({ feedback }) => {
+const ProductFeedback = ({ feedback, comments }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
 
   const [commentsLength, setCommentsLength] = useState([]);
@@ -44,13 +44,17 @@ const ProductFeedback = ({ feedback }) => {
   }, [isUpvote]);
 
   useEffect(() => {
-    _.find(
-      feedback,
-      feedback.comments
-        ? setCommentsLength(feedback.comments.length)
-        : setCommentsLength(0)
-    );
-  }, [feedback]);
+    if (comments) {
+      setCommentsLength(comments.length);
+    } else {
+      _.find(
+        feedback,
+        feedback.comments
+          ? setCommentsLength(feedback.comments.length)
+          : setCommentsLength(0)
+      );
+    }
+  }, [feedback, comments]);
 
   useEffect(() => {
     _.find(
