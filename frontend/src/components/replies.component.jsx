@@ -41,7 +41,7 @@ const Replies = ({ reply, repliesLength }) => {
       <div className='bottom'>
         {isReply && (
           <div className='reply-container'>
-            <Reply />
+            <Reply replyProps={reply} isFromReply={isReply} />
           </div>
         )}
       </div>
