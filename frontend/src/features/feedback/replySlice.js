@@ -31,9 +31,9 @@ export const getReplies = createAsyncThunk(
 // Create a comment reply
 export const createReply = createAsyncThunk(
   'replies/create',
-  async ({ commentId, replyData }, thunkAPI) => {
+  async ({ feedbackId, ...replyData }, thunkAPI) => {
     try {
-      return await replyService.createReply(commentId, replyData);
+      return await replyService.createReply(feedbackId, replyData);
     } catch (error) {
       const message =
         (error.response &&
@@ -72,9 +72,7 @@ export const replySlice = createSlice({
       .addCase(createReply.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.replies.push(
-          action.payload.replies[action.payload.replies.length - 1]
-        );
+        state.replies.push(action.payload);
       })
       .addCase(createReply.rejected, (state, action) => {
         state.isLoading = false;
