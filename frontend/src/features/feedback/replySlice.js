@@ -1,20 +1,24 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {
+  createSlice,
+  createAsyncThunk,
+  createEntityAdapter,
+} from '@reduxjs/toolkit';
 import replyService from './replyService';
 
-const initialState = {
-  replies: [],
-  isError: false,
-  isSuccess: false,
-  isLoading: false,
-  message: '',
-};
+// const initialState = {
+//   replies: [],
+//   isError: false,
+//   isSuccess: false,
+//   isLoading: false,
+//   message: '',
+// };
 
 // Get comments replies
 export const getReplies = createAsyncThunk(
   'replies/getAll',
-  async (feedbackId, commentId, thunkAPI) => {
+  async ({ feedbackId, commentProps }, thunkAPI) => {
     try {
-      return await replyService.getReplies(feedbackId, commentId);
+      return await replyService.getReplies(feedbackId, commentProps);
     } catch (error) {
       const message =
         (error.response &&
@@ -31,7 +35,7 @@ export const getReplies = createAsyncThunk(
 // Create a comment reply
 export const createReply = createAsyncThunk(
   'replies/create',
-  async ({ feedbackId, ...replyData }, thunkAPI) => {
+  async ({ feedbackId, replyData }, thunkAPI) => {
     try {
       return await replyService.createReply(feedbackId, replyData);
     } catch (error) {
@@ -47,6 +51,16 @@ export const createReply = createAsyncThunk(
   }
 );
 
+export const repliesAdapter = createEntityAdapter();
+
+const initialState = repliesAdapter.getInitialState({
+  replies: [],
+  isError: false,
+  isSuccess: false,
+  isLoading: false,
+  message: '',
+});
+
 export const replySlice = createSlice({
   name: 'replies',
   initialState,
@@ -59,7 +73,8 @@ export const replySlice = createSlice({
       .addCase(getReplies.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.comments = action.payload;
+        state.replies = action.payload;
+        repliesAdapter.setAll(state, action.payload);
       })
       .addCase(getReplies.rejected, (state, action) => {
         state.isLoading = false;
@@ -81,6 +96,10 @@ export const replySlice = createSlice({
       });
   },
 });
+
+export const replySelectors = repliesAdapter.getSelectors(
+  (state) => state.replies
+);
 
 export const { reset } = replySlice.actions;
 export default replySlice.reducer;

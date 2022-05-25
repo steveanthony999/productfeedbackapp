@@ -20,7 +20,8 @@
             "image": "https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-suzanne_tkjsnr.jpg",
             "name": "Suzanne Chang",
             "username": "upbeat1811"
-          }
+          },
+          "replies": []
         },
         {
           "id": 2,
@@ -29,7 +30,8 @@
             "image": "https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-thomas_anpbtk.jpg",
             "name": "Thomas Hood",
             "username": "brawnybrave"
-          }
+          },
+          "replies": []
         }
       ]
     },
@@ -48,7 +50,8 @@
             "image": "https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-elijah_urvimw.jpg",
             "name": "Elijah Moss",
             "username": "hexagon.bestagon"
-          }
+          },
+          "replies": []
         },
         {
           "id": 4,
@@ -67,7 +70,8 @@
                 "image": "https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-anne_dfltsx.jpg",
                 "name": "Anne Valentine",
                 "username": "annev1990"
-              }
+              },
+              "replies": []
             },
             {
               "id": 21,
@@ -77,7 +81,8 @@
                 "image": "https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-ryan_rgkzqt.jpg",
                 "name": "Ryan Welles",
                 "username": "voyager.344"
-              }
+              },
+              "replies": []
             }
           ]
         }
@@ -98,7 +103,8 @@
             "image": "https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-george_kpqvec.jpg",
             "name": "George Partridge",
             "username": "soccerviewer8"
-          }
+          },
+          "replies": []
         }
       ]
     },
@@ -117,7 +123,8 @@
             "image": "https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-javier_zvbkfg.jpg",
             "name": "Javier Pollard",
             "username": "warlikeduke"
-          }
+          },
+          "replies": []
         },
         {
           "id": 7,
@@ -126,7 +133,8 @@
             "image": "https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-roxanne_r8gmkk.jpg",
             "name": "Roxanne Travis",
             "username": "peppersprime32"
-          }
+          },
+          "replies": []
         }
       ]
     },
@@ -155,7 +163,8 @@
                 "image": "https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-zena_ydm4rq.jpg",
                 "name": "Zena Kelley",
                 "username": "velvetround"
-              }
+              },
+              "replies": []
             }
           ]
         },
@@ -166,7 +175,8 @@
             "image": "https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-jackson_rgx207.jpg",
             "name": "Jackson Barker",
             "username": "countryspirit"
-          }
+          },
+          "replies": []
         }
       ]
     },
@@ -176,7 +186,8 @@
       "category": "bug",
       "upvotes": 3,
       "status": "suggestion",
-      "description": "Challenge preview images are missing when you apply a filter."
+      "description": "Challenge preview images are missing when you apply a filter.",
+      "comments": []
     },
     {
       "id": 7,
@@ -193,7 +204,8 @@
             "image": "https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-victoria_jk23xx.jpg",
             "name": "Victoria Mejia",
             "username": "arlen_the_marlin"
-          }
+          },
+          "replies": []
         },
         {
           "id": 11,
@@ -202,7 +214,8 @@
             "image": "https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-jackson_rgx207.jpg",
             "name": "Jackson Barker",
             "username": "countryspirit"
-          }
+          },
+          "replies": []
         }
       ]
     },
@@ -221,7 +234,8 @@
             "image": "https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-george_kpqvec.jpg",
             "name": "George Partridge",
             "username": "soccerviewer8"
-          }
+          },
+          "replies": []
         }
       ]
     },
@@ -240,7 +254,8 @@
             "image": "https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-ryan_rgkzqt.jpg",
             "name": "Ryan Welles",
             "username": "voyager.344"
-          }
+          },
+          "replies": []
         }
       ]
     },
@@ -259,7 +274,8 @@
             "image": "https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-suzanne_tkjsnr.jpg",
             "name": "Suzanne Chang",
             "username": "upbeat1811"
-          }
+          },
+          "replies": []
         }
       ]
     },
@@ -269,7 +285,8 @@
       "category": "bug",
       "upvotes": 9,
       "status": "in-progress",
-      "description": "Screenshots of solutions with animations don’t display correctly."
+      "description": "Screenshots of solutions with animations don’t display correctly.",
+      "comments": []
     },
     {
       "id": 12,
@@ -296,7 +313,8 @@
                 "image": "https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-suzanne_tkjsnr.jpg",
                 "name": "Suzanne Chang",
                 "username": "upbeat1811"
-              }
+              },
+              "replies": []
             }
           ]
         }
