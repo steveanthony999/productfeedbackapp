@@ -1,17 +1,13 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  createEntityAdapter,
-} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import replyService from './replyService';
 
-// const initialState = {
-//   replies: [],
-//   isError: false,
-//   isSuccess: false,
-//   isLoading: false,
-//   message: '',
-// };
+const initialState = {
+  replies: [],
+  isError: false,
+  isSuccess: false,
+  isLoading: false,
+  message: '',
+};
 
 // Get comments replies
 export const getReplies = createAsyncThunk(
@@ -51,16 +47,6 @@ export const createReply = createAsyncThunk(
   }
 );
 
-export const repliesAdapter = createEntityAdapter();
-
-const initialState = repliesAdapter.getInitialState({
-  replies: [],
-  isError: false,
-  isSuccess: false,
-  isLoading: false,
-  message: '',
-});
-
 export const replySlice = createSlice({
   name: 'replies',
   initialState,
@@ -74,7 +60,6 @@ export const replySlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.replies = action.payload;
-        repliesAdapter.setAll(state, action.payload);
       })
       .addCase(getReplies.rejected, (state, action) => {
         state.isLoading = false;
@@ -96,10 +81,6 @@ export const replySlice = createSlice({
       });
   },
 });
-
-export const replySelectors = repliesAdapter.getSelectors(
-  (state) => state.replies
-);
 
 export const { reset } = replySlice.actions;
 export default replySlice.reducer;

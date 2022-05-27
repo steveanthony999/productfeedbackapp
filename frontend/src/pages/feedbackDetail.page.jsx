@@ -103,19 +103,20 @@ const FeedbackDetail = () => {
             Edit Feedback
           </Link>
         </div>
-        <ProductFeedback feedback={feedback} comments={comments} />
+        <ProductFeedback feedback={feedback} />
         <div className='comments-container border'>
           <div className='top'>
             <h3 className='h3 text-darker-blue'>
-              {comments ? comments.length + repliesLength : 0}{' '}
-              {comments && comments.length + repliesLength === 1
+              {feedback.comments ? feedback.comments.length + repliesLength : 0}{' '}
+              {feedback.comments &&
+              feedback.comments.length + repliesLength === 1
                 ? 'Comment'
                 : 'Comments'}
             </h3>
           </div>
           <div className='middle'>
-            {comments &&
-              comments.map((commentItem, index) => (
+            {feedback.comments &&
+              feedback.comments.map((commentItem, index) => (
                 <Comments
                   key={commentItem.id}
                   commentProps={commentItem}

@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import uuid from 'react-uuid';
 
-import { commentSelectors } from '../features/feedback/commentSlice';
 import { createReply, reset } from '../features/feedback/replySlice';
 
 import userInfo from '../user.json';
@@ -15,10 +14,6 @@ const Reply = ({ commentProps, replyProps, isFromReply }) => {
     (state) => state.replies
   );
   const { feedbackId } = useParams();
-  // const selectAllComments = useSelector(commentSelectors.selectAll);
-  const selectCommentById = useSelector((state) =>
-    commentSelectors.selectById(state, commentProps.id)
-  );
 
   const dispatch = useDispatch();
 
@@ -41,8 +36,8 @@ const Reply = ({ commentProps, replyProps, isFromReply }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { id } = isFromReply ? replyProps : selectCommentById.id; // The id of the comment/reply user is replying to
-    const { username } = isFromReply ? replyProps.user : selectCommentById.user;
+    const { id } = isFromReply ? replyProps : commentProps; // The id of the comment/reply user is replying to
+    const { username } = isFromReply ? replyProps.user : commentProps.user;
     const replyData = {
       commentId: id,
       id: uuid(),
@@ -52,16 +47,11 @@ const Reply = ({ commentProps, replyProps, isFromReply }) => {
     };
     // comments: [...comments, { id: uuid(), content, user }],
 
-    dispatch(createReply({ feedbackId, replyData }));
-
+    dispatch(createReply({ feedbackId, ...replyData }));
     // console.log({ feedbackId, ...replyData });
 
     setContent('');
   };
-
-  useEffect(() => {
-    console.log(selectCommentById);
-  }, [selectCommentById]);
 
   return (
     <div className='Reply'>

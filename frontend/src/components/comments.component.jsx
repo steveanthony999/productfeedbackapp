@@ -13,9 +13,7 @@ const Comments = ({ commentProps }) => {
   const { feedbackId } = useParams();
   const dispatch = useDispatch();
 
-  const { replies, isSuccess, isError, message } = useSelector(
-    (state) => state.replies
-  );
+  const { isSuccess, isError, message } = useSelector((state) => state.replies);
 
   const [isReply, setIsReply] = useState(false);
   const [repliesLength, setRepliesLength] = useState(0);
@@ -38,7 +36,7 @@ const Comments = ({ commentProps }) => {
 
   return (
     <div className='Comments'>
-      {commentProps.replies && (
+      {commentProps.replies && commentProps.replies.length > 0 && (
         <div className='line' style={{ height: '63%' }}></div>
       )}
       <div className='top'>

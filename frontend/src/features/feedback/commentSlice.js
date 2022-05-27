@@ -1,17 +1,13 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  createEntityAdapter,
-} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import commentService from './commentService';
 
-// const initialState = {
-//   comments: [],
-//   isError: false,
-//   isSuccess: false,
-//   isLoading: false,
-//   message: '',
-// };
+const initialState = {
+  comments: [],
+  isError: false,
+  isSuccess: false,
+  isLoading: false,
+  message: '',
+};
 
 // Get feedback comments
 export const getComments = createAsyncThunk(
@@ -51,16 +47,6 @@ export const createComment = createAsyncThunk(
   }
 );
 
-export const commentsAdapter = createEntityAdapter();
-
-const initialState = commentsAdapter.getInitialState({
-  comments: [],
-  isError: false,
-  isSuccess: false,
-  isLoading: false,
-  message: '',
-});
-
 export const commentSlice = createSlice({
   name: 'comments',
   initialState,
@@ -74,7 +60,6 @@ export const commentSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.comments = action.payload;
-        commentsAdapter.setAll(state, action.payload);
       })
       .addCase(getComments.rejected, (state, action) => {
         state.isLoading = false;
@@ -98,13 +83,6 @@ export const commentSlice = createSlice({
       });
   },
 });
-
-export const commentSelectors = commentsAdapter.getSelectors(
-  (state) => state.comments
-);
-
-// export const { selectById, selectEntities, selectTotal, selectAll, selectIds } =
-//   commentSelectors;
 
 export const { reset } = commentSlice.actions;
 export default commentSlice.reducer;
