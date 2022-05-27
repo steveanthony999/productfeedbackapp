@@ -64,7 +64,7 @@ const FeedbackDetail = () => {
     e.preventDefault();
 
     const commentData = {
-      comments: [...comments, { id: uuid(), content, user }],
+      comments: [...comments, { id: uuid(), content, user, replies: [] }],
     };
 
     dispatch(createComment({ feedbackId, commentData }));
@@ -103,20 +103,19 @@ const FeedbackDetail = () => {
             Edit Feedback
           </Link>
         </div>
-        <ProductFeedback feedback={feedback} />
+        <ProductFeedback feedback={feedback} comments={comments} />
         <div className='comments-container border'>
           <div className='top'>
             <h3 className='h3 text-darker-blue'>
-              {feedback.comments ? feedback.comments.length + repliesLength : 0}{' '}
-              {feedback.comments &&
-              feedback.comments.length + repliesLength === 1
+              {comments ? comments.length + repliesLength : 0}{' '}
+              {comments && comments.length + repliesLength === 1
                 ? 'Comment'
                 : 'Comments'}
             </h3>
           </div>
           <div className='middle'>
-            {feedback.comments &&
-              feedback.comments.map((commentItem, index) => (
+            {comments &&
+              comments.map((commentItem, index) => (
                 <Comments
                   key={commentItem.id}
                   commentProps={commentItem}
