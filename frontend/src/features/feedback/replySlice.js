@@ -60,6 +60,7 @@ export const replySlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.replies = action.payload;
+        // console.log(action.payload);
       })
       .addCase(getReplies.rejected, (state, action) => {
         state.isLoading = false;
@@ -73,6 +74,7 @@ export const replySlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.replies.push(action.payload);
+        // console.log(action.payload);
       })
       .addCase(createReply.rejected, (state, action) => {
         state.isLoading = false;

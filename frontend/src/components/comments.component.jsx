@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-
-import { getReplies, reset } from '../features/feedback/replySlice';
 
 import Replies from './replies.component';
 import Reply from './reply.component';
@@ -11,24 +8,9 @@ import '../styles/components/comments.css';
 
 const Comments = ({ commentProps }) => {
   const { feedbackId } = useParams();
-  const dispatch = useDispatch();
-
-  const { isSuccess, isError, message } = useSelector((state) => state.replies);
 
   const [isReply, setIsReply] = useState(false);
   const [repliesLength, setRepliesLength] = useState(0);
-
-  useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
-
-    if (isSuccess) {
-      dispatch(reset);
-    }
-
-    dispatch(getReplies({ feedbackId, commentProps }));
-  }, [dispatch, isError, message, isSuccess, feedbackId, commentProps]);
 
   useEffect(() => {
     commentProps.replies && setRepliesLength(commentProps.replies.length);
@@ -66,8 +48,14 @@ const Comments = ({ commentProps }) => {
         {!commentProps.replies && <hr />}
       </div>
       {commentProps.replies &&
-        commentProps.replies.map((reply, index) => (
-          <Replies key={index} reply={reply} repliesLength={repliesLength} />
+        commentProps.replies.map((reply) => (
+          <Replies
+            key={reply.id}
+            reply={reply}
+            repliesLength={repliesLength}
+            commentProps={commentProps}
+            feedbackId={feedbackId}
+          />
         ))}
     </div>
   );

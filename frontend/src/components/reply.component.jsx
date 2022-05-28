@@ -1,18 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import uuid from 'react-uuid';
-
-import { createReply, reset } from '../features/feedback/replySlice';
 
 import userInfo from '../user.json';
 
 import '../styles/components/reply.css';
+import { createReply } from '../features/feedback/replySlice';
 
 const Reply = ({ commentProps, replyProps, isFromReply }) => {
-  const { replies, isError, isSuccess, message } = useSelector(
-    (state) => state.replies
-  );
   const { feedbackId } = useParams();
 
   const dispatch = useDispatch();
@@ -20,18 +16,6 @@ const Reply = ({ commentProps, replyProps, isFromReply }) => {
   const [content, setContent] = useState('');
 
   const user = userInfo.currentUser;
-
-  useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
-
-    if (isSuccess) {
-      dispatch(reset);
-    }
-
-    dispatch(reset);
-  }, [dispatch, isError, isSuccess, message]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,11 +28,14 @@ const Reply = ({ commentProps, replyProps, isFromReply }) => {
       replyingTo: username,
       content,
       user,
+      replies: [],
     };
-    // comments: [...comments, { id: uuid(), content, user }],
 
-    dispatch(createReply({ feedbackId, ...replyData }));
     // console.log({ feedbackId, ...replyData });
+    // dispatch(createReply({ feedbackId, replyData }));
+    alert(
+      "yeah, I'm kinda stuck here! Which is why I need a job, so I can have a senior show me the ropes!"
+    );
 
     setContent('');
   };

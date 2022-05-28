@@ -1,11 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Reply from './reply.component';
 
 import '../styles/components/replies.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getReplies } from '../features/feedback/replySlice';
 
-const Replies = ({ reply, repliesLength }) => {
+const Replies = ({ reply, repliesLength, feedbackId, commentProps }) => {
+  const dispatch = useDispatch();
   const [isReply, setIsReply] = useState(false);
+  const { replies } = useSelector((state) => state.replies);
+
+  useEffect(() => {
+    dispatch(getReplies({ feedbackId, commentProps }));
+  }, [dispatch, feedbackId, commentProps]);
+
+  // useEffect(() => {
+  //   console.log(replies);
+  // }, [replies]);
 
   return (
     <div className='Replies'>
