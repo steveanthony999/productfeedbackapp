@@ -8,14 +8,10 @@ connectDB();
 
 const app = express();
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome' });
-});
 
 // Routes
 app.use('/api/users', require('./routes/userRoutes'));
