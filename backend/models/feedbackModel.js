@@ -20,6 +20,7 @@ const feedbackSchema = mongoose.Schema(
     upvotes: {
       type: Number,
       required: true,
+      default: 0,
     },
     status: {
       type: String,
