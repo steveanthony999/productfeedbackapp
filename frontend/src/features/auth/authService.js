@@ -29,10 +29,24 @@ const login = async (userData) => {
   return res.data;
 };
 
+// Get Current User
+const getUser = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.get(API_URL + 'me', config);
+
+  return res.data;
+};
+
 const authService = {
   register,
   logout,
   login,
+  getUser,
 };
 
 export default authService;

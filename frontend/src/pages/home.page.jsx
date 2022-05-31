@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { useMediaQuery } from 'react-responsive';
 
 import { getFeedback, reset } from '../features/feedback/feedbackSlice';
+import { getUser } from '../features/auth/authSlice';
 
 import Marquee from '../components/marquee.component';
 import CategoryBox from '../components/categoryBox.component';
@@ -19,6 +20,7 @@ const Home = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
 
   const { feedback, isSuccess } = useSelector((state) => state.feedback);
+  const { user, isSuccess: isUserSuccess } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
@@ -36,7 +38,12 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getFeedback());
+    dispatch(getUser());
   }, [dispatch]);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   useEffect(() => {
     if (feedback) {
