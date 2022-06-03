@@ -18,12 +18,12 @@ const NewFeedback = () => {
     (state) => state.feedback
   );
 
+  const user = JSON.parse(localStorage.getItem('user'));
+
   const [category, setCategory] = useState('Feature');
   const [submitted, setSubmitted] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const upvotes = 0;
-  const status = 'Suggestion';
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -45,12 +45,12 @@ const NewFeedback = () => {
     setSubmitted(true);
     dispatch(
       createFeedback({
+        userId: user._id,
         title,
         description,
         category,
-        upvotes,
-        status,
-        comments: [], // Adds comment array on newly created feedback items
+        upvotes: 0,
+        status: 'Suggestion',
       })
     );
     setTitle('');
@@ -64,11 +64,6 @@ const NewFeedback = () => {
   const passSelectedOption = (e) => {
     setCategory(e);
   };
-
-  useEffect(() => {
-    setCategory(category.toLowerCase());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [category]);
 
   return (
     <div className='NewFeedbackPage'>

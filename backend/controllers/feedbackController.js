@@ -59,7 +59,7 @@ const createFeedback = asyncHandler(async (req, res) => {
   const { title, category, description } = req.body;
 
   if (!title || !category || !description) {
-    res.statusMessage(400);
+    res.status(400);
 
     throw new Error('Please add a title, category, and description');
   }
@@ -78,7 +78,7 @@ const createFeedback = asyncHandler(async (req, res) => {
     category,
     description,
     upvotes: 0,
-    user: req.user.id,
+    userId: req.user.id,
     status: 'Suggestion',
   });
 

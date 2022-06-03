@@ -4,8 +4,14 @@ const API_URL = 'https://productfeedbackapp.herokuapp.com/productRequests/';
 const BACKEND_API_URL = '/api/feedback/';
 
 // Create New Feedback
-const createFeedback = async (feedbackData) => {
-  const res = await axios.post(API_URL, feedbackData);
+const createFeedback = async (feedbackData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.post(BACKEND_API_URL, feedbackData, config);
 
   return res.data;
 };

@@ -15,7 +15,8 @@ export const createFeedback = createAsyncThunk(
   'feedback/create',
   async (feedbackData, thunkAPI) => {
     try {
-      return await feedbackService.createFeedback(feedbackData);
+      const token = thunkAPI.getState().auth.user.token;
+      return await feedbackService.createFeedback(feedbackData, token);
     } catch (error) {
       const message =
         (error.response &&
