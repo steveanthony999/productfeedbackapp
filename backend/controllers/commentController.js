@@ -4,8 +4,8 @@ const User = require('../models/userModel');
 const Feedback = require('../models/feedbackModel');
 const Comment = require('../models/commentModel');
 
-// @desc    Get Comments for a Single Feedback
-// @route   GET /api/feedback/:feedbackId/comments
+// @desc    Get Comments for Feedback
+// @route   GET /api/feedback/comments
 // @access  Private
 const getComments = asyncHandler(async (req, res) => {
   // Get user using the id in the JWT
@@ -16,15 +16,8 @@ const getComments = asyncHandler(async (req, res) => {
 
     throw new Error('User not found');
   }
-  const feedback = await Feedback.findById(req.params.feedbackId);
 
-  if (feedback.user.toString() !== req.user.id) {
-    res.status(401);
-
-    throw new Error('User not authorized');
-  }
-
-  const comments = await Comment.find({ feedback: req.params.feedbackId });
+  const comments = await Comment.find();
 
   res.status(200).json(comments);
 });
@@ -53,8 +46,8 @@ const addComment = asyncHandler(async (req, res) => {
   const comment = await Comment.create({
     content: req.body.text,
     isStaff: false,
-    feedback: req.params.feedbackId,
-    user: req.user.id,
+    feedbackId: req.params.feedbackId,
+    userId: req.user.id,
   });
 
   res.status(200).json(comment);

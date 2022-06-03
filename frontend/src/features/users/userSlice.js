@@ -1,21 +1,22 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import commentService from './commentService';
+import userService from './userService';
 
 const initialState = {
-  comments: [],
+  users: [],
+  user: {},
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: '',
 };
 
-// Get feedback comments
-export const getComments = createAsyncThunk(
-  'comments/getAll',
+// Get All Users
+export const getUsers = createAsyncThunk(
+  'users/getAll',
   async (_, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await commentService.getComments(token);
+      return await userService.getUsers(token);
     } catch (error) {
       const message =
         (error.response &&
@@ -29,12 +30,13 @@ export const getComments = createAsyncThunk(
   }
 );
 
-// Create a feedback comment
-export const createComment = createAsyncThunk(
-  'comments/create',
-  async ({ feedbackId, commentData }, thunkAPI) => {
+// Get Single User
+export const getUser = createAsyncThunk(
+  'singlefeedback/get',
+  async (userId, thunkAPI) => {
     try {
-      return await commentService.createComment(feedbackId, commentData);
+      const token = thunkAPI.getState().auth.user.token;
+      return await userService.getUser(userId, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -48,36 +50,36 @@ export const createComment = createAsyncThunk(
   }
 );
 
-export const commentSlice = createSlice({
-  name: 'comments',
+export const userSlice = createSlice({
+  name: 'users',
   initialState,
-  reducers: { reset: (state) => initialState },
+  reducers: {
+    reset: (state) => initialState,
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(getComments.pending, (state) => {
+      .addCase(getUsers.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getComments.fulfilled, (state, action) => {
+      .addCase(getUsers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.comments = action.payload;
+        state.users = action.payload;
       })
-      .addCase(getComments.rejected, (state, action) => {
+      .addCase(getUsers.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
       })
-      .addCase(createComment.pending, (state) => {
+      .addCase(getUser.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(createComment.fulfilled, (state, action) => {
+      .addCase(getUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.comments.push(
-          action.payload.comments[action.payload.comments.length - 1]
-        );
+        state.user = action.payload;
       })
-      .addCase(createComment.rejected, (state, action) => {
+      .addCase(getUser.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
@@ -85,5 +87,5 @@ export const commentSlice = createSlice({
   },
 });
 
-export const { reset } = commentSlice.actions;
-export default commentSlice.reducer;
+export const { reset } = userSlice.actions;
+export default userSlice.reducer;

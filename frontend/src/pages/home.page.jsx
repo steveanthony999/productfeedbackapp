@@ -4,7 +4,10 @@ import _ from 'lodash';
 import { useMediaQuery } from 'react-responsive';
 
 import { getFeedback, reset } from '../features/feedback/feedbackSlice';
-import { getUser } from '../features/auth/authSlice';
+import {
+  getComments,
+  reset as commentReset,
+} from '../features/feedback/commentSlice';
 
 import Marquee from '../components/marquee.component';
 import CategoryBox from '../components/categoryBox.component';
@@ -12,6 +15,7 @@ import RoadmapBox from '../components/roadmapBox.component';
 import TopBarHome from '../components/topBarHome.component';
 import ProductFeedback from '../components/productFeedback.component';
 import EmptyFeedback from '../components/emptyFeedback.component';
+import UserAuth from '../components/userAuth.component';
 
 import '../styles/pages/home.css';
 import Sidebar from '../components/sidebar';
@@ -20,7 +24,9 @@ const Home = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
 
   const { feedback, isSuccess } = useSelector((state) => state.feedback);
-  const { user, isSuccess: isUserSuccess } = useSelector((state) => state.auth);
+  const { comments, isSuccess: isCommentSuccess } = useSelector(
+    (state) => state.comments
+  );
 
   const dispatch = useDispatch();
 
@@ -37,13 +43,17 @@ const Home = () => {
   }, [dispatch, isSuccess]);
 
   useEffect(() => {
-    dispatch(getFeedback());
-    dispatch(getUser());
-  }, [dispatch]);
+    return () => {
+      if (isCommentSuccess) {
+        dispatch(commentReset());
+      }
+    };
+  }, [dispatch, isCommentSuccess]);
 
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    dispatch(getFeedback());
+    dispatch(getComments());
+  }, [dispatch]);
 
   useEffect(() => {
     if (feedback) {
@@ -115,6 +125,7 @@ const Home = () => {
           <Marquee passIsMenuOpen={passIsMenuOpen} />
           {!isMobile && <CategoryBox />}
           {!isMobile && <RoadmapBox feedback={feedback} />}
+          {!isMobile && <UserAuth />}
         </div>
         <div className='Home-right'>
           <Sidebar isMenuOpen={isMenuOpen} feedback={feedback} />
@@ -124,8 +135,24 @@ const Home = () => {
           ) : (
             <>
               {sortedFeedback.length > 0 &&
-                sortedFeedback.map((feedback) => (
-                  <ProductFeedback key={feedback.id} feedback={feedback} />
+                sortedFeedback.map((fb) => (
+                  <ProductFeedback
+                    key={fb._id}
+                    feedback={fb}
+                    feedbackId={fb._id}
+                    comments={comments.filter(
+                      (comment) =>
+                        comment.feedbackId === fb._id &&
+                        comment.commentId === null &&
+                        comment.isReply === false
+                    )}
+                    replies={comments.filter(
+                      (reply) =>
+                        reply.feedbackId === fb._id &&
+                        reply.commentId !== null &&
+                        reply.isReply === true
+                    )}
+                  />
                 ))}
             </>
           )}

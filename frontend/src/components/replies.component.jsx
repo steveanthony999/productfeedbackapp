@@ -1,23 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Reply from './reply.component';
 
 import '../styles/components/replies.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { getReplies } from '../features/feedback/replySlice';
 
-const Replies = ({ reply, repliesLength, feedbackId, commentProps }) => {
-  const dispatch = useDispatch();
+const Replies = ({ reply, repliesLength, user, feedbackId, commentProps }) => {
   const [isReply, setIsReply] = useState(false);
-  const { replies } = useSelector((state) => state.replies);
-
-  useEffect(() => {
-    dispatch(getReplies({ feedbackId, commentProps }));
-  }, [dispatch, feedbackId, commentProps]);
-
-  // useEffect(() => {
-  //   console.log(replies);
-  // }, [replies]);
 
   return (
     <div className='Replies'>
@@ -28,14 +16,14 @@ const Replies = ({ reply, repliesLength, feedbackId, commentProps }) => {
       )}
       <div className='top'>
         <img
-          src={reply.user.image}
+          src={user[0] && user[0].image}
           alt='usr'
           className='user-image'
           crossOrigin='anonymous'
         />
         <div className='user-info'>
-          <h4 className='h4 text-darker-blue'>{reply.user.name}</h4>
-          <p className='body3 text-grey-blue'>@{reply.user.username}</p>
+          <h4 className='h4 text-darker-blue'>{user[0] && user[0].name}</h4>
+          <p className='body3 text-grey-blue'>@{user[0] && user[0].username}</p>
         </div>
         <button
           className='text-blue body-3'

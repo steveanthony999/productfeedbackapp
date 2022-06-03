@@ -12,7 +12,7 @@ const { protect } = require('../middleware/authMiddleware');
 
 // Reroute into comment router
 const commentRouter = require('./commentRoutes');
-router.use('/:feedbackId/comments', commentRouter);
+router.use('/comments', commentRouter);
 
 router.route('/').get(protect, getFeedback).post(protect, createFeedback);
 

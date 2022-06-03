@@ -1,19 +1,28 @@
 import axios from 'axios';
 
 const API_URL = 'https://productfeedbackapp.herokuapp.com/productRequests/';
+const BACKEND_API_URL = '/api/feedback/';
 
 // Get feedback comments
-const getComments = async (feedbackId) => {
-  const res = await axios.get(API_URL + feedbackId);
+const getComments = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
-  //   For existing feedback items that have no comments array
-  if (res.data.comments === undefined) {
-    const res = await axios.patch(API_URL + feedbackId, { comments: [] });
+  const res = await axios.get(BACKEND_API_URL + '/comments', config);
 
-    return res.data.comments;
-  }
+  //   const response = res.data.map((comments) => {
+  //     if (comments.feedbackId === feedbackId) {
+  //       return comments;
+  //     }
+  //     return null;
+  //   });
 
-  return res.data.comments;
+  //   return response;
+
+  return res.data;
 };
 
 // Create feedback comment

@@ -16,7 +16,8 @@ const getFeedback = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
 
-  const feedback = await Feedback.find({ user: req.user.id });
+  //   const feedback = await Feedback.find({ user: req.user.id });
+  const feedback = await Feedback.find();
 
   res.status(200).json(feedback);
 });

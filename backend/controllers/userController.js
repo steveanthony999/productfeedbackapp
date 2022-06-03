@@ -90,10 +90,53 @@ const getMe = asyncHandler(async (req, res) => {
   res.status(200).json(user);
 });
 
+// @desc    Get all users
+// @route   /api/users/getAll
+// @access  Private
+const getAll = asyncHandler(async (req, res) => {
+  // Get user using the id in the JWT
+  const user = await User.findById(req.user.id);
+
+  if (!user) {
+    res.status(401);
+
+    throw new Error('User not found');
+  }
+
+  //   const feedback = await Feedback.find({ user: req.user.id });
+  const users = await User.find();
+
+  res.status(200).json(users);
+});
+
+// @desc    Get Single User
+// @route   GET /api/users/:id
+// @access  Private
+const getUser = asyncHandler(async (req, res) => {
+  // Get user using the id in the JWT
+  const user = await User.findById(req.user.id);
+
+  if (!user) {
+    res.status(401);
+
+    throw new Error('User not found');
+  }
+
+  const singleUser = await User.findById(req.params.id);
+
+  if (!singleUser) {
+    res.status(404);
+
+    throw new Error('User not found');
+  }
+
+  res.status(200).json(singleUser);
+});
+
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: '30d',
   });
 };
 
-module.exports = { registerUser, loginUser, getMe };
+module.exports = { registerUser, loginUser, getMe, getAll, getUser };

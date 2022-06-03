@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const feedbackSchema = mongoose.Schema(
   {
-    user: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId, // Relates field to the user's object id
       required: true,
       ref: 'User',

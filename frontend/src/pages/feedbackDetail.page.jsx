@@ -1,25 +1,16 @@
 // Libraries
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import _ from 'lodash';
-import uuid from 'react-uuid';
+// import uuid from 'react-uuid';
 
 // State
-import { getFeedback, reset } from '../features/feedback/feedbackSlice';
-import {
-  getComments,
-  createComment,
-  reset as commentsReset,
-} from '../features/feedback/commentSlice';
+import { getUsers } from '../features/users/userSlice';
 
 // Components
 import Comments from '../components/comments.component';
 import ProductFeedback from '../components/productFeedback.component';
 import GoBack from '../components/goBack.component';
-
-// Local Data
-import userInfo from '../user.json';
 
 // CSS
 import '../styles/pages/feedbackPage.css';
@@ -27,47 +18,29 @@ import '../styles/pages/feedbackPage.css';
 const FeedbackDetail = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { feedback } = location.state;
-  const { feedbackId } = useParams();
+  const { feedback, comments, replies } = location.state;
+  // const { feedbackId } = useParams();
 
-  const { comments, isSuccess: isCommentsSuccess } = useSelector(
-    (state) => state.comments
-  );
-  const { isError, isSuccess, message } = useSelector(
-    (state) => state.feedback
-  );
+  const { users } = useSelector((state) => state.users);
 
-  const user = userInfo.currentUser;
+  // const user = userInfo.currentUser;
 
-  const [repliesLength, setRepliesLength] = useState(0);
   const [content, setContent] = useState('');
   const [textLength, setTextLength] = useState(0);
 
   useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
-
-    if (isSuccess) {
-      dispatch(reset);
-    }
-
-    if (isCommentsSuccess) {
-      dispatch(commentsReset);
-    }
-
-    dispatch(getFeedback(feedbackId));
-    dispatch(getComments(feedbackId));
-  }, [dispatch, isError, message, isSuccess, isCommentsSuccess, feedbackId]);
+    dispatch(getUsers());
+  }, [dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const commentData = {
-      comments: [...comments, { id: uuid(), content, user, replies: [] }],
-    };
+    // const commentData = {
+    // comments: [...comments, { id: uuid(), content, user }],
+    // comments: [...comments, { id: uuid(), content }],
+    // };
 
-    dispatch(createComment({ feedbackId, commentData }));
+    // dispatch(createComment({ feedbackId, commentData }));
 
     setContent('');
   };
@@ -80,17 +53,6 @@ const FeedbackDetail = () => {
     setTextLength(content.length);
   }, [content, textLength]);
 
-  useEffect(() => {
-    _.find(
-      feedback,
-      feedback.comments &&
-        _.filter(
-          feedback.comments,
-          (x) => x.replies && setRepliesLength(x.replies.length)
-        )
-    );
-  }, [feedback]);
-
   return (
     <div className='FeedbackDetailPage'>
       <div className='container'>
@@ -98,30 +60,48 @@ const FeedbackDetail = () => {
           <GoBack to='/' styles='text-grey-blue h4' />
           <Link
             to={`/edit-feedback${location.pathname}`}
-            state={{ feedback }}
+            state={{ feedback, replies }}
             className='button border h4 text-very-light'>
             Edit Feedback
           </Link>
         </div>
-        <ProductFeedback feedback={feedback} comments={comments} />
+        <ProductFeedback
+          feedback={feedback}
+          comments={comments.filter(
+            (comment) =>
+              (comment.feedbackId === feedback._id &&
+                comment.commentId === undefined) ||
+              (comment.commentId === null && comment.isReply === false)
+          )}
+          replies={replies.filter(
+            (reply) =>
+              reply.feedbackId === feedback._id &&
+              reply.commentId !== null &&
+              reply.isReply === true
+          )}
+        />
         <div className='comments-container border'>
           <div className='top'>
             <h3 className='h3 text-darker-blue'>
-              {comments ? comments.length + repliesLength : 0}{' '}
-              {comments && comments.length + repliesLength === 1
-                ? 'Comment'
-                : 'Comments'}
+              {comments ? comments.length + replies.length : 0}{' '}
+              {comments && comments.length === 1 ? 'Comment' : 'Comments'}
             </h3>
           </div>
           <div className='middle'>
             {comments &&
-              comments.map((commentItem, index) => (
-                <Comments
-                  key={commentItem.id}
-                  commentProps={commentItem}
-                  hrIndex={index}
-                />
-              ))}
+              comments.map(
+                (comment, index) =>
+                  comment !== null && (
+                    <Comments
+                      key={comment._id}
+                      commentProps={comment}
+                      hrIndex={index}
+                      users={users}
+                      user={users.filter((user) => user._id === comment.userId)}
+                      replies={replies}
+                    />
+                  )
+              )}
           </div>
         </div>
         <div className='add-comment border'>

@@ -1,22 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import _ from 'lodash';
 import { useMediaQuery } from 'react-responsive';
 
 import IconArrowUp from '../assets/shared/icon-arrow-up.svg';
 import IconComments from '../assets/shared/icon-comments.svg';
-import axios from 'axios';
 
 import '../styles/components/productFeedback.css';
 
-const ProductFeedback = ({ feedback, comments }) => {
+const ProductFeedback = ({ feedback, comments, replies }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
 
-  const [commentsLength, setCommentsLength] = useState([]);
-  const [repliesLength, setRepliesLength] = useState([]);
   const [isHover, setIsHover] = useState(false);
   const [isUpvote, setIsUpvote] = useState();
-  const [feedbackUpvotes, setFeedbackUpvotes] = useState(feedback.upvotes);
 
   const handleUpvoteClick = (e) => {
     e.preventDefault();
@@ -24,54 +19,11 @@ const ProductFeedback = ({ feedback, comments }) => {
     // Dispatch upvote
   };
 
-  useEffect(() => {
-    if (isUpvote === true) {
-      axios
-        .patch(
-          `https://productfeedbackapp.herokuapp.com/productRequests/${feedback.id}`,
-          { upvotes: feedback.upvotes + 1 }
-        )
-        .then((res) => setFeedbackUpvotes(res.data.upvotes));
-    } else if (isUpvote === false) {
-      axios
-        .patch(
-          `https://productfeedbackapp.herokuapp.com/productRequests/${feedback.id}`,
-          { upvotes: feedback.upvotes }
-        )
-        .then((res) => setFeedbackUpvotes(res.data.upvotes));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isUpvote]);
-
-  useEffect(() => {
-    if (comments) {
-      setCommentsLength(comments.length);
-    } else {
-      _.find(
-        feedback,
-        feedback.comments
-          ? setCommentsLength(feedback.comments.length)
-          : setCommentsLength(0)
-      );
-    }
-  }, [feedback, comments]);
-
-  useEffect(() => {
-    _.find(
-      feedback,
-      feedback.comments &&
-        _.filter(
-          feedback.comments,
-          (x) => x.replies && setRepliesLength(x.replies.length)
-        )
-    );
-  }, [feedback]);
-
   if (isMobile) {
     return (
       <Link
-        to={`/feedback/${feedback.id}`}
-        state={{ feedback }}
+        to={`/feedback/${feedback._id}`}
+        state={{ feedback, comments, replies }}
         className='ProductFeedback-mobile border'
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}>
@@ -98,14 +50,14 @@ const ProductFeedback = ({ feedback, comments }) => {
                   <p
                     className='h4 text-darker-blue'
                     style={{ color: isUpvote && '#fff' }}>
-                    {feedbackUpvotes}
+                    {feedback.upvotes}
                   </p>
                 </div>
               </div>
               <div className='ProductFeedback-right-mobile'>
                 <img src={IconComments} alt='bubble' />
                 <p className='text-darker-blue h4'>
-                  {commentsLength + repliesLength}
+                  {comments && comments.length + replies.length}
                 </p>
               </div>
             </div>
@@ -117,8 +69,8 @@ const ProductFeedback = ({ feedback, comments }) => {
 
   return (
     <Link
-      to={`/feedback/${feedback.id}`}
-      state={{ feedback }}
+      to={`/feedback/${feedback._id}`}
+      state={{ feedback, comments, replies }}
       className='ProductFeedback border'
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}>
@@ -136,7 +88,7 @@ const ProductFeedback = ({ feedback, comments }) => {
             <p
               className='h4 text-darker-blue'
               style={{ color: isUpvote && '#fff' }}>
-              {feedbackUpvotes}
+              {feedback.upvotes}
             </p>
           </div>
         </div>
@@ -156,7 +108,7 @@ const ProductFeedback = ({ feedback, comments }) => {
         <div className='ProductFeedback-right'>
           <img src={IconComments} alt='bubble' />
           <p className='text-darker-blue h4'>
-            {commentsLength + repliesLength}
+            {comments && comments.length + replies.length}
           </p>
         </div>
       </div>

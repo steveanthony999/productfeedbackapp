@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_URL = 'https://productfeedbackapp.herokuapp.com/productRequests/';
+const BACKEND_API_URL = '/api/feedback/';
 
 // Create New Feedback
 const createFeedback = async (feedbackData) => {
@@ -10,8 +11,14 @@ const createFeedback = async (feedbackData) => {
 };
 
 // Get all feedback
-const getFeedback = async (filteredItem) => {
-  const res = await axios.get(API_URL, filteredItem);
+const getFeedback = async (filteredItem, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.get(BACKEND_API_URL, config, filteredItem);
 
   if (filteredItem) {
     const newProductRequests = res.data.filter(
@@ -25,8 +32,14 @@ const getFeedback = async (filteredItem) => {
 };
 
 // Get Single Feedback
-const getSingleFeedback = async (feedbackId) => {
-  const res = await axios.get(API_URL + feedbackId);
+const getSingleFeedback = async (feedbackId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.get(BACKEND_API_URL + feedbackId, config);
 
   return res.data;
 };
