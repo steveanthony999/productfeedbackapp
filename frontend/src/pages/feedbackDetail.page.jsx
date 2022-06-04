@@ -1,11 +1,12 @@
 // Libraries
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // import uuid from 'react-uuid';
 
 // State
 import { getUsers } from '../features/users/userSlice';
+import { createComment, getComments } from '../features/feedback/commentSlice';
 
 // Components
 import Comments from '../components/comments.component';
@@ -18,29 +19,32 @@ import '../styles/pages/feedbackPage.css';
 const FeedbackDetail = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { feedback, comments, replies } = location.state;
-  // const { feedbackId } = useParams();
+  const { feedback, replies } = location.state;
+  const { feedbackId } = useParams();
 
   const { users } = useSelector((state) => state.users);
+  const { comments } = useSelector((state) => state.comments);
 
-  // const user = userInfo.currentUser;
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const [content, setContent] = useState('');
   const [textLength, setTextLength] = useState(0);
 
   useEffect(() => {
     dispatch(getUsers());
+    dispatch(getComments());
   }, [dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // const commentData = {
-    // comments: [...comments, { id: uuid(), content, user }],
-    // comments: [...comments, { id: uuid(), content }],
-    // };
+    const commentData = {
+      userId: user._id,
+      feedbackId,
+      content,
+    };
 
-    // dispatch(createComment({ feedbackId, commentData }));
+    dispatch(createComment({ commentData }));
 
     setContent('');
   };
@@ -67,12 +71,17 @@ const FeedbackDetail = () => {
         </div>
         <ProductFeedback
           feedback={feedback}
-          comments={comments.filter(
-            (comment) =>
-              (comment.feedbackId === feedback._id &&
-                comment.commentId === undefined) ||
-              (comment.commentId === null && comment.isReply === false)
-          )}
+          commentsFromProps={comments
+            .filter(
+              (comment) =>
+                comment.feedbackId === feedbackId && comment.commentId === null
+            )
+            .filter(
+              (comment) =>
+                (comment.feedbackId === feedback._id &&
+                  comment.commentId === undefined) ||
+                (comment.commentId === null && comment.isReply === false)
+            )}
           replies={replies.filter(
             (reply) =>
               reply.feedbackId === feedback._id &&
@@ -83,25 +92,46 @@ const FeedbackDetail = () => {
         <div className='comments-container border'>
           <div className='top'>
             <h3 className='h3 text-darker-blue'>
-              {comments ? comments.length + replies.length : 0}{' '}
-              {comments && comments.length === 1 ? 'Comment' : 'Comments'}
+              {comments
+                ? comments.filter(
+                    (comment) =>
+                      comment.feedbackId === feedbackId &&
+                      comment.commentId === null
+                  ).length + replies.length
+                : 0}{' '}
+              {comments &&
+              comments.filter(
+                (comment) =>
+                  comment.feedbackId === feedbackId &&
+                  comment.commentId === null
+              ).length === 1
+                ? 'Comment'
+                : 'Comments'}
             </h3>
           </div>
           <div className='middle'>
             {comments &&
-              comments.map(
-                (comment, index) =>
-                  comment !== null && (
-                    <Comments
-                      key={comment._id}
-                      commentProps={comment}
-                      hrIndex={index}
-                      users={users}
-                      user={users.filter((user) => user._id === comment.userId)}
-                      replies={replies}
-                    />
-                  )
-              )}
+              comments
+                .filter(
+                  (comment) =>
+                    comment.feedbackId === feedbackId &&
+                    comment.commentId === null
+                )
+                .map(
+                  (comment, index) =>
+                    comment !== null && (
+                      <Comments
+                        key={comment._id}
+                        commentProps={comment}
+                        hrIndex={index}
+                        users={users}
+                        user={users.filter(
+                          (user) => user._id === comment.userId
+                        )}
+                        replies={replies}
+                      />
+                    )
+                )}
           </div>
         </div>
         <div className='add-comment border'>

@@ -7,7 +7,7 @@ import IconComments from '../assets/shared/icon-comments.svg';
 
 import '../styles/components/productFeedback.css';
 
-const ProductFeedback = ({ feedback, comments, replies }) => {
+const ProductFeedback = ({ feedback, commentsFromProps, replies }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
 
   const [isHover, setIsHover] = useState(false);
@@ -23,7 +23,7 @@ const ProductFeedback = ({ feedback, comments, replies }) => {
     return (
       <Link
         to={`/feedback/${feedback._id}`}
-        state={{ feedback, comments, replies }}
+        state={{ feedback, commentsFromProps, replies }}
         className='ProductFeedback-mobile border'
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}>
@@ -57,7 +57,8 @@ const ProductFeedback = ({ feedback, comments, replies }) => {
               <div className='ProductFeedback-right-mobile'>
                 <img src={IconComments} alt='bubble' />
                 <p className='text-darker-blue h4'>
-                  {comments && comments.length + replies.length}
+                  {commentsFromProps &&
+                    commentsFromProps.length + replies.length}
                 </p>
               </div>
             </div>
@@ -70,7 +71,7 @@ const ProductFeedback = ({ feedback, comments, replies }) => {
   return (
     <Link
       to={`/feedback/${feedback._id}`}
-      state={{ feedback, comments, replies }}
+      state={{ feedback, commentsFromProps, replies }}
       className='ProductFeedback border'
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}>
@@ -108,7 +109,7 @@ const ProductFeedback = ({ feedback, comments, replies }) => {
         <div className='ProductFeedback-right'>
           <img src={IconComments} alt='bubble' />
           <p className='text-darker-blue h4'>
-            {comments && comments.length + replies.length}
+            {commentsFromProps && commentsFromProps.length + replies.length}
           </p>
         </div>
       </div>

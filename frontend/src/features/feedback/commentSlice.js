@@ -9,7 +9,7 @@ const initialState = {
   message: '',
 };
 
-// Get feedback comments
+// Get Comments
 export const getComments = createAsyncThunk(
   'comments/getAll',
   async (_, thunkAPI) => {
@@ -29,12 +29,13 @@ export const getComments = createAsyncThunk(
   }
 );
 
-// Create a feedback comment
+// Create a comment
 export const createComment = createAsyncThunk(
   'comments/create',
-  async ({ feedbackId, commentData }, thunkAPI) => {
+  async ({ commentData }, thunkAPI) => {
     try {
-      return await commentService.createComment(feedbackId, commentData);
+      const token = thunkAPI.getState().auth.user.token;
+      return await commentService.createComment(commentData, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -73,9 +74,10 @@ export const commentSlice = createSlice({
       .addCase(createComment.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.comments.push(
-          action.payload.comments[action.payload.comments.length - 1]
-        );
+        state.comments.push(action.payload);
+        // state.comments.push(
+        //   action.payload.comments[action.payload.comments.length - 1]
+        // );
       })
       .addCase(createComment.rejected, (state, action) => {
         state.isLoading = false;

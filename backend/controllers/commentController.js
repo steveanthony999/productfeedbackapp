@@ -35,18 +35,17 @@ const addComment = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
 
-  const feedback = await Feedback.findById(req.params.feedbackId);
+  //   const feedback = await Feedback.findById(req.params.feedbackId);
 
-  if (feedback.user.toString() !== req.user.id) {
-    res.status(401);
+  //   if (feedback.user.toString() !== req.user.id) {
+  //     res.status(401);
 
-    throw new Error('User not authorized');
-  }
+  //     throw new Error('User not authorized');
+  //   }
 
   const comment = await Comment.create({
-    content: req.body.text,
-    isStaff: false,
-    feedbackId: req.params.feedbackId,
+    content: req.body.content,
+    feedbackId: req.body.feedbackId,
     userId: req.user.id,
   });
 

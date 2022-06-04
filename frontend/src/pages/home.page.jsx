@@ -140,7 +140,7 @@ const Home = () => {
                     key={fb._id}
                     feedback={fb}
                     feedbackId={fb._id}
-                    comments={comments.filter(
+                    commentsFromProps={comments.filter(
                       (comment) =>
                         comment.feedbackId === fb._id &&
                         comment.commentId === null &&
