@@ -1,16 +1,27 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+
+import { getComments } from '../features/feedback/commentSlice';
 
 import Replies from './replies.component';
 import Reply from './reply.component';
 
 import '../styles/components/comments.css';
 
-const Comments = ({ commentProps, users, user, replies }) => {
+const Comments = ({ commentProps, users, user, replies, dispatchReply }) => {
   const { feedbackId } = useParams();
+
+  const dispatch = useDispatch();
+
+  const { comments } = useSelector((state) => state.comments);
 
   const [isReply, setIsReply] = useState(false);
   const [repliesLength, setRepliesLength] = useState(0);
+
+  useEffect(() => {
+    dispatch(getComments());
+  }, [dispatch]);
 
   useEffect(() => {
     replies && setRepliesLength(replies.length);
@@ -44,25 +55,39 @@ const Comments = ({ commentProps, users, user, replies }) => {
         <p className='body-2 text-grey-blue'>{commentProps.content}</p>
         {isReply && (
           <div className='reply-container'>
-            <Reply commentProps={commentProps} />
+            <Reply
+              replyingTo={user[0].username}
+              commentId={commentProps._id}
+              dispatchReply={dispatchReply}
+              isReplyingToReply={false}
+              parentCommentId={commentProps.parentCommentId}
+            />
           </div>
         )}
         {!replies && <hr />}
       </div>
-      {replies &&
-        replies.map(
-          (reply) =>
-            reply.commentId === commentProps._id && (
-              <Replies
-                key={reply._id}
-                reply={reply}
-                repliesLength={repliesLength}
-                commentProps={commentProps}
-                feedbackId={feedbackId}
-                user={users.filter((user) => user._id === reply.userId)}
-              />
-            )
-        )}
+      {comments &&
+        comments
+          .filter(
+            (reply) =>
+              reply.feedbackId === feedbackId &&
+              reply.commentId !== null &&
+              reply.isReply === true
+          )
+          .filter(
+            (reply) => reply.parentCommentId === commentProps.parentCommentId
+          )
+          .map((reply) => (
+            <Replies
+              key={reply._id}
+              reply={reply}
+              repliesLength={repliesLength}
+              commentProps={commentProps}
+              feedbackId={feedbackId}
+              user={users.filter((user) => user._id === reply.userId)}
+              dispatchReply={dispatchReply}
+            />
+          ))}
     </div>
   );
 };

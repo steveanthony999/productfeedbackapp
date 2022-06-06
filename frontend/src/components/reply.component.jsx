@@ -1,41 +1,36 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import uuid from 'react-uuid';
-
-import userInfo from '../user.json';
 
 import '../styles/components/reply.css';
-import { createReply } from '../features/feedback/replySlice';
 
-const Reply = ({ commentProps, replyProps, isFromReply }) => {
+const Reply = ({
+  replyingTo,
+  commentId,
+  isReplyingToReply,
+  parentCommentId,
+  dispatchReply,
+}) => {
   const { feedbackId } = useParams();
 
-  const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const [content, setContent] = useState('');
-
-  const user = userInfo.currentUser;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { id } = isFromReply ? replyProps : commentProps; // The id of the comment/reply user is replying to
-    const { username } = isFromReply ? replyProps.user : commentProps.user;
     const replyData = {
-      commentId: id,
-      id: uuid(),
-      replyingTo: username,
+      userId: user._id,
+      feedbackId,
+      commentId,
       content,
-      user,
-      replies: [],
+      replyingTo,
+      isReply: true,
+      isReplyingToReply,
+      parentCommentId,
     };
 
-    // console.log({ feedbackId, ...replyData });
-    // dispatch(createReply({ feedbackId, replyData }));
-    alert(
-      "yeah, I'm kinda stuck here! Which is why I need a job, so I can have a senior show me the ropes!"
-    );
+    dispatchReply(replyData);
 
     setContent('');
   };

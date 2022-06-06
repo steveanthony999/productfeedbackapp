@@ -150,7 +150,8 @@ const Home = () => {
                       (reply) =>
                         reply.feedbackId === fb._id &&
                         reply.commentId !== null &&
-                        reply.isReply === true
+                        reply.isReply === true &&
+                        reply.isReplyingToReply === false
                     )}
                   />
                 ))}

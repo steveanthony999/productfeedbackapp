@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
 // import uuid from 'react-uuid';
 
 // State
@@ -42,6 +43,7 @@ const FeedbackDetail = () => {
       userId: user._id,
       feedbackId,
       content,
+      parentCommentId: nanoid(),
     };
 
     dispatch(createComment({ commentData }));
@@ -56,6 +58,10 @@ const FeedbackDetail = () => {
   useEffect(() => {
     setTextLength(content.length);
   }, [content, textLength]);
+
+  const dispatchReply = (commentData) => {
+    dispatch(createComment({ commentData }));
+  };
 
   return (
     <div className='FeedbackDetailPage'>
@@ -82,12 +88,19 @@ const FeedbackDetail = () => {
                   comment.commentId === undefined) ||
                 (comment.commentId === null && comment.isReply === false)
             )}
-          replies={replies.filter(
-            (reply) =>
-              reply.feedbackId === feedback._id &&
-              reply.commentId !== null &&
-              reply.isReply === true
-          )}
+          replies={comments
+            .filter(
+              (comment) =>
+                comment.feedbackId === feedbackId &&
+                comment.commentId !== null &&
+                comment.isReply === true
+            )
+            .filter(
+              (reply) =>
+                reply.feedbackId === feedback._id &&
+                reply.commentId !== null &&
+                reply.isReply === true
+            )}
         />
         <div className='comments-container border'>
           <div className='top'>
@@ -97,7 +110,13 @@ const FeedbackDetail = () => {
                     (comment) =>
                       comment.feedbackId === feedbackId &&
                       comment.commentId === null
-                  ).length + replies.length
+                  ).length +
+                  comments.filter(
+                    (comment) =>
+                      comment.feedbackId === feedbackId &&
+                      comment.commentId !== null &&
+                      comment.isReply === true
+                  ).length
                 : 0}{' '}
               {comments &&
               comments.filter(
@@ -128,7 +147,14 @@ const FeedbackDetail = () => {
                         user={users.filter(
                           (user) => user._id === comment.userId
                         )}
-                        replies={replies}
+                        replies={comments.filter(
+                          (reply) =>
+                            reply.feedbackId === feedbackId &&
+                            reply.commentId !== null &&
+                            reply.isReply === true &&
+                            reply.isReplyingToReply === false
+                        )}
+                        dispatchReply={dispatchReply}
                       />
                     )
                 )}

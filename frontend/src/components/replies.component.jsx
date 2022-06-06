@@ -4,7 +4,13 @@ import Reply from './reply.component';
 
 import '../styles/components/replies.css';
 
-const Replies = ({ reply, repliesLength, user, feedbackId, commentProps }) => {
+const Replies = ({
+  commentProps,
+  reply,
+  repliesLength,
+  user,
+  dispatchReply,
+}) => {
   const [isReply, setIsReply] = useState(false);
 
   return (
@@ -41,7 +47,13 @@ const Replies = ({ reply, repliesLength, user, feedbackId, commentProps }) => {
       <div className='bottom'>
         {isReply && (
           <div className='reply-container'>
-            <Reply replyProps={reply} isFromReply={isReply} />
+            <Reply
+              replyingTo={user[0].username}
+              commentId={reply._id}
+              dispatchReply={dispatchReply}
+              isReplyingToReply={true}
+              parentCommentId={commentProps.parentCommentId}
+            />
           </div>
         )}
       </div>

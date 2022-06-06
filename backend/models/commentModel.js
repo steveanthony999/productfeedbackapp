@@ -28,6 +28,13 @@ const commentSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isReplyingToReply: {
+      type: Boolean,
+      default: false,
+    },
+    parentCommentId: {
+      type: String,
+    },
   },
   {
     timestamps: true,
