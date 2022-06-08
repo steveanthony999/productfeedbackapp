@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { getComments } from '../features/feedback/commentSlice';
+import { toggleReplyBox } from '../features/feedback/replySlice';
 
 import Replies from './replies.component';
 import Reply from './reply.component';
@@ -15,8 +16,8 @@ const Comments = ({ commentProps, users, user, replies, dispatchReply }) => {
   const dispatch = useDispatch();
 
   const { comments } = useSelector((state) => state.comments);
+  const { isOpen, replyId } = useSelector((state) => state.replies);
 
-  const [isReply, setIsReply] = useState(false);
   const [repliesLength, setRepliesLength] = useState(0);
 
   useEffect(() => {
@@ -47,13 +48,14 @@ const Comments = ({ commentProps, users, user, replies, dispatchReply }) => {
         </div>
         <button
           className='text-blue body-3'
-          onClick={() => setIsReply((prevState) => !prevState)}>
+          // onClick={() => setIsReply((prevState) => !prevState)}>
+          onClick={() => dispatch(toggleReplyBox({ isOpen, ...commentProps }))}>
           Reply
         </button>
       </div>
       <div className='middle'>
         <p className='body-2 text-grey-blue'>{commentProps.content}</p>
-        {isReply && (
+        {isOpen && replyId === commentProps._id && (
           <div className='reply-container'>
             <Reply
               replyingTo={user[0].username}
@@ -61,6 +63,7 @@ const Comments = ({ commentProps, users, user, replies, dispatchReply }) => {
               dispatchReply={dispatchReply}
               isReplyingToReply={false}
               parentCommentId={commentProps.parentCommentId}
+              reply={commentProps}
             />
           </div>
         )}

@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { toggleReplyBox } from '../features/feedback/replySlice';
 
 import Reply from './reply.component';
 
@@ -11,7 +13,9 @@ const Replies = ({
   user,
   dispatchReply,
 }) => {
-  const [isReply, setIsReply] = useState(false);
+  const dispatch = useDispatch();
+
+  const { isOpen, replyId } = useSelector((state) => state.replies);
 
   return (
     <div className='Replies'>
@@ -33,7 +37,7 @@ const Replies = ({
         </div>
         <button
           className='text-blue body-3'
-          onClick={() => setIsReply((prevState) => !prevState)}>
+          onClick={() => dispatch(toggleReplyBox({ isOpen, ...reply }))}>
           Reply
         </button>
       </div>
@@ -45,7 +49,7 @@ const Replies = ({
         </p>
       </div>
       <div className='bottom'>
-        {isReply && (
+        {isOpen && replyId === reply._id && (
           <div className='reply-container'>
             <Reply
               replyingTo={user[0].username}
@@ -53,6 +57,7 @@ const Replies = ({
               dispatchReply={dispatchReply}
               isReplyingToReply={true}
               parentCommentId={commentProps.parentCommentId}
+              reply={reply}
             />
           </div>
         )}

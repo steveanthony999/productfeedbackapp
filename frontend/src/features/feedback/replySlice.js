@@ -1,88 +1,18 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import replyService from './replyService';
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  replies: [],
-  isError: false,
-  isSuccess: false,
-  isLoading: false,
-  message: '',
-};
-
-// Get comments replies
-export const getReplies = createAsyncThunk(
-  'replies/getAll',
-  async ({ feedbackId, commentProps }, thunkAPI) => {
-    try {
-      return await replyService.getReplies(feedbackId, commentProps);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
-// Create a comment reply
-export const createReply = createAsyncThunk(
-  'replies/create',
-  async ({ feedbackId, replyData }, thunkAPI) => {
-    try {
-      return await replyService.createReply(feedbackId, replyData);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
+const initialState = { replyId: '', isOpen: false };
 
 export const replySlice = createSlice({
   name: 'replies',
   initialState,
-  reducers: { reset: (state) => initialState },
-  extraReducers: (builder) => {
-    builder
-      .addCase(getReplies.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(getReplies.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.replies = action.payload;
-        // console.log(action.payload);
-      })
-      .addCase(getReplies.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
-      .addCase(createReply.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(createReply.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.replies.push(action.payload);
-        // console.log(action.payload);
-      })
-      .addCase(createReply.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      });
+  reducers: {
+    toggleReplyBox(state, action) {
+      state.replyId = action.payload._id;
+      state.isOpen = !state.isOpen;
+      //   console.log(action.payload);
+    },
   },
 });
 
-export const { reset } = replySlice.actions;
+export const { toggleReplyBox } = replySlice.actions;
 export default replySlice.reducer;

@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { getComments } from '../features/feedback/commentSlice';
 
 import IconArrowUp from '../assets/shared/icon-arrow-up.svg';
 import IconComments from '../assets/shared/icon-comments.svg';
@@ -10,6 +13,10 @@ import '../styles/components/productFeedback.css';
 const ProductFeedback = ({ feedback, commentsFromProps, replies }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
 
+  const dispatch = useDispatch();
+
+  const { comments } = useSelector((state) => state.comments);
+
   const [isHover, setIsHover] = useState(false);
   const [isUpvote, setIsUpvote] = useState();
 
@@ -18,6 +25,10 @@ const ProductFeedback = ({ feedback, commentsFromProps, replies }) => {
     setIsUpvote((prevState) => !prevState);
     // Dispatch upvote
   };
+
+  useEffect(() => {
+    dispatch(getComments());
+  }, [dispatch]);
 
   if (isMobile) {
     return (
@@ -57,8 +68,10 @@ const ProductFeedback = ({ feedback, commentsFromProps, replies }) => {
               <div className='ProductFeedback-right-mobile'>
                 <img src={IconComments} alt='bubble' />
                 <p className='text-darker-blue h4'>
-                  {commentsFromProps &&
-                    commentsFromProps.length + replies.length}
+                  {comments &&
+                    comments.filter(
+                      (comment) => comment.feedbackId === feedback._id
+                    ).length}
                 </p>
               </div>
             </div>
@@ -109,7 +122,9 @@ const ProductFeedback = ({ feedback, commentsFromProps, replies }) => {
         <div className='ProductFeedback-right'>
           <img src={IconComments} alt='bubble' />
           <p className='text-darker-blue h4'>
-            {commentsFromProps && commentsFromProps.length + replies.length}
+            {comments &&
+              comments.filter((comment) => comment.feedbackId === feedback._id)
+                .length}
           </p>
         </div>
       </div>

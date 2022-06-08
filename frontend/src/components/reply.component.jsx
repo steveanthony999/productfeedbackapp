@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { toggleReplyBox } from '../features/feedback/replySlice';
 
 import '../styles/components/reply.css';
 
@@ -9,8 +12,12 @@ const Reply = ({
   isReplyingToReply,
   parentCommentId,
   dispatchReply,
+  reply,
 }) => {
   const { feedbackId } = useParams();
+  const dispatch = useDispatch();
+
+  const { isOpen, replyId } = useSelector((state) => state.replies);
 
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -33,6 +40,10 @@ const Reply = ({
     dispatchReply(replyData);
 
     setContent('');
+
+    isOpen &&
+      replyId === reply._id &&
+      dispatch(toggleReplyBox({ isOpen, reply }));
   };
 
   return (
