@@ -8,6 +8,12 @@ import { nanoid } from '@reduxjs/toolkit';
 // State
 import { getUsers } from '../features/users/userSlice';
 import { createComment, getComments } from '../features/feedback/commentSlice';
+import {
+  getUpvotes,
+  addUpvote,
+  createUpvote,
+  reset as upvotesReset,
+} from '../features/upvotes/upvoteSlice';
 
 // Components
 import Comments from '../components/comments.component';
@@ -25,6 +31,9 @@ const FeedbackDetail = () => {
 
   const { users } = useSelector((state) => state.users);
   const { comments } = useSelector((state) => state.comments);
+  const { upvotes, isSuccess: isUpvotesSuccess } = useSelector(
+    (state) => state.upvotes
+  );
 
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -32,8 +41,17 @@ const FeedbackDetail = () => {
   const [textLength, setTextLength] = useState(0);
 
   useEffect(() => {
+    return () => {
+      if (isUpvotesSuccess) {
+        dispatch(upvotesReset());
+      }
+    };
+  }, [dispatch, isUpvotesSuccess]);
+
+  useEffect(() => {
     dispatch(getUsers());
     dispatch(getComments());
+    dispatch(getUpvotes());
   }, [dispatch]);
 
   const handleSubmit = (e) => {
@@ -61,6 +79,19 @@ const FeedbackDetail = () => {
 
   const dispatchReply = (commentData) => {
     dispatch(createComment({ commentData }));
+  };
+
+  const dispatchUpvotes = (data) => {
+    const votes = upvotes.filter(
+      (upvote) => upvote.feedbackId === data.upvoteData.feedbackId
+    );
+
+    if (votes[0] === undefined) {
+      dispatch(createUpvote(data)); // If no upvotes exist, we'll create them
+    } else {
+      const upvoteId = votes[0]._id;
+      dispatch(addUpvote({ upvoteId, ...data })); // If upvotes do exist, we'll add one
+    }
   };
 
   return (
@@ -101,6 +132,10 @@ const FeedbackDetail = () => {
                 reply.commentId !== null &&
                 reply.isReply === true
             )}
+          upvotes={upvotes
+            .filter((upvote) => upvote.feedbackId === feedback._id)
+            .map((upvt) => upvt.upvotes)}
+          dispatchUpvotes={dispatchUpvotes}
         />
         <div className='comments-container border'>
           <div className='top'>

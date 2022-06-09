@@ -94,7 +94,12 @@ export const updateFeedback = createAsyncThunk(
   'feedback/update',
   async ({ feedbackId, ...feedbackData }, thunkAPI) => {
     try {
-      return await feedbackService.updateFeedback(feedbackId, feedbackData);
+      const token = thunkAPI.getState().auth.user.token;
+      return await feedbackService.updateFeedback(
+        feedbackId,
+        feedbackData,
+        token
+      );
     } catch (error) {
       const message =
         (error.response &&
@@ -166,9 +171,10 @@ export const feedbackSlice = createSlice({
       .addCase(updateFeedback.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(updateFeedback.fulfilled, (state) => {
+      .addCase(updateFeedback.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        console.log(action.payload);
       })
       .addCase(updateFeedback.rejected, (state, action) => {
         state.isLoading = false;

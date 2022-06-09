@@ -6,6 +6,7 @@ const user = JSON.parse(localStorage.getItem('user'));
 
 const initialState = {
   user: user ? user : null,
+  //   userUpvotes: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -60,6 +61,25 @@ export const getUser = createAsyncThunk('auth/getUser', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(message);
   }
 });
+
+// export const addUpvotesToUser = createAsyncThunk(
+//   'auth/addUpvotes',
+//   async (upvoteId, thunkAPI) => {
+//     try {
+//       const token = thunkAPI.getState().auth.user.token;
+//       return await authService.addUpvotesToUser(upvoteId, token);
+//     } catch (error) {
+//       const message =
+//         (error.response &&
+//           error.response.data &&
+//           error.response.data.message) ||
+//         error.message ||
+//         error.toString();
+
+//       return thunkAPI.rejectWithValue(message);
+//     }
+//   }
+// );
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -119,6 +139,20 @@ export const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       });
+    //   .addCase(addUpvotesToUser.pending, (state) => {
+    //     state.isLoading = true;
+    //   })
+    //   .addCase(addUpvotesToUser.fulfilled, (state, action) => {
+    //     state.isLoading = false;
+    //     state.isSuccess = true;
+    //     state.userUpvotes.push(action.payload);
+    //   })
+    //   .addCase(addUpvotesToUser.rejected, (state, action) => {
+    //     state.isLoading = false;
+    //     state.user = null;
+    //     state.isError = true;
+    //     state.message = action.payload;
+    //   });
   },
 });
 

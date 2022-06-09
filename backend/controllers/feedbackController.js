@@ -77,7 +77,6 @@ const createFeedback = asyncHandler(async (req, res) => {
     title,
     category,
     description,
-    upvotes: 0,
     userId: req.user.id,
     status: 'Suggestion',
   });
@@ -138,11 +137,11 @@ const updateFeedback = asyncHandler(async (req, res) => {
     throw new Error('Feedback not found');
   }
 
-  if (feedback.user.toString() !== req.user.id) {
-    res.status(401);
+  //   if (feedback.user.toString() !== req.user.id) {
+  //     res.status(401);
 
-    throw new Error('Not Authorized');
-  }
+  //     throw new Error('Not Authorized');
+  //   }
 
   const updatedFeedback = await Feedback.findByIdAndUpdate(
     req.params.id,

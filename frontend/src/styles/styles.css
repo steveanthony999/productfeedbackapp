@@ -110,6 +110,22 @@ input[type='radio']:checked + label {
   cursor: pointer;
 }
 
+.button-red {
+  background: #d73737;
+}
+
+.button-red:hover {
+  background: #e98888;
+}
+
+.button-dark-blue {
+  background: #3a4374;
+}
+
+.button-dark-blue:hover {
+  background: #656ea3;
+}
+
 .button-purple {
   background: #ad1fea;
 }

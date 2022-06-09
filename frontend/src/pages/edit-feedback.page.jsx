@@ -47,7 +47,6 @@ const EditFeedback = () => {
     ]
   );
   const [submitted, setSubmitted] = useState(false);
-  const upvotes = feedback.upvotes;
 
   useEffect(() => {
     if (isError) {
@@ -71,7 +70,6 @@ const EditFeedback = () => {
         title,
         category,
         description,
-        upvotes,
         status,
       })
     );

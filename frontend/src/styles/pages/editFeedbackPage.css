@@ -87,33 +87,9 @@
           justify-content: flex-end;
 }
 
-.EditFeedbackPage .EditFeedbackPage-container .EditFeedbackPage-middle form .edit-feedback-buttons button {
-  margin-left: 16px;
-  background-color: #ad1fea;
-  border: none;
-  cursor: pointer;
-}
-
 .EditFeedbackPage .EditFeedbackPage-container .EditFeedbackPage-middle form .edit-feedback-buttons button:first-child {
-  background-color: #d73737;
   margin-right: auto;
   margin-left: 0;
-}
-
-.EditFeedbackPage .EditFeedbackPage-container .EditFeedbackPage-middle form .edit-feedback-buttons button:first-child:hover {
-  background-color: #e98888;
-}
-
-.EditFeedbackPage .EditFeedbackPage-container .EditFeedbackPage-middle form .edit-feedback-buttons button:nth-child(2) {
-  background-color: #3a4374;
-}
-
-.EditFeedbackPage .EditFeedbackPage-container .EditFeedbackPage-middle form .edit-feedback-buttons button:nth-child(2):hover {
-  background-color: #656ea3;
-}
-
-.EditFeedbackPage .EditFeedbackPage-container .EditFeedbackPage-middle form .edit-feedback-buttons button:hover {
-  background-color: #c75af6;
 }
 
 @media screen and (max-width: 588px) {

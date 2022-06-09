@@ -14,6 +14,10 @@ const { protect } = require('../middleware/authMiddleware');
 const commentRouter = require('./commentRoutes');
 router.use('/comments', commentRouter);
 
+// Reroute into upvote router
+const upvoteRouter = require('./upvoteRoutes');
+router.use('/upvotes', upvoteRouter);
+
 router.route('/').get(protect, getFeedback).post(protect, createFeedback);
 
 router

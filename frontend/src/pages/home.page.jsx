@@ -1,13 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import _ from 'lodash';
 import { useMediaQuery } from 'react-responsive';
+import _ from 'lodash';
 
 import { getFeedback, reset } from '../features/feedback/feedbackSlice';
 import {
   getComments,
   reset as commentReset,
 } from '../features/feedback/commentSlice';
+import {
+  getUpvotes,
+  addUpvote,
+  createUpvote,
+  reset as upvotesReset,
+} from '../features/upvotes/upvoteSlice';
 
 import Marquee from '../components/marquee.component';
 import CategoryBox from '../components/categoryBox.component';
@@ -26,6 +32,9 @@ const Home = () => {
   const { feedback, isSuccess } = useSelector((state) => state.feedback);
   const { comments, isSuccess: isCommentSuccess } = useSelector(
     (state) => state.comments
+  );
+  const { upvotes, isSuccess: isUpvotesSuccess } = useSelector(
+    (state) => state.upvotes
   );
 
   const dispatch = useDispatch();
@@ -51,8 +60,17 @@ const Home = () => {
   }, [dispatch, isCommentSuccess]);
 
   useEffect(() => {
+    return () => {
+      if (isUpvotesSuccess) {
+        dispatch(upvotesReset());
+      }
+    };
+  }, [dispatch, isUpvotesSuccess]);
+
+  useEffect(() => {
     dispatch(getFeedback());
     dispatch(getComments());
+    dispatch(getUpvotes());
   }, [dispatch]);
 
   useEffect(() => {
@@ -118,6 +136,19 @@ const Home = () => {
     return () => (document.body.style.overflow = 'unset');
   }, [isMenuOpen]);
 
+  const dispatchUpvotes = (data) => {
+    const votes = upvotes.filter(
+      (upvote) => upvote.feedbackId === data.upvoteData.feedbackId
+    );
+
+    if (votes[0] === undefined) {
+      dispatch(createUpvote(data)); // If no upvotes exist, we'll create them
+    } else {
+      const upvoteId = votes[0]._id;
+      dispatch(addUpvote({ upvoteId, ...data })); // If upvotes do exist, we'll add one
+    }
+  };
+
   return (
     <div className='Home'>
       <div className='Home-container'>
@@ -153,6 +184,10 @@ const Home = () => {
                         reply.isReply === true &&
                         reply.isReplyingToReply === false
                     )}
+                    upvotes={upvotes
+                      .filter((upvote) => upvote.feedbackId === fb._id)
+                      .map((upvt) => upvt.upvotes)}
+                    dispatchUpvotes={dispatchUpvotes}
                   />
                 ))}
             </>

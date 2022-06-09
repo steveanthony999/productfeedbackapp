@@ -5,12 +5,18 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { getComments } from '../features/feedback/commentSlice';
 
-import IconArrowUp from '../assets/shared/icon-arrow-up.svg';
+import Upvotes from './upvotes.component';
 import IconComments from '../assets/shared/icon-comments.svg';
 
 import '../styles/components/productFeedback.css';
 
-const ProductFeedback = ({ feedback, commentsFromProps, replies }) => {
+const ProductFeedback = ({
+  feedback,
+  commentsFromProps,
+  replies,
+  upvotes,
+  dispatchUpvotes,
+}) => {
   const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
 
   const dispatch = useDispatch();
@@ -18,18 +24,14 @@ const ProductFeedback = ({ feedback, commentsFromProps, replies }) => {
   const { comments } = useSelector((state) => state.comments);
 
   const [isHover, setIsHover] = useState(false);
-  const [isUpvote, setIsUpvote] = useState();
-
-  const handleUpvoteClick = (e) => {
-    e.preventDefault();
-    setIsUpvote((prevState) => !prevState);
-    // Dispatch upvote
-  };
 
   useEffect(() => {
     dispatch(getComments());
   }, [dispatch]);
 
+  // =========================================================================================
+  // MOBILE
+  // =========================================================================================
   if (isMobile) {
     return (
       <Link
@@ -49,21 +51,17 @@ const ProductFeedback = ({ feedback, commentsFromProps, replies }) => {
             <div className='btn text-blue body-3'>{feedback.category}</div>
             <div className='ProductFeedback-bottom-mobile'>
               <div className='ProductFeedback-bottom-container-mobile'>
-                <div
-                  className='upvote-btn'
-                  style={{ background: isUpvote && '#4661e6' }}
-                  onClick={handleUpvoteClick}>
-                  <img
-                    src={IconArrowUp}
-                    alt='up'
-                    style={{ filter: isUpvote && 'brightness(1000%)' }}
-                  />
-                  <p
-                    className='h4 text-darker-blue'
-                    style={{ color: isUpvote && '#fff' }}>
-                    {feedback.upvotes}
-                  </p>
-                </div>
+                <Upvotes
+                  feedback={feedback}
+                  upvotes={
+                    upvotes.length > 1
+                      ? upvotes[1]
+                      : upvotes[0] > 0
+                      ? upvotes[0]
+                      : 0
+                  }
+                  dispatchUpvotes={dispatchUpvotes}
+                />
               </div>
               <div className='ProductFeedback-right-mobile'>
                 <img src={IconComments} alt='bubble' />
@@ -81,6 +79,9 @@ const ProductFeedback = ({ feedback, commentsFromProps, replies }) => {
     );
   }
 
+  // =========================================================================================
+  // DESKTOP
+  // =========================================================================================
   return (
     <Link
       to={`/feedback/${feedback._id}`}
@@ -90,21 +91,13 @@ const ProductFeedback = ({ feedback, commentsFromProps, replies }) => {
       onMouseLeave={() => setIsHover(false)}>
       <div className='ProductFeedback-container border'>
         <div className='ProductFeedback-left'>
-          <div
-            className='btn'
-            style={{ background: isUpvote && '#4661e6' }}
-            onClick={handleUpvoteClick}>
-            <img
-              src={IconArrowUp}
-              alt='up'
-              style={{ filter: isUpvote && 'brightness(1000%)' }}
-            />
-            <p
-              className='h4 text-darker-blue'
-              style={{ color: isUpvote && '#fff' }}>
-              {feedback.upvotes}
-            </p>
-          </div>
+          <Upvotes
+            feedback={feedback}
+            upvotes={
+              upvotes.length > 1 ? upvotes[1] : upvotes[0] > 0 ? upvotes[0] : 0
+            }
+            dispatchUpvotes={dispatchUpvotes}
+          />
         </div>
         <div className='ProductFeedback-middle'>
           <h3 className={`h3 ${isHover ? 'text-blue' : 'text-darker-blue'}`}>

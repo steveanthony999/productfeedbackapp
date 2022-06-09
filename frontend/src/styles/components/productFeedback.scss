@@ -13,27 +13,6 @@
     align-items: flex-start;
     justify-content: space-between;
 
-    .ProductFeedback-left {
-      .btn {
-        width: 40px;
-        height: 53px;
-        background-color: $white-blue;
-        border-radius: $border-rounded;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        p {
-          margin-top: 8px;
-        }
-
-        &:hover {
-          background-color: $hover-blue;
-        }
-      }
-    }
-
     .ProductFeedback-middle {
       width: 100%;
       margin-left: 40px;
@@ -90,25 +69,6 @@
 
       .ProductFeedback-middle-mobile {
         width: 100%;
-
-        .upvote-btn {
-          width: 69px;
-          height: 32px;
-          background-color: $white-blue;
-          border-radius: $border-rounded;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
-
-          p {
-            margin-left: 8px;
-          }
-
-          &:hover {
-            background-color: $hover-blue;
-          }
-        }
 
         .btn {
           display: inline-block;

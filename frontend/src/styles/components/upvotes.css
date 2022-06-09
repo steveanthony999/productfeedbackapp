@@ -1,0 +1,57 @@
+.upvote-btn {
+  width: 40px;
+  height: 53px;
+  background-color: #f2f4ff;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.upvote-btn p {
+  margin-top: 8px;
+}
+
+.upvote-btn:hover {
+  background-color: #cfd7ff;
+}
+
+@media screen and (max-width: 738px) {
+  .upvote-btn {
+    width: 69px;
+    height: 32px;
+    background-color: #f2f4ff;
+    border-radius: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .upvote-btn p {
+    margin-top: 0;
+    margin-left: 8px;
+  }
+  .upvote-btn:hover {
+    background-color: #cfd7ff;
+  }
+}
+/*# sourceMappingURL=upvotes.css.map */

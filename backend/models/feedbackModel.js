@@ -17,11 +17,6 @@ const feedbackSchema = mongoose.Schema(
       enum: ['Feature', 'UI', 'UX', 'Enhancement', 'Bug'],
       default: 'Feature',
     },
-    upvotes: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
     status: {
       type: String,
       required: [true, 'Please select a status'],

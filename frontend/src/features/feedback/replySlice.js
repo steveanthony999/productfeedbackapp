@@ -9,7 +9,6 @@ export const replySlice = createSlice({
     toggleReplyBox(state, action) {
       state.replyId = action.payload._id;
       state.isOpen = !state.isOpen;
-      //   console.log(action.payload);
     },
   },
 });

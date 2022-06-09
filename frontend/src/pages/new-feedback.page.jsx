@@ -49,7 +49,6 @@ const NewFeedback = () => {
         title,
         description,
         category,
-        upvotes: 0,
         status: 'Suggestion',
       })
     );

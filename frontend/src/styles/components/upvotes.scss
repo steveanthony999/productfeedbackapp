@@ -1,0 +1,42 @@
+@import '../helpers/variables.scss';
+
+.upvote-btn {
+  width: 40px;
+  height: 53px;
+  background-color: $white-blue;
+  border-radius: $border-rounded;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    margin-top: 8px;
+  }
+
+  &:hover {
+    background-color: $hover-blue;
+  }
+}
+
+@media screen and (max-width: 738px) {
+  .upvote-btn {
+    width: 69px;
+    height: 32px;
+    background-color: $white-blue;
+    border-radius: $border-rounded;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      margin-top: 0;
+      margin-left: 8px;
+    }
+
+    &:hover {
+      background-color: $hover-blue;
+    }
+  }
+}

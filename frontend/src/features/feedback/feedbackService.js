@@ -58,8 +58,18 @@ const deleteFeedback = async (feedbackId) => {
 };
 
 // Update Feedback
-const updateFeedback = async (feedbackId, feedbackData) => {
-  const res = await axios.patch(API_URL + feedbackId, feedbackData);
+const updateFeedback = async (feedbackId, feedbackData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.put(
+    BACKEND_API_URL + feedbackId,
+    feedbackData,
+    config
+  );
 
   return res.data;
 };
