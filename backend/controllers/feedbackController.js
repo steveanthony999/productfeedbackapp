@@ -4,9 +4,11 @@ const User = require('../models/userModel');
 const Feedback = require('../models/feedbackModel');
 const Upvote = require('../models/upvoteModel');
 
-// @desc    Get User Feedback
+// ======================================================================================
+// @desc    Get All Feedback
 // @route   GET /api/feedback
 // @access  Private
+// ======================================================================================
 const getFeedback = asyncHandler(async (req, res) => {
   // Get user using the id in the JWT
   const user = await User.findById(req.user.id);
@@ -17,7 +19,6 @@ const getFeedback = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
 
-  //   const feedback = await Feedback.find({ user: req.user.id });
   const feedback = await Feedback.find();
 
   res.status(200).json(feedback);
@@ -123,11 +124,11 @@ const deleteFeedback = asyncHandler(async (req, res) => {
     throw new Error('Feedback not found');
   }
 
-  if (feedback.user.toString() !== req.user.id) {
-    res.status(401);
+  //   if (feedback.user.toString() !== req.user.id) {
+  //     res.status(401);
 
-    throw new Error('Not Authorized');
-  }
+  //     throw new Error('Not Authorized');
+  //   }
 
   await feedback.remove();
 

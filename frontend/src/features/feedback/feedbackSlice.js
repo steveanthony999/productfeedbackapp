@@ -75,7 +75,8 @@ export const deleteFeedback = createAsyncThunk(
   'feedback/delete',
   async (feedbackId, thunkAPI) => {
     try {
-      return await feedbackService.deleteFeedback(feedbackId);
+      const token = thunkAPI.getState().auth.user.token;
+      return await feedbackService.deleteFeedback(feedbackId, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -160,13 +161,8 @@ export const feedbackSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
-      .addCase(deleteFeedback.fulfilled, (state, action) => {
+      .addCase(deleteFeedback.fulfilled, (state) => {
         state.isLoading = false;
-        state.feedback.map((feedback) =>
-          feedback._id === action.payload._id
-            ? (feedback.status = 'closed')
-            : feedback
-        );
       })
       .addCase(updateFeedback.pending, (state) => {
         state.isLoading = true;

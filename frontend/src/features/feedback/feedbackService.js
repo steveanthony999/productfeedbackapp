@@ -51,8 +51,14 @@ const getSingleFeedback = async (feedbackId, token) => {
 };
 
 // Delete Feedback
-const deleteFeedback = async (feedbackId) => {
-  const res = await axios.delete(API_URL + feedbackId);
+const deleteFeedback = async (feedbackId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.delete(BACKEND_API_URL + feedbackId, config);
 
   return res.data;
 };
