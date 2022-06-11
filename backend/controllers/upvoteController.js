@@ -22,32 +22,11 @@ const getUpvotes = asyncHandler(async (req, res) => {
   res.status(200).json(upvotes);
 });
 
+// ======================================================================================
 // @desc    Add feedback Upvote
-// @route   POST /api/feedback/upvotes
+// @route   POST /api/feedback/upvotes/:id
 // @access  Private
-const createUpvote = asyncHandler(async (req, res) => {
-  // Get user using the id in the JWT
-  const user = await User.findById(req.user.id);
-
-  if (!user) {
-    res.status(401);
-
-    throw new Error('User not found');
-  }
-
-  // const upvote = await Upvote.findById(req.params.id);
-
-  const upvote = await Upvote.create({
-    feedbackId: req.body.feedbackId,
-    upvotes: req.body.upvotes,
-  });
-
-  res.status(200).json(upvote);
-});
-
-// @desc    Add feedback Upvote
-// @route   POST /api/feedback/upvotes
-// @access  Private
+// ======================================================================================
 const addUpvote = asyncHandler(async (req, res) => {
   // Get user using the id in the JWT
   const user = await User.findById(req.user.id);
@@ -58,17 +37,37 @@ const addUpvote = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
 
-  const upvote = await Upvote.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
+  const upvote = await Upvote.findByIdAndUpdate(
+    req.params.id,
+    {
+      ...req.body,
+      feedbackId: req.body.feedbackId,
+      upvotes: req.body.upvotes,
+      $addToSet: { userId: [user._id] },
+    },
+    {
+      new: true,
+      upsert: true,
+    }
+  );
+
+  const updatedUser = await User.findOneAndUpdate(
+    { _id: user._id },
+    { $addToSet: { upvoteId: [upvote._id] } },
+    { new: true, upsert: true }
+  );
+
+  updatedUser.save();
 
   res.status(200).json(upvote);
 });
 
-// @desc    Remove Feedback Upvote
-// @route   DELETE /api/feedback/:feedbackId/upvotes/:id
+// ======================================================================================
+// @desc    Downvote
+// @route   POST /api/feedback/:feedbackId/upvotes/:id
 // @access  Private
-const removeUpvote = asyncHandler(async (req, res) => {
+// ======================================================================================
+const downvote = asyncHandler(async (req, res) => {
   // Get user using the id in the JWT
   const user = await User.findById(req.user.id);
 
@@ -78,22 +77,35 @@ const removeUpvote = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
 
-  const upvote = await Upvote.findById(req.params.id); // Gets upvote from url
+  const downUpvote = await Upvote.findByIdAndUpdate(
+    req.params.id,
+    {
+      ...req.body,
+      feedbackId: req.body.feedbackId,
+      upvotes: req.body.upvotes,
+      $pull: { userId: user._id },
+    },
+    {
+      new: true,
+      upsert: true,
+    }
+  );
 
-  if (!upvote) {
-    res.status(404);
+  downUpvote.save();
 
-    throw new Error('Upvote not found');
-  }
+  const updatedUser = await User.findOneAndUpdate(
+    { _id: user._id },
+    { $pull: { upvoteId: downUpvote._id } },
+    { new: true, upsert: true }
+  );
 
-  await upvote.remove();
+  updatedUser.save();
 
-  res.status(200).json({ success: true });
+  res.status(200).json(downUpvote);
 });
 
 module.exports = {
   getUpvotes,
-  createUpvote,
   addUpvote,
-  removeUpvote,
+  downvote,
 };

@@ -9,7 +9,9 @@ const initialState = {
   message: '',
 };
 
-// Get Upvotes
+// ======================================================================================
+// Get All Upvotes
+// ======================================================================================
 export const getUpvotes = createAsyncThunk(
   'upvotes/getAll',
   async (_, thunkAPI) => {
@@ -29,27 +31,9 @@ export const getUpvotes = createAsyncThunk(
   }
 );
 
-// Create Upvote
-export const createUpvote = createAsyncThunk(
-  'upvotes/create',
-  async ({ upvoteData }, thunkAPI) => {
-    try {
-      const token = thunkAPI.getState().auth.user.token;
-      return await upvoteService.createUpvote(upvoteData, token);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
+// ======================================================================================
 // Add Upvote
+// ======================================================================================
 export const addUpvote = createAsyncThunk(
   'upvotes/add',
   async ({ upvoteId, upvoteData }, thunkAPI) => {
@@ -69,6 +53,29 @@ export const addUpvote = createAsyncThunk(
   }
 );
 
+// Remove Upvote
+export const downvote = createAsyncThunk(
+  'upvotes/downvote',
+  async ({ upvoteId, downvoteData }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await upvoteService.downvote(upvoteId, downvoteData, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// ======================================================================================
+// Upvote Slice
+// ======================================================================================
 export const upvoteSlice = createSlice({
   name: 'upvotes',
   initialState,
@@ -88,28 +95,30 @@ export const upvoteSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
-      .addCase(createUpvote.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(createUpvote.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.upvotes.push(action.payload);
-      })
-      .addCase(createUpvote.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
       .addCase(addUpvote.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(addUpvote.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        console.log(action.payload);
         state.upvotes.push(action.payload);
       })
       .addCase(addUpvote.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(downvote.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(downvote.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        console.log(action.payload);
+        state.upvotes.push(action.payload);
+      })
+      .addCase(downvote.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

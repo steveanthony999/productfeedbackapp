@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import _ from 'lodash';
@@ -11,7 +11,7 @@ import {
 import {
   getUpvotes,
   addUpvote,
-  createUpvote,
+  downvote,
   reset as upvotesReset,
 } from '../features/upvotes/upvoteSlice';
 
@@ -28,6 +28,8 @@ import Sidebar from '../components/sidebar';
 
 const Home = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
+
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const { feedback, isSuccess } = useSelector((state) => state.feedback);
   const { comments, isSuccess: isCommentSuccess } = useSelector(
@@ -66,12 +68,6 @@ const Home = () => {
       }
     };
   }, [dispatch, isUpvotesSuccess]);
-
-  useEffect(() => {
-    dispatch(getFeedback());
-    dispatch(getComments());
-    dispatch(getUpvotes());
-  }, [dispatch]);
 
   useEffect(() => {
     if (feedback) {
@@ -136,18 +132,35 @@ const Home = () => {
     return () => (document.body.style.overflow = 'unset');
   }, [isMenuOpen]);
 
-  const dispatchUpvotes = (data) => {
-    const votes = upvotes.filter(
-      (upvote) => upvote.feedbackId === data.upvoteData.feedbackId
-    );
+  const dispatchUpvotes = useCallback(
+    (data) => {
+      const votes = upvotes.filter(
+        (upvote) => upvote.feedbackId === data.upvoteData.feedbackId
+      );
 
-    if (votes[0] === undefined) {
-      dispatch(createUpvote(data)); // If no upvotes exist, we'll create them
-    } else {
       const upvoteId = votes[0]._id;
-      dispatch(addUpvote({ upvoteId, ...data })); // If upvotes do exist, we'll add one
-    }
-  };
+      dispatch(addUpvote({ upvoteId, ...data }));
+    },
+    [dispatch, upvotes]
+  );
+
+  const dispatchDownvotes = useCallback(
+    (data) => {
+      const votes = upvotes.filter(
+        (upvote) => upvote.feedbackId === data.downvoteData.feedbackId
+      );
+
+      const upvoteId = votes[0]._id;
+      dispatch(downvote({ upvoteId, ...data }));
+    },
+    [dispatch, upvotes]
+  );
+
+  useEffect(() => {
+    dispatch(getFeedback());
+    dispatch(getComments());
+    dispatch(getUpvotes());
+  }, [dispatch, dispatchUpvotes, dispatchDownvotes]);
 
   return (
     <div className='Home'>
@@ -184,10 +197,20 @@ const Home = () => {
                         reply.isReply === true &&
                         reply.isReplyingToReply === false
                     )}
-                    upvotes={upvotes
-                      .filter((upvote) => upvote.feedbackId === fb._id)
-                      .map((upvt) => upvt.upvotes)}
+                    upvotes={
+                      upvotes &&
+                      upvotes
+                        .filter((upvote) => upvote.feedbackId === fb._id)
+                        .map((upvt) => upvt.upvotes)
+                    }
                     dispatchUpvotes={dispatchUpvotes}
+                    dispatchDownvotes={dispatchDownvotes}
+                    user={user}
+                    didCurrentUserUpvote={
+                      upvotes
+                        .filter((upvote) => upvote.feedbackId === fb._id)
+                        .map((upvote) => upvote.userId.includes(user._id))[0]
+                    }
                   />
                 ))}
             </>

@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler');
 
 const User = require('../models/userModel');
 const Feedback = require('../models/feedbackModel');
+const Upvote = require('../models/upvoteModel');
 
 // @desc    Get User Feedback
 // @route   GET /api/feedback
@@ -52,9 +53,11 @@ const getSingleFeedback = asyncHandler(async (req, res) => {
   res.status(200).json(feedback);
 });
 
+// ======================================================================================
 // @desc    Create New Feedback
 // @route   POST /api/feedback
 // @access  Private
+// ======================================================================================
 const createFeedback = asyncHandler(async (req, res) => {
   const { title, category, description } = req.body;
 
@@ -77,9 +80,24 @@ const createFeedback = asyncHandler(async (req, res) => {
     title,
     category,
     description,
-    userId: req.user.id,
+    userId: req.user.id, // The user who created the feedback
     status: 'Suggestion',
   });
+
+  //   Create the upvotes for this feedback
+  const upvote = await Upvote.create({
+    feedbackId: feedback._id,
+    upvotes: 1,
+    userId: [user._id],
+  });
+
+  const updatedUser = await User.findOneAndUpdate(
+    { _id: user._id },
+    { $addToSet: { upvoteId: [upvote._id] } },
+    { new: true, upsert: true }
+  );
+
+  updatedUser.save();
 
   res.status(201).json(feedback);
 });

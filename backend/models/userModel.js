@@ -28,6 +28,9 @@ const userSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    upvoteId: [
+      { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Upvote' },
+    ],
   },
   {
     timestamps: true,

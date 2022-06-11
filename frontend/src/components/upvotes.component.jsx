@@ -1,24 +1,45 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import IconArrowUp from '../assets/shared/icon-arrow-up.svg';
 
 import '../styles/components/upvotes.css';
 
-const Upvotes = ({ feedback, upvotes, dispatchUpvotes }) => {
+const Upvotes = ({
+  feedback,
+  upvotes,
+  didCurrentUserUpvote,
+  dispatchUpvotes,
+  dispatchDownvotes,
+}) => {
   const feedbackId = feedback._id;
 
-  const [isUpvote, setIsUpvote] = useState();
+  const [isUpvote, setIsUpvote] = useState(false);
+
+  useEffect(() => {
+    didCurrentUserUpvote === true ? setIsUpvote(true) : setIsUpvote(false);
+  }, [didCurrentUserUpvote]);
 
   const handleUpvoteClick = (e) => {
     e.preventDefault();
-    setIsUpvote((prevState) => !prevState);
+    // setIsUpvote((prevState) => !prevState);
 
     const upvoteData = {
       feedbackId,
       upvotes: upvotes + 1,
     };
 
-    dispatchUpvotes({ upvoteData });
+    const downvoteData = {
+      feedbackId,
+      upvotes: upvotes - 1,
+    };
+
+    if (isUpvote === true) {
+      dispatchDownvotes({ downvoteData });
+      setIsUpvote(false);
+    } else if (isUpvote === false) {
+      dispatchUpvotes({ upvoteData });
+      setIsUpvote(true);
+    }
   };
 
   return (
@@ -32,7 +53,6 @@ const Upvotes = ({ feedback, upvotes, dispatchUpvotes }) => {
         style={{ filter: isUpvote && 'brightness(1000%)' }}
       />
       <p className='h4 text-darker-blue' style={{ color: isUpvote && '#fff' }}>
-        {/* {feedback.upvotes} */}
         {upvotes}
       </p>
     </div>

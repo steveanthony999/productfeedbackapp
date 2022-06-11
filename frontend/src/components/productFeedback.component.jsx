@@ -16,6 +16,9 @@ const ProductFeedback = ({
   replies,
   upvotes,
   dispatchUpvotes,
+  dispatchDownvotes,
+  user,
+  didCurrentUserUpvote,
 }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
 
@@ -61,6 +64,9 @@ const ProductFeedback = ({
                       : 0
                   }
                   dispatchUpvotes={dispatchUpvotes}
+                  dispatchDownvotes={dispatchDownvotes}
+                  user={user}
+                  didCurrentUserUpvote={didCurrentUserUpvote}
                 />
               </div>
               <div className='ProductFeedback-right-mobile'>
@@ -97,6 +103,9 @@ const ProductFeedback = ({
               upvotes.length > 1 ? upvotes[1] : upvotes[0] > 0 ? upvotes[0] : 0
             }
             dispatchUpvotes={dispatchUpvotes}
+            dispatchDownvotes={dispatchDownvotes}
+            user={user}
+            didCurrentUserUpvote={didCurrentUserUpvote}
           />
         </div>
         <div className='ProductFeedback-middle'>

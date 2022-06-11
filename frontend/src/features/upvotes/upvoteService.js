@@ -15,23 +15,6 @@ const getUpvotes = async (token) => {
   return res.data;
 };
 
-// Create Upvote
-const createUpvote = async (upvoteData, token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
-  const res = await axios.post(
-    BACKEND_API_URL + '/upvotes',
-    upvoteData,
-    config
-  );
-
-  return res.data;
-};
-
 // Add upvote
 const addUpvote = async (upvoteId, upvoteData, token) => {
   const config = {
@@ -40,7 +23,7 @@ const addUpvote = async (upvoteId, upvoteData, token) => {
     },
   };
 
-  const res = await axios.put(
+  const res = await axios.post(
     BACKEND_API_URL + '/upvotes/' + upvoteId,
     upvoteData,
     config
@@ -49,10 +32,27 @@ const addUpvote = async (upvoteId, upvoteData, token) => {
   return res.data;
 };
 
+// Downvote
+const downvote = async (upvoteId, downvoteData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.put(
+    BACKEND_API_URL + '/upvotes/' + upvoteId,
+    downvoteData,
+    config
+  );
+
+  return res.data;
+};
+
 const upvoteService = {
   getUpvotes,
-  createUpvote,
   addUpvote,
+  downvote,
 };
 
 export default upvoteService;

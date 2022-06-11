@@ -12,6 +12,13 @@ const upvoteSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
+    userId: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User',
+      },
+    ],
   },
   {
     timestamps: true,

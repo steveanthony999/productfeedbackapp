@@ -1,5 +1,5 @@
 // Libraries
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
@@ -11,7 +11,7 @@ import { createComment, getComments } from '../features/feedback/commentSlice';
 import {
   getUpvotes,
   addUpvote,
-  createUpvote,
+  downvote,
   reset as upvotesReset,
 } from '../features/upvotes/upvoteSlice';
 
@@ -48,12 +48,6 @@ const FeedbackDetail = () => {
     };
   }, [dispatch, isUpvotesSuccess]);
 
-  useEffect(() => {
-    dispatch(getUsers());
-    dispatch(getComments());
-    dispatch(getUpvotes());
-  }, [dispatch]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -81,18 +75,35 @@ const FeedbackDetail = () => {
     dispatch(createComment({ commentData }));
   };
 
-  const dispatchUpvotes = (data) => {
-    const votes = upvotes.filter(
-      (upvote) => upvote.feedbackId === data.upvoteData.feedbackId
-    );
+  const dispatchUpvotes = useCallback(
+    (data) => {
+      const votes = upvotes.filter(
+        (upvote) => upvote.feedbackId === data.upvoteData.feedbackId
+      );
 
-    if (votes[0] === undefined) {
-      dispatch(createUpvote(data)); // If no upvotes exist, we'll create them
-    } else {
       const upvoteId = votes[0]._id;
-      dispatch(addUpvote({ upvoteId, ...data })); // If upvotes do exist, we'll add one
-    }
-  };
+      dispatch(addUpvote({ upvoteId, ...data }));
+    },
+    [dispatch, upvotes]
+  );
+
+  const dispatchDownvotes = useCallback(
+    (data) => {
+      const votes = upvotes.filter(
+        (upvote) => upvote.feedbackId === data.downvoteData.feedbackId
+      );
+
+      const upvoteId = votes[0]._id;
+      dispatch(downvote({ upvoteId, ...data }));
+    },
+    [dispatch, upvotes]
+  );
+
+  useEffect(() => {
+    dispatch(getUsers());
+    dispatch(getComments());
+    dispatch(getUpvotes());
+  }, [dispatch, dispatchUpvotes, dispatchDownvotes]);
 
   return (
     <div className='FeedbackDetailPage'>
@@ -136,6 +147,14 @@ const FeedbackDetail = () => {
             .filter((upvote) => upvote.feedbackId === feedback._id)
             .map((upvt) => upvt.upvotes)}
           dispatchUpvotes={dispatchUpvotes}
+          dispatchDownvotes={dispatchDownvotes}
+          user={user}
+          didCurrentUserUpvote={
+            upvotes &&
+            upvotes
+              .filter((upvote) => upvote.feedbackId === feedback._id)
+              .map((upvote) => upvote.userId.includes(user._id))[0]
+          }
         />
         <div className='comments-container border'>
           <div className='top'>
