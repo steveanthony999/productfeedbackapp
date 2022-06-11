@@ -46,6 +46,14 @@ const addComment = asyncHandler(async (req, res) => {
     isReplyingToReply: req.body.isReplyingToReply,
   });
 
+  const updatedUser = await User.findOneAndUpdate(
+    { _id: user._id },
+    { $addToSet: { commentId: [comment._id] } },
+    { new: true, upsert: true }
+  );
+
+  updatedUser.save();
+
   res.status(200).json(comment);
 });
 

@@ -34,6 +34,9 @@ const userSchema = mongoose.Schema(
     feedbackId: [
       { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Feedback' },
     ],
+    commentId: [
+      { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Comment' },
+    ],
   },
   {
     timestamps: true,
