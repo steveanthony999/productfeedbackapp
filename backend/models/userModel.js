@@ -31,6 +31,9 @@ const userSchema = mongoose.Schema(
     upvoteId: [
       { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Upvote' },
     ],
+    feedbackId: [
+      { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Feedback' },
+    ],
   },
   {
     timestamps: true,

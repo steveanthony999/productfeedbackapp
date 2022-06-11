@@ -94,7 +94,7 @@ const createFeedback = asyncHandler(async (req, res) => {
 
   const updatedUser = await User.findOneAndUpdate(
     { _id: user._id },
-    { $addToSet: { upvoteId: [upvote._id] } },
+    { $addToSet: { upvoteId: [upvote._id], feedbackId: [feedback._id] } },
     { new: true, upsert: true }
   );
 
@@ -123,12 +123,6 @@ const deleteFeedback = asyncHandler(async (req, res) => {
 
     throw new Error('Feedback not found');
   }
-
-  //   if (feedback.user.toString() !== req.user.id) {
-  //     res.status(401);
-
-  //     throw new Error('Not Authorized');
-  //   }
 
   await feedback.remove();
 
