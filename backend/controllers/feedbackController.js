@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 const User = require('../models/userModel');
 const Feedback = require('../models/feedbackModel');
 const Upvote = require('../models/upvoteModel');
+const Comment = require('../models/commentModel');
 
 // ======================================================================================
 // @desc    Get All Feedback
@@ -123,6 +124,38 @@ const deleteFeedback = asyncHandler(async (req, res) => {
 
     throw new Error('Feedback not found');
   }
+
+  const upvote = await Upvote.findOne({
+    feedbackId: { $eq: feedback._id },
+  });
+
+  const comment = await Comment.find({
+    feedbackId: feedback._id,
+  });
+
+  const updatedUser = await User.findOneAndUpdate(
+    { _id: user._id },
+    {
+      $pullAll: {
+        feedbackId: [feedback._id],
+        upvoteId: [upvote._id],
+        commentId: comment.map((x) => x._id),
+      },
+    },
+    { new: true, upsert: true }
+  );
+
+  console.log(user.commentId);
+
+  updatedUser.save();
+
+  await Upvote.findOneAndDelete({
+    feedbackId: { $eq: feedback._id },
+  });
+
+  await Comment.deleteMany({
+    feedbackId: { $eq: feedback._id },
+  });
 
   await feedback.remove();
 

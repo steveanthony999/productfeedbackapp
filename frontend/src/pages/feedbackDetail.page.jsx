@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
-// import uuid from 'react-uuid';
 
 // State
 import { getUsers } from '../features/users/userSlice';
@@ -48,20 +47,23 @@ const FeedbackDetail = () => {
     };
   }, [dispatch, isUpvotesSuccess]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    const commentData = {
-      userId: user._id,
-      feedbackId,
-      content,
-      parentCommentId: nanoid(),
-    };
+      const commentData = {
+        userId: user._id,
+        feedbackId,
+        content,
+        parentCommentId: nanoid(),
+      };
 
-    dispatch(createComment({ commentData }));
+      dispatch(createComment({ commentData }));
 
-    setContent('');
-  };
+      setContent('');
+    },
+    [content, dispatch, feedbackId, user._id]
+  );
 
   const handleChange = (e) => {
     setContent(e.target.value);
@@ -71,9 +73,12 @@ const FeedbackDetail = () => {
     setTextLength(content.length);
   }, [content, textLength]);
 
-  const dispatchReply = (commentData) => {
-    dispatch(createComment({ commentData }));
-  };
+  const dispatchReply = useCallback(
+    (commentData) => {
+      dispatch(createComment({ commentData }));
+    },
+    [dispatch]
+  );
 
   const dispatchUpvotes = useCallback(
     (data) => {
