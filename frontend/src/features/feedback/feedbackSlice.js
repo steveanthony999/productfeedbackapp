@@ -140,6 +140,7 @@ export const feedbackSlice = createSlice({
       .addCase(getFeedback.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        console.log(action.payload);
         state.feedback = action.payload;
       })
       .addCase(getFeedback.rejected, (state, action) => {

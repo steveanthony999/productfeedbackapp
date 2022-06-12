@@ -8,7 +8,7 @@ const Button = ({ name, isChecked }) => {
 
   const handleChange = (e) => {
     if (e.target.id !== 'All') {
-      dispatch(getFeedback(e.target.id.toLowerCase()));
+      dispatch(getFeedback(e.target.id));
     } else {
       dispatch(getFeedback());
     }
