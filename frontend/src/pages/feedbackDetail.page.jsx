@@ -80,35 +80,31 @@ const FeedbackDetail = () => {
     [dispatch]
   );
 
-  const dispatchUpvotes = useCallback(
-    (data) => {
-      const votes = upvotes.filter(
-        (upvote) => upvote.feedbackId === data.upvoteData.feedbackId
-      );
+  const dispatchUpvotes = async (data) => {
+    const votes = upvotes.filter(
+      (upvote) => upvote.feedbackId === data.upvoteData.feedbackId
+    );
 
-      const upvoteId = votes[0]._id;
-      dispatch(addUpvote({ upvoteId, ...data }));
-    },
-    [dispatch, upvotes]
-  );
+    const upvoteId = votes[0]._id;
+    await dispatch(addUpvote({ upvoteId, ...data }));
+    dispatch(getUpvotes());
+  };
 
-  const dispatchDownvotes = useCallback(
-    (data) => {
-      const votes = upvotes.filter(
-        (upvote) => upvote.feedbackId === data.downvoteData.feedbackId
-      );
+  const dispatchDownvotes = async (data) => {
+    const votes = upvotes.filter(
+      (upvote) => upvote.feedbackId === data.downvoteData.feedbackId
+    );
 
-      const upvoteId = votes[0]._id;
-      dispatch(downvote({ upvoteId, ...data }));
-    },
-    [dispatch, upvotes]
-  );
+    const upvoteId = votes[0]._id;
+    await dispatch(downvote({ upvoteId, ...data }));
+    dispatch(getUpvotes());
+  };
 
   useEffect(() => {
     dispatch(getUsers());
     dispatch(getComments());
     dispatch(getUpvotes());
-  }, [dispatch, dispatchUpvotes, dispatchDownvotes]);
+  }, [dispatch]);
 
   return (
     <div className='FeedbackDetailPage'>

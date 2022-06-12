@@ -104,9 +104,11 @@ const createFeedback = asyncHandler(async (req, res) => {
   res.status(201).json(feedback);
 });
 
+// ======================================================================================
 // @desc    Delete Feedback
 // @route   DELETE /api/feedback/:id
 // @access  Private
+// ======================================================================================
 const deleteFeedback = asyncHandler(async (req, res) => {
   // Get user using the id in the JWT
   const user = await User.findById(req.user.id);
