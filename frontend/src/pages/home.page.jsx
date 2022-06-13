@@ -72,46 +72,55 @@ const Home = () => {
   useEffect(() => {
     if (feedback) {
       if (sortOrder === 'most-upvotes') {
-        const sorted =
-          feedback &&
-          feedback.length > 0 &&
-          feedback.slice().sort((a, b) => b.upvotes - a.upvotes);
-        setSortedFeedback(sorted);
+        // const sorted =
+        //   feedback &&
+        //   feedback.length > 0 &&
+        //   feedback.slice().sort((a, b) => b.upvotes - a.upvotes);
+        // setSortedFeedback(sorted);
+        const sorted = upvotes.slice().sort((a, b) => b.upvotes - a.upvotes);
+        // setSortedFeedback(sorted);
+        console.log(sorted);
       } else if (sortOrder === 'least-upvotes') {
-        const sorted = feedback.slice().sort((a, b) => a.upvotes - b.upvotes);
-        setSortedFeedback(sorted);
+        // const sorted = feedback.slice().sort((a, b) => a.upvotes - b.upvotes);
+        const sorted = upvotes.slice().sort((a, b) => a.upvotes - b.upvotes);
+        // setSortedFeedback(sorted);
+        console.log(sorted);
       } else if (sortOrder === 'most-comments') {
-        setSortedFeedback(
-          _.orderBy(
-            feedback,
-            function (fdbk) {
-              return (
-                fdbk.comments &&
-                fdbk.comments +
-                  _.find(fdbk.comments, (cmnts) =>
-                    cmnts.replies === undefined ? 0 : cmnts.replies.length
-                  )
-              );
-            },
-            ['asc']
-          )
-        );
+        // setSortedFeedback(
+        //   _.orderBy(
+        //     feedback,
+        //     function (fdbk) {
+        //       return (
+        //         fdbk.comments &&
+        //         fdbk.comments +
+        //           _.find(fdbk.comments, (cmnts) =>
+        //             cmnts.replies === undefined ? 0 : cmnts.replies.length
+        //           )
+        //       );
+        //     },
+        //     ['asc']
+        //   )
+        // );
+        // const sorted = feedback.map((fb) => fb);
+        // setSortedFeedback(sorted);
+        // console.log(sorted);
       } else if (sortOrder === 'least-comments') {
-        setSortedFeedback(
-          _.orderBy(
-            feedback,
-            function (fdbk) {
-              return (
-                fdbk.comments &&
-                fdbk.comments +
-                  _.find(fdbk.comments, (cmnts) =>
-                    cmnts.replies === undefined ? 0 : cmnts.replies.length
-                  )
-              );
-            },
-            ['desc']
-          )
-        );
+        // setSortedFeedback(
+        //   _.orderBy(
+        //     feedback,
+        //     function (fdbk) {
+        //       return (
+        //         fdbk.comments &&
+        //         fdbk.comments +
+        //           _.find(fdbk.comments, (cmnts) =>
+        //             cmnts.replies === undefined ? 0 : cmnts.replies.length
+        //           )
+        //       );
+        //     },
+        //     ['desc']
+        //   )
+        // );
+        console.log('Least Comments');
       }
     }
   }, [feedback, sortOrder]);
@@ -174,8 +183,8 @@ const Home = () => {
             <EmptyFeedback />
           ) : (
             <>
-              {sortedFeedback.length > 0 &&
-                sortedFeedback.map((fb) => (
+              {feedback.length > 0 &&
+                feedback.map((fb) => (
                   <ProductFeedback
                     key={fb._id}
                     feedback={fb}

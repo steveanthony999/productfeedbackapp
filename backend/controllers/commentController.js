@@ -4,9 +4,11 @@ const User = require('../models/userModel');
 const Feedback = require('../models/feedbackModel');
 const Comment = require('../models/commentModel');
 
+// ======================================================================================
 // @desc    Get Comments for Feedback
 // @route   GET /api/feedback/comments
 // @access  Private
+// ======================================================================================
 const getComments = asyncHandler(async (req, res) => {
   // Get user using the id in the JWT
   const user = await User.findById(req.user.id);
@@ -22,9 +24,11 @@ const getComments = asyncHandler(async (req, res) => {
   res.status(200).json(comments);
 });
 
+// ======================================================================================
 // @desc    Create feedback comment
 // @route   POST /api/feedback/:feedbackId/comments
 // @access  Private
+// ======================================================================================
 const addComment = asyncHandler(async (req, res) => {
   // Get user using the id in the JWT
   const user = await User.findById(req.user.id);
@@ -54,9 +58,19 @@ const addComment = asyncHandler(async (req, res) => {
 
   updatedUser.save();
 
+  const updatedFeedback = await Feedback.findOneAndUpdate(
+    { _id: req.body.feedbackId },
+    { $addToSet: { commentId: [comment._id] } },
+    { new: true, upsert: true }
+  );
+
+  updatedFeedback.save();
+
   res.status(200).json(comment);
 });
 
+// ======================================================================================
+// ======================================================================================
 module.exports = {
   getComments,
   addComment,

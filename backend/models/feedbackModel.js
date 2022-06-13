@@ -27,6 +27,12 @@ const feedbackSchema = mongoose.Schema(
       type: String,
       required: [true, 'Please add a description'],
     },
+    commentId: [
+      { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Comment' },
+    ],
+    upvoteId: [
+      { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Upvote' },
+    ],
   },
   {
     timestamps: true,
