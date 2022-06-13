@@ -135,8 +135,21 @@ const deleteFeedback = asyncHandler(async (req, res) => {
     feedbackId: feedback._id,
   });
 
-  const updatedUser = await User.findOneAndUpdate(
-    { _id: user._id },
+  //   const updatedUser = await User.findOneAndUpdate(
+  //     { _id: user._id },
+  //     {
+  //       $pullAll: {
+  //         feedbackId: [feedback._id],
+  //         upvoteId: [upvote._id],
+  //         commentId: comment.map((x) => x._id),
+  //       },
+  //     },
+  //     { new: true, upsert: true }
+  //   );
+
+  //   updatedUser.save();
+
+  const allUsers = await User.updateMany(
     {
       $pullAll: {
         feedbackId: [feedback._id],
@@ -147,9 +160,7 @@ const deleteFeedback = asyncHandler(async (req, res) => {
     { new: true, upsert: true }
   );
 
-  console.log(user.commentId);
-
-  updatedUser.save();
+  allUsers.save();
 
   await Upvote.findOneAndDelete({
     feedbackId: { $eq: feedback._id },

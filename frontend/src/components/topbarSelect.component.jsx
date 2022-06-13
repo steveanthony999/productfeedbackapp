@@ -8,8 +8,8 @@ import '../styles/components/topbarSelect.css';
 const TopbarSelect = ({ passSortOrder, options }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[0]);
-  const [sortOrder, setSortOrder] = useState('most-upvotes');
-  const [isChecked, setIsChecked] = useState('Most Upvotes');
+  const [sortOrder, setSortOrder] = useState('newest');
+  const [isChecked, setIsChecked] = useState('Newest');
 
   const toggling = () => {
     setIsOpen((prevValue) => !prevValue);

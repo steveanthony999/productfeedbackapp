@@ -61,7 +61,7 @@ const addUpvote = asyncHandler(async (req, res) => {
 
   const updatedFeedback = await Feedback.findOneAndUpdate(
     { _id: req.body.feedbackId },
-    { $addToSet: { upvoteId: [upvote._id] } },
+    { $inc: { upvoteCount: 1 } },
     { new: true, upsert: true }
   );
 
@@ -111,7 +111,7 @@ const downvote = asyncHandler(async (req, res) => {
 
   const updatedFeedback = await Feedback.findOneAndUpdate(
     { _id: req.body.feedbackId },
-    { $pull: { upvoteId: downUpvote._id } },
+    { $inc: { upvoteCount: -1 } },
     { new: true, upsert: true }
   );
 
