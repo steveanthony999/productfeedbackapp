@@ -4,6 +4,12 @@ import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 
 import { getFeedback, reset } from '../features/feedback/feedbackSlice';
+import { getComments } from '../features/feedback/commentSlice';
+import {
+  getUpvotes,
+  addUpvote,
+  downvote,
+} from '../features/upvotes/upvoteSlice';
 
 import RoadmapCard from '../components/roadmapCard.component';
 import GoBack from '../components/goBack.component';
@@ -13,6 +19,10 @@ import '../styles/pages/roadmapPage.css';
 const Roadmap = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
   const { feedback, isSuccess } = useSelector((state) => state.feedback);
+  const { comments } = useSelector((state) => state.comments);
+  const { upvotes } = useSelector((state) => state.upvotes);
+
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const [isActive, setIsActive] = useState('planned');
 
@@ -26,8 +36,30 @@ const Roadmap = () => {
     };
   }, [dispatch, isSuccess]);
 
+  const dispatchUpvotes = async (data) => {
+    const votes = upvotes.filter(
+      (upvote) => upvote.feedbackId === data.upvoteData.feedbackId
+    );
+
+    const upvoteId = votes[0]._id;
+    await dispatch(addUpvote({ upvoteId, ...data }));
+    dispatch(getUpvotes());
+  };
+
+  const dispatchDownvotes = async (data) => {
+    const votes = upvotes.filter(
+      (upvote) => upvote.feedbackId === data.downvoteData.feedbackId
+    );
+
+    const upvoteId = votes[0]._id;
+    await dispatch(downvote({ upvoteId, ...data }));
+    dispatch(getUpvotes());
+  };
+
   useEffect(() => {
     dispatch(getFeedback());
+    dispatch(getComments());
+    dispatch(getUpvotes());
   }, [dispatch]);
 
   const [statusCount, setStatusCount] = useState({
@@ -127,15 +159,39 @@ const Roadmap = () => {
                   .filter((fb) => fb.status === 'planned')
                   .map((fdbk) => (
                     <RoadmapCard
-                      key={fdbk.id}
+                      key={fdbk._id}
                       status='Planned'
                       color='orange'
-                      feedbackId={fdbk.id}
+                      feedback={fdbk}
+                      user={user}
                       title={fdbk.title}
                       description={fdbk.description}
-                      category={fdbk.category}
-                      upvotes={fdbk.upvotes}
-                      commentsLength={fdbk.comments ? fdbk.comments.length : 0}
+                      category={
+                        fdbk.category === 'ux'
+                          ? fdbk.category.toUpperCase()
+                          : fdbk.category === 'ui'
+                          ? fdbk.category.toUpperCase()
+                          : fdbk.category
+                      }
+                      upvotes={
+                        upvotes &&
+                        upvotes
+                          .filter((upvote) => upvote.feedbackId === fdbk._id)
+                          .map((upvt) => upvt.upvotes)
+                      }
+                      dispatchUpvotes={dispatchUpvotes}
+                      dispatchDownvotes={dispatchDownvotes}
+                      didCurrentUserUpvote={
+                        upvotes
+                          .filter((upvote) => upvote.feedbackId === fdbk._id)
+                          .map((upvote) => upvote.userId.includes(user._id))[0]
+                      }
+                      commentsLength={
+                        comments &&
+                        comments.filter(
+                          (comment) => comment.feedbackId === fdbk._id
+                        ).length
+                      }
                     />
                   ))}
               </div>
@@ -151,15 +207,39 @@ const Roadmap = () => {
                   .filter((fb) => fb.status === 'in-progress')
                   .map((fdbk) => (
                     <RoadmapCard
-                      key={fdbk.id}
+                      key={fdbk._id}
                       status='In Progress'
                       color='purple'
-                      feedbackId={fdbk.id}
+                      feedback={fdbk}
+                      user={user}
                       title={fdbk.title}
                       description={fdbk.description}
-                      category={fdbk.category}
-                      upvotes={fdbk.upvotes}
-                      commentsLength={fdbk.comments ? fdbk.comments.length : 0}
+                      category={
+                        fdbk.category === 'ux'
+                          ? fdbk.category.toUpperCase()
+                          : fdbk.category === 'ui'
+                          ? fdbk.category.toUpperCase()
+                          : fdbk.category
+                      }
+                      upvotes={
+                        upvotes &&
+                        upvotes
+                          .filter((upvote) => upvote.feedbackId === fdbk._id)
+                          .map((upvt) => upvt.upvotes)
+                      }
+                      dispatchUpvotes={dispatchUpvotes}
+                      dispatchDownvotes={dispatchDownvotes}
+                      didCurrentUserUpvote={
+                        upvotes
+                          .filter((upvote) => upvote.feedbackId === fdbk._id)
+                          .map((upvote) => upvote.userId.includes(user._id))[0]
+                      }
+                      commentsLength={
+                        comments &&
+                        comments.filter(
+                          (comment) => comment.feedbackId === fdbk._id
+                        ).length
+                      }
                     />
                   ))}
               </div>
@@ -176,16 +256,40 @@ const Roadmap = () => {
                     .filter((fb) => fb.status === 'live')
                     .map((fdbk) => (
                       <RoadmapCard
-                        key={fdbk.id}
+                        key={fdbk._id}
                         status='Live'
                         color='light-blue'
-                        feedbackId={fdbk.id}
+                        feedback={fdbk}
+                        user={user}
                         title={fdbk.title}
                         description={fdbk.description}
-                        category={fdbk.category}
-                        upvotes={fdbk.upvotes}
+                        category={
+                          fdbk.category === 'ux'
+                            ? fdbk.category.toUpperCase()
+                            : fdbk.category === 'ui'
+                            ? fdbk.category.toUpperCase()
+                            : fdbk.category
+                        }
+                        upvotes={
+                          upvotes &&
+                          upvotes
+                            .filter((upvote) => upvote.feedbackId === fdbk._id)
+                            .map((upvt) => upvt.upvotes)
+                        }
+                        dispatchUpvotes={dispatchUpvotes}
+                        dispatchDownvotes={dispatchDownvotes}
+                        didCurrentUserUpvote={
+                          upvotes
+                            .filter((upvote) => upvote.feedbackId === fdbk._id)
+                            .map((upvote) =>
+                              upvote.userId.includes(user._id)
+                            )[0]
+                        }
                         commentsLength={
-                          fdbk.comments ? fdbk.comments.length : 0
+                          comments &&
+                          comments.filter(
+                            (comment) => comment.feedbackId === fdbk._id
+                          ).length
                         }
                       />
                     ))}
@@ -226,15 +330,39 @@ const Roadmap = () => {
               .filter((fb) => fb.status === 'planned')
               .map((fdbk) => (
                 <RoadmapCard
-                  key={fdbk.id}
+                  key={fdbk._id}
                   status='Planned'
                   color='orange'
-                  feedbackId={fdbk.id}
+                  feedback={fdbk}
+                  user={user}
                   title={fdbk.title}
                   description={fdbk.description}
-                  category={fdbk.category}
-                  upvotes={fdbk.upvotes}
-                  commentsLength={fdbk.comments ? fdbk.comments.length : 0}
+                  category={
+                    fdbk.category === 'ux'
+                      ? fdbk.category.toUpperCase()
+                      : fdbk.category === 'ui'
+                      ? fdbk.category.toUpperCase()
+                      : fdbk.category
+                  }
+                  upvotes={
+                    upvotes &&
+                    upvotes
+                      .filter((upvote) => upvote.feedbackId === fdbk._id)
+                      .map((upvt) => upvt.upvotes)
+                  }
+                  dispatchUpvotes={dispatchUpvotes}
+                  dispatchDownvotes={dispatchDownvotes}
+                  didCurrentUserUpvote={
+                    upvotes
+                      .filter((upvote) => upvote.feedbackId === fdbk._id)
+                      .map((upvote) => upvote.userId.includes(user._id))[0]
+                  }
+                  commentsLength={
+                    comments &&
+                    comments.filter(
+                      (comment) => comment.feedbackId === fdbk._id
+                    ).length
+                  }
                 />
               ))}
           </div>
@@ -247,15 +375,39 @@ const Roadmap = () => {
               .filter((fb) => fb.status === 'in-progress')
               .map((fdbk) => (
                 <RoadmapCard
-                  key={fdbk.id}
+                  key={fdbk._id}
                   status='In Progress'
                   color='purple'
-                  feedbackId={fdbk.id}
+                  feedback={fdbk}
+                  user={user}
                   title={fdbk.title}
                   description={fdbk.description}
-                  category={fdbk.category}
-                  upvotes={fdbk.upvotes}
-                  commentsLength={fdbk.comments ? fdbk.comments.length : 0}
+                  category={
+                    fdbk.category === 'ux'
+                      ? fdbk.category.toUpperCase()
+                      : fdbk.category === 'ui'
+                      ? fdbk.category.toUpperCase()
+                      : fdbk.category
+                  }
+                  upvotes={
+                    upvotes &&
+                    upvotes
+                      .filter((upvote) => upvote.feedbackId === fdbk._id)
+                      .map((upvt) => upvt.upvotes)
+                  }
+                  dispatchUpvotes={dispatchUpvotes}
+                  dispatchDownvotes={dispatchDownvotes}
+                  didCurrentUserUpvote={
+                    upvotes
+                      .filter((upvote) => upvote.feedbackId === fdbk._id)
+                      .map((upvote) => upvote.userId.includes(user._id))[0]
+                  }
+                  commentsLength={
+                    comments &&
+                    comments.filter(
+                      (comment) => comment.feedbackId === fdbk._id
+                    ).length
+                  }
                 />
               ))}
           </div>
@@ -266,15 +418,39 @@ const Roadmap = () => {
               .filter((fb) => fb.status === 'live')
               .map((fdbk) => (
                 <RoadmapCard
-                  key={fdbk.id}
+                  key={fdbk._id}
                   status='Live'
                   color='light-blue'
-                  feedbackId={fdbk.id}
+                  feedback={fdbk}
+                  user={user}
                   title={fdbk.title}
                   description={fdbk.description}
-                  category={fdbk.category}
-                  upvotes={fdbk.upvotes}
-                  commentsLength={fdbk.comments ? fdbk.comments.length : 0}
+                  category={
+                    fdbk.category === 'ux'
+                      ? fdbk.category.toUpperCase()
+                      : fdbk.category === 'ui'
+                      ? fdbk.category.toUpperCase()
+                      : fdbk.category
+                  }
+                  upvotes={
+                    upvotes &&
+                    upvotes
+                      .filter((upvote) => upvote.feedbackId === fdbk._id)
+                      .map((upvt) => upvt.upvotes)
+                  }
+                  dispatchUpvotes={dispatchUpvotes}
+                  dispatchDownvotes={dispatchDownvotes}
+                  didCurrentUserUpvote={
+                    upvotes
+                      .filter((upvote) => upvote.feedbackId === fdbk._id)
+                      .map((upvote) => upvote.userId.includes(user._id))[0]
+                  }
+                  commentsLength={
+                    comments &&
+                    comments.filter(
+                      (comment) => comment.feedbackId === fdbk._id
+                    ).length
+                  }
                 />
               ))}
           </div>

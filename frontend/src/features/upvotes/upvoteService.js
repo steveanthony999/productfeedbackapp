@@ -10,7 +10,7 @@ const getUpvotes = async (token) => {
     },
   };
 
-  const res = await axios.get(BACKEND_API_URL + '/upvotes', config);
+  const res = await axios.get(BACKEND_API_URL + 'upvotes', config);
 
   return res.data;
 };
@@ -24,7 +24,7 @@ const addUpvote = async (upvoteId, upvoteData, token) => {
   };
 
   const res = await axios.post(
-    BACKEND_API_URL + '/upvotes/' + upvoteId,
+    BACKEND_API_URL + 'upvotes/' + upvoteId,
     upvoteData,
     config
   );
@@ -41,7 +41,7 @@ const downvote = async (upvoteId, downvoteData, token) => {
   };
 
   const res = await axios.put(
-    BACKEND_API_URL + '/upvotes/' + upvoteId,
+    BACKEND_API_URL + 'upvotes/' + upvoteId,
     downvoteData,
     config
   );

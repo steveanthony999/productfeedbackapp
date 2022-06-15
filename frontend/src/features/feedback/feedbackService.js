@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-const API_URL = 'https://productfeedbackapp.herokuapp.com/productRequests/';
 const BACKEND_API_URL = '/api/feedback/';
 
 // Create New Feedback
@@ -28,7 +27,7 @@ const getFeedback = async (filteredItem, token) => {
 
   if (filteredItem) {
     const newProductRequests = res.data.filter(
-      (item) => item.category === filteredItem
+      (item) => item.category.toLowerCase() === filteredItem.toLowerCase()
     );
 
     return newProductRequests;

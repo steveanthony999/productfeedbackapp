@@ -51,21 +51,21 @@ const addUpvote = asyncHandler(async (req, res) => {
     }
   );
 
-  const updatedUser = await User.findOneAndUpdate(
+  await User.findOneAndUpdate(
     { _id: user._id },
     { $addToSet: { upvoteId: [upvote._id] } },
     { new: true, upsert: true }
   );
 
-  updatedUser.save();
+  // updatedUser.save();
 
-  const updatedFeedback = await Feedback.findOneAndUpdate(
+  await Feedback.findOneAndUpdate(
     { _id: req.body.feedbackId },
     { $inc: { upvoteCount: 1 } },
     { new: true, upsert: true }
   );
 
-  updatedFeedback.save();
+  // updatedFeedback.save();
 
   res.status(200).json(upvote);
 });
@@ -99,23 +99,23 @@ const downvote = asyncHandler(async (req, res) => {
     }
   );
 
-  downUpvote.save();
+  // downUpvote.save();
 
-  const updatedUser = await User.findOneAndUpdate(
+  await User.findOneAndUpdate(
     { _id: user._id },
     { $pull: { upvoteId: downUpvote._id } },
     { new: true, upsert: true }
   );
 
-  updatedUser.save();
+  // updatedUser.save();
 
-  const updatedFeedback = await Feedback.findOneAndUpdate(
+  await Feedback.findOneAndUpdate(
     { _id: req.body.feedbackId },
     { $inc: { upvoteCount: -1 } },
     { new: true, upsert: true }
   );
 
-  updatedFeedback.save();
+  // updatedFeedback.save();
 
   res.status(200).json(downUpvote);
 });

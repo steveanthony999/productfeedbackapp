@@ -50,27 +50,24 @@ const addComment = asyncHandler(async (req, res) => {
     isReplyingToReply: req.body.isReplyingToReply,
   });
 
-  const updatedUser = await User.findOneAndUpdate(
+  await User.findOneAndUpdate(
     { _id: user._id },
     { $addToSet: { commentId: [comment._id] } },
     { new: true, upsert: true }
   );
 
-  updatedUser.save();
-
-  const updatedFeedback = await Feedback.findOneAndUpdate(
+  await Feedback.findOneAndUpdate(
     { _id: req.body.feedbackId },
     { $addToSet: { commentId: [comment._id] } },
     { new: true, upsert: true }
   );
-
-  updatedFeedback.save();
 
   res.status(200).json(comment);
 });
 
 // ======================================================================================
 // ======================================================================================
+
 module.exports = {
   getComments,
   addComment,

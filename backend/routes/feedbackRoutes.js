@@ -3,7 +3,7 @@ const router = express.Router();
 const {
   getFeedback,
   createFeedback,
-  getSingleFeedback,
+  //   getSingleFeedback,
   deleteFeedback,
   updateFeedback,
 } = require('../controllers/feedbackController');
@@ -22,7 +22,7 @@ router.route('/').get(protect, getFeedback).post(protect, createFeedback);
 
 router
   .route('/:id')
-  .get(protect, getSingleFeedback)
+  //   .get(protect, getSingleFeedback)
   .delete(protect, deleteFeedback)
   .put(protect, updateFeedback);
 

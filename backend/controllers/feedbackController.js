@@ -25,36 +25,6 @@ const getFeedback = asyncHandler(async (req, res) => {
   res.status(200).json(feedback);
 });
 
-// @desc    Get User Single Feedback
-// @route   GET /api/feedback/:id
-// @access  Private
-const getSingleFeedback = asyncHandler(async (req, res) => {
-  // Get user using the id in the JWT
-  const user = await User.findById(req.user.id);
-
-  if (!user) {
-    res.status(401);
-
-    throw new Error('User not found');
-  }
-
-  const feedback = await Feedback.findById(req.params.id); // Gets single feedback from url
-
-  if (!feedback) {
-    res.status(404);
-
-    throw new Error('Feedback not found');
-  }
-
-  if (feedback.user.toString() !== req.user.id) {
-    res.status(401);
-
-    throw new Error('Not Authorized');
-  }
-
-  res.status(200).json(feedback);
-});
-
 // ======================================================================================
 // @desc    Create New Feedback
 // @route   POST /api/feedback
@@ -93,13 +63,13 @@ const createFeedback = asyncHandler(async (req, res) => {
     userId: [user._id],
   });
 
-  const updatedUser = await User.findOneAndUpdate(
+  await User.findOneAndUpdate(
     { _id: user._id },
     { $addToSet: { upvoteId: [upvote._id], feedbackId: [feedback._id] } },
     { new: true, upsert: true }
   );
 
-  updatedUser.save();
+  //   updatedUser.save();
 
   res.status(201).json(feedback);
 });
@@ -127,6 +97,7 @@ const deleteFeedback = asyncHandler(async (req, res) => {
     throw new Error('Feedback not found');
   }
 
+  //   *** Deletes the feedback, upvotes, and comments IDs from all users
   const upvote = await Upvote.findOne({
     feedbackId: { $eq: feedback._id },
   });
@@ -135,37 +106,20 @@ const deleteFeedback = asyncHandler(async (req, res) => {
     feedbackId: feedback._id,
   });
 
-  //   const updatedUser = await User.findOneAndUpdate(
-  //     { _id: user._id },
-  //     {
-  //       $pullAll: {
-  //         feedbackId: [feedback._id],
-  //         upvoteId: [upvote._id],
-  //         commentId: comment.map((x) => x._id),
-  //       },
-  //     },
-  //     { new: true, upsert: true }
-  //   );
-
-  //   updatedUser.save();
-
-  const allUsers = await User.updateMany(
-    {
-      $pullAll: {
-        feedbackId: [feedback._id],
-        upvoteId: [upvote._id],
-        commentId: comment.map((x) => x._id),
-      },
+  await User.updateMany({
+    $pullAll: {
+      feedbackId: [feedback._id],
+      upvoteId: [upvote._id],
+      commentId: comment.map((x) => x._id),
     },
-    { new: true, upsert: true }
-  );
+  });
 
-  allUsers.save();
-
+  //   *** Deletes the upvotes document associated with the feedback
   await Upvote.findOneAndDelete({
     feedbackId: { $eq: feedback._id },
   });
 
+  //   *** Deletes the comments documents associated with the feedback
   await Comment.deleteMany({
     feedbackId: { $eq: feedback._id },
   });
@@ -196,12 +150,6 @@ const updateFeedback = asyncHandler(async (req, res) => {
     throw new Error('Feedback not found');
   }
 
-  //   if (feedback.user.toString() !== req.user.id) {
-  //     res.status(401);
-
-  //     throw new Error('Not Authorized');
-  //   }
-
   const updatedFeedback = await Feedback.findByIdAndUpdate(
     req.params.id,
     req.body,
@@ -211,10 +159,12 @@ const updateFeedback = asyncHandler(async (req, res) => {
   res.status(200).json(updatedFeedback);
 });
 
+// ======================================================================================
+// ======================================================================================
+
 module.exports = {
   getFeedback,
   createFeedback,
-  getSingleFeedback,
   deleteFeedback,
   updateFeedback,
 };
