@@ -1,0 +1,67 @@
+@import '../helpers/variables.scss';
+
+.RegisterPage {
+  width: 100vw;
+  margin-bottom: 129px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .RegisterPage-container {
+    width: 540px;
+    // margin-top: 72px;
+    padding: 40px 42px;
+    padding-top: 48px;
+    background: $white;
+    position: relative;
+
+    .RegisterPage-icon {
+      width: 56px;
+      height: 56px;
+      background: radial-gradient(
+        128.88% 128.88% at 103.9% -10.39%,
+        #e84d70 0%,
+        #a337f6 53.09%,
+        #28a7ed 100%
+      );
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: -31px;
+    }
+
+    form {
+      .RegisterPage-label {
+        display: block;
+        margin-top: 24px;
+        margin-left: 6px;
+
+        &:first-child {
+          margin-top: 36px;
+        }
+      }
+
+      input {
+        margin-top: 24px;
+      }
+    }
+
+    .RegisterPage-button {
+      width: 100%;
+      margin-top: 48px;
+    }
+
+    .RegisterPage-link {
+      margin-top: 24px;
+      margin-bottom: 24px;
+      text-align: center;
+
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+}

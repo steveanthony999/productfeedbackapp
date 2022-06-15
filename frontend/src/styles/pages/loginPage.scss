@@ -1,0 +1,66 @@
+@import '../helpers/variables.scss';
+
+.LoginPage {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .LoginPage-container {
+    width: 540px;
+    margin-top: 72px;
+    padding: 40px 42px;
+    padding-top: 48px;
+    background: $white;
+    position: relative;
+
+    .LoginPage-icon {
+      width: 56px;
+      height: 56px;
+      background: radial-gradient(
+        128.88% 128.88% at 103.9% -10.39%,
+        #e84d70 0%,
+        #a337f6 53.09%,
+        #28a7ed 100%
+      );
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: -31px;
+    }
+
+    form {
+      .LoginPage-label {
+        display: block;
+        margin-top: 24px;
+        margin-left: 6px;
+
+        &:first-child {
+          margin-top: 36px;
+        }
+      }
+
+      input {
+        margin-top: 24px;
+      }
+    }
+
+    .LoginPage-button {
+      width: 100%;
+      margin-top: 48px;
+    }
+
+    .LoginPage-link {
+      margin-top: 24px;
+      margin-bottom: 24px;
+      text-align: center;
+
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+}

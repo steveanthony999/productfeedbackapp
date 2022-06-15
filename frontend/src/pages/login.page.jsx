@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { FaUserAlt } from 'react-icons/fa';
+
 import { login, reset } from '../features/auth/authSlice';
+
+import '../styles/pages/loginPage.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -54,44 +58,54 @@ const Login = () => {
   }
 
   return (
-    <>
-      <section className='heading'>
-        <h1>Login</h1>
-        <p>Please log in to see feedback</p>
-      </section>
-
-      <section className='form'>
+    <div className='LoginPage'>
+      <div className='LoginPage-container border'>
+        <div className='LoginPage-icon'>
+          <FaUserAlt color='white' />
+        </div>
+        <h1 className='h1 text-darker-blue'>Login</h1>
         <form onSubmit={onSubmit}>
-          <div className='form-group'>
-            <input
-              type='email'
-              className='form-control'
-              id='email'
-              name='email'
-              value={email}
-              onChange={onChange}
-              placeholder='Enter your email'
-              required
-            />
-          </div>
-          <div className='form-group'>
-            <input
-              type='password'
-              className='form-control'
-              id='password'
-              name='password'
-              value={password}
-              onChange={onChange}
-              placeholder='Enter password'
-              required
-            />
-          </div>
-          <div className='form-group'>
-            <button className='btn btn-block'>Submit</button>
-          </div>
+          <label
+            htmlFor='email'
+            className='LoginPage-label h4 text-darker-blue'>
+            Email
+          </label>
+          <input
+            type='email'
+            className='input-field border body-2 text-darker-blue'
+            id='email'
+            name='email'
+            value={email}
+            onChange={onChange}
+            placeholder='Enter your email'
+            required
+          />
+          <label
+            htmlFor='password'
+            className='LoginPage-label h4 text-darker-blue'>
+            Password
+          </label>
+          <input
+            type='password'
+            className='input-field border body-2 text-darker-blue'
+            id='password'
+            name='password'
+            value={password}
+            onChange={onChange}
+            placeholder='Enter password'
+            required
+          />
+          <button className='LoginPage-button button button-purple border h4 text-very-light'>
+            Login
+          </button>
         </form>
-      </section>
-    </>
+        <div className='LoginPage-link'>
+          <Link to='/register' className='body-3 text-blue'>
+            Need an account?
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 };
 export default Login;

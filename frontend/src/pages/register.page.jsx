@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { FaUserAlt } from 'react-icons/fa';
+
 import { register, reset } from '../features/auth/authSlice';
+
+import '../styles/pages/registerPage.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -65,80 +69,99 @@ const Register = () => {
   }
 
   return (
-    <>
-      <section className='heading'>
-        <h1>Register</h1>
-        <p>Please create an account</p>
-      </section>
-
-      <section className='form'>
+    <div className='RegisterPage'>
+      <div className='RegisterPage-container border'>
+        <div className='RegisterPage-icon'>
+          <FaUserAlt color='white' />
+        </div>
+        <h1 className='h1 text-darker-blue'>Register</h1>
         <form onSubmit={onSubmit}>
-          <div className='form-group'>
-            <input
-              type='text'
-              className='form-control'
-              id='name'
-              name='name'
-              value={name}
-              onChange={onChange}
-              placeholder='Enter your name'
-              required
-            />
-          </div>
-          <div className='form-group'>
-            <input
-              type='text'
-              className='form-control'
-              id='username'
-              name='username'
-              value={username}
-              onChange={onChange}
-              placeholder='Enter your username'
-              required
-            />
-          </div>
-          <div className='form-group'>
-            <input
-              type='email'
-              className='form-control'
-              id='email'
-              name='email'
-              value={email}
-              onChange={onChange}
-              placeholder='Enter your email'
-              required
-            />
-          </div>
-          <div className='form-group'>
-            <input
-              type='password'
-              className='form-control'
-              id='password'
-              name='password'
-              value={password}
-              onChange={onChange}
-              placeholder='Enter password'
-              required
-            />
-          </div>
-          <div className='form-group'>
-            <input
-              type='password'
-              className='form-control'
-              id='password2'
-              name='password2'
-              value={password2}
-              onChange={onChange}
-              placeholder='Confirm password'
-              required
-            />
-          </div>
-          <div className='form-group'>
-            <button className='btn btn-block'>Submit</button>
-          </div>
+          <label
+            htmlFor='name'
+            className='RegisterPage-label h4 text-darker-blue'>
+            Name
+          </label>
+          <input
+            type='text'
+            className='input-field border body-2 text-darker-blue'
+            id='name'
+            name='name'
+            value={name}
+            onChange={onChange}
+            placeholder='Enter your name'
+            required
+          />
+          <label
+            htmlFor='username'
+            className='RegisterPage-label h4 text-darker-blue'>
+            Username
+          </label>
+          <input
+            type='text'
+            className='input-field border body-2 text-darker-blue'
+            id='username'
+            name='username'
+            value={username}
+            onChange={onChange}
+            placeholder='Enter your username'
+            required
+          />
+          <label
+            htmlFor='email'
+            className='RegisterPage-label h4 text-darker-blue'>
+            Email
+          </label>
+          <input
+            type='email'
+            className='input-field border body-2 text-darker-blue'
+            id='email'
+            name='email'
+            value={email}
+            onChange={onChange}
+            placeholder='Enter your email'
+            required
+          />
+          <label
+            htmlFor='password'
+            className='RegisterPage-label h4 text-darker-blue'>
+            Password
+          </label>
+          <input
+            type='password'
+            className='input-field border body-2 text-darker-blue'
+            id='password'
+            name='password'
+            value={password}
+            onChange={onChange}
+            placeholder='Enter password'
+            required
+          />
+          <label
+            htmlFor='password2'
+            className='RegisterPage-label h4 text-darker-blue'>
+            Confirm Password
+          </label>
+          <input
+            type='password'
+            className='input-field border body-2 text-darker-blue'
+            id='password2'
+            name='password2'
+            value={password2}
+            onChange={onChange}
+            placeholder='Confirm password'
+            required
+          />
+          <button className='RegisterPage-button button button-purple border h4 text-very-light'>
+            Register
+          </button>
         </form>
-      </section>
-    </>
+        <div className='RegisterPage-link'>
+          <Link to='/login' className='body-3 text-blue'>
+            Already have an account?
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 };
 export default Register;

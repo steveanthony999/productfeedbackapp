@@ -1,0 +1,73 @@
+.RegisterPage {
+  width: 100vw;
+  margin-bottom: 129px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.RegisterPage .RegisterPage-container {
+  width: 540px;
+  padding: 40px 42px;
+  padding-top: 48px;
+  background: #ffffff;
+  position: relative;
+}
+
+.RegisterPage .RegisterPage-container .RegisterPage-icon {
+  width: 56px;
+  height: 56px;
+  background: radial-gradient(128.88% 128.88% at 103.9% -10.39%, #e84d70 0%, #a337f6 53.09%, #28a7ed 100%);
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  top: -31px;
+}
+
+.RegisterPage .RegisterPage-container form .RegisterPage-label {
+  display: block;
+  margin-top: 24px;
+  margin-left: 6px;
+}
+
+.RegisterPage .RegisterPage-container form .RegisterPage-label:first-child {
+  margin-top: 36px;
+}
+
+.RegisterPage .RegisterPage-container form input {
+  margin-top: 24px;
+}
+
+.RegisterPage .RegisterPage-container .RegisterPage-button {
+  width: 100%;
+  margin-top: 48px;
+}
+
+.RegisterPage .RegisterPage-container .RegisterPage-link {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.RegisterPage .RegisterPage-container .RegisterPage-link a {
+  text-decoration: underline;
+}
+/*# sourceMappingURL=registerPage.css.map */

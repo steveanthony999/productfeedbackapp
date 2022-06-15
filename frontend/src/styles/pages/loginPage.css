@@ -1,0 +1,73 @@
+.LoginPage {
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.LoginPage .LoginPage-container {
+  width: 540px;
+  margin-top: 72px;
+  padding: 40px 42px;
+  padding-top: 48px;
+  background: #ffffff;
+  position: relative;
+}
+
+.LoginPage .LoginPage-container .LoginPage-icon {
+  width: 56px;
+  height: 56px;
+  background: radial-gradient(128.88% 128.88% at 103.9% -10.39%, #e84d70 0%, #a337f6 53.09%, #28a7ed 100%);
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  top: -31px;
+}
+
+.LoginPage .LoginPage-container form .LoginPage-label {
+  display: block;
+  margin-top: 24px;
+  margin-left: 6px;
+}
+
+.LoginPage .LoginPage-container form .LoginPage-label:first-child {
+  margin-top: 36px;
+}
+
+.LoginPage .LoginPage-container form input {
+  margin-top: 24px;
+}
+
+.LoginPage .LoginPage-container .LoginPage-button {
+  width: 100%;
+  margin-top: 48px;
+}
+
+.LoginPage .LoginPage-container .LoginPage-link {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.LoginPage .LoginPage-container .LoginPage-link a {
+  text-decoration: underline;
+}
+/*# sourceMappingURL=loginPage.css.map */
