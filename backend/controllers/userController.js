@@ -4,9 +4,11 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/userModel');
 
+// ======================================================================================
 // @desc    Register a user
 // @route   /api/users
 // @access  Public
+// ======================================================================================
 const registerUser = asyncHandler(async (req, res) => {
   const { name, username, image, email, password } = req.body;
 
@@ -52,9 +54,11 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
+// ======================================================================================
 // @desc    Login a user
 // @route   /api/users/login
 // @access  Public
+// ======================================================================================
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
@@ -75,9 +79,11 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
+// ======================================================================================
 // @desc    Get Current User
 // @route   /api/users/me
 // @access  Private
+// ======================================================================================
 const getMe = asyncHandler(async (req, res) => {
   const user = {
     id: req.user._id,
@@ -90,9 +96,11 @@ const getMe = asyncHandler(async (req, res) => {
   res.status(200).json(user);
 });
 
+// ======================================================================================
 // @desc    Get all users
 // @route   /api/users/getAll
 // @access  Private
+// ======================================================================================
 const getAll = asyncHandler(async (req, res) => {
   // Get user using the id in the JWT
   const user = await User.findById(req.user.id);
@@ -109,9 +117,11 @@ const getAll = asyncHandler(async (req, res) => {
   res.status(200).json(users);
 });
 
+// ======================================================================================
 // @desc    Get Single User
 // @route   GET /api/users/:id
 // @access  Private
+// ======================================================================================
 const getUser = asyncHandler(async (req, res) => {
   // Get user using the id in the JWT
   const user = await User.findById(req.user.id);
@@ -132,6 +142,9 @@ const getUser = asyncHandler(async (req, res) => {
 
   res.status(200).json(singleUser);
 });
+
+// ======================================================================================
+// ======================================================================================
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {

@@ -4,9 +4,11 @@ const User = require('../models/userModel');
 const Feedback = require('../models/feedbackModel');
 const Upvote = require('../models/upvoteModel');
 
+// ======================================================================================
 // @desc    Get Upvotes for Feedback
 // @route   GET /api/feedback/upvotes
 // @access  Private
+// ======================================================================================
 const getUpvotes = asyncHandler(async (req, res) => {
   // Get user using the id in the JWT
   const user = await User.findById(req.user.id);
@@ -57,15 +59,11 @@ const addUpvote = asyncHandler(async (req, res) => {
     { new: true, upsert: true }
   );
 
-  // updatedUser.save();
-
   await Feedback.findOneAndUpdate(
     { _id: req.body.feedbackId },
     { $inc: { upvoteCount: 1 } },
     { new: true, upsert: true }
   );
-
-  // updatedFeedback.save();
 
   res.status(200).json(upvote);
 });
@@ -99,15 +97,11 @@ const downvote = asyncHandler(async (req, res) => {
     }
   );
 
-  // downUpvote.save();
-
   await User.findOneAndUpdate(
     { _id: user._id },
     { $pull: { upvoteId: downUpvote._id } },
     { new: true, upsert: true }
   );
-
-  // updatedUser.save();
 
   await Feedback.findOneAndUpdate(
     { _id: req.body.feedbackId },
@@ -115,11 +109,11 @@ const downvote = asyncHandler(async (req, res) => {
     { new: true, upsert: true }
   );
 
-  // updatedFeedback.save();
-
   res.status(200).json(downUpvote);
 });
 
+// ======================================================================================
+// ======================================================================================
 module.exports = {
   getUpvotes,
   addUpvote,
