@@ -1,0 +1,62 @@
+.UserBox .UserBox-container {
+  width: 255px;
+  margin-top: 24px;
+  padding: 24px;
+  background-color: #fff;
+}
+
+.UserBox .UserBox-container .UserBox-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.UserBox .UserBox-container .UserBox-top .UserBox-user-info {
+  text-align: right;
+}
+
+.UserBox .UserBox-container .UserBox-middle {
+  margin-top: 32px;
+}
+
+.UserBox .UserBox-container .UserBox-middle .UserBox-ul .UserBox-li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.UserBox .UserBox-container .UserBox-middle .UserBox-ul .UserBox-li .UserBox-span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.UserBox .UserBox-button {
+  width: 100%;
+  margin-top: 24px;
+}
+/*# sourceMappingURL=userBox.css.map */

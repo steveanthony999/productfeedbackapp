@@ -21,7 +21,6 @@ const Upvotes = ({
 
   const handleUpvoteClick = (e) => {
     e.preventDefault();
-    // setIsUpvote((prevState) => !prevState);
 
     const upvoteData = {
       feedbackId,

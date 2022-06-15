@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 
+import { getCurrentUser } from '../features/auth/authSlice';
 import { getFeedback, reset } from '../features/feedback/feedbackSlice';
 import {
   getComments,
@@ -20,7 +21,7 @@ import RoadmapBox from '../components/roadmapBox.component';
 import TopBarHome from '../components/topBarHome.component';
 import ProductFeedback from '../components/productFeedback.component';
 import EmptyFeedback from '../components/emptyFeedback.component';
-import UserAuth from '../components/userAuth.component';
+import UserBox from '../components/userBox.component';
 
 import '../styles/pages/home.css';
 import Sidebar from '../components/sidebar';
@@ -30,6 +31,7 @@ const Home = () => {
 
   const user = JSON.parse(localStorage.getItem('user'));
 
+  const { currentUser } = useSelector((state) => state.auth);
   const { feedback, isSuccess } = useSelector((state) => state.feedback);
   const { comments, isSuccess: isCommentSuccess } = useSelector(
     (state) => state.comments
@@ -43,6 +45,13 @@ const Home = () => {
   const [sortOrder, setSortOrder] = useState();
   const [sortedFeedback, setSortedFeedback] = useState(feedback);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    dispatch(getCurrentUser());
+    dispatch(getFeedback());
+    dispatch(getComments());
+    dispatch(getUpvotes());
+  }, [dispatch]);
 
   useEffect(() => {
     return () => {
@@ -123,6 +132,7 @@ const Home = () => {
     const upvoteId = votes[0]._id;
     await dispatch(addUpvote({ upvoteId, ...data }));
     dispatch(getUpvotes());
+    dispatch(getCurrentUser());
   };
 
   const dispatchDownvotes = async (data) => {
@@ -133,13 +143,8 @@ const Home = () => {
     const upvoteId = votes[0]._id;
     await dispatch(downvote({ upvoteId, ...data }));
     dispatch(getUpvotes());
+    dispatch(getCurrentUser());
   };
-
-  useEffect(() => {
-    dispatch(getFeedback());
-    dispatch(getComments());
-    dispatch(getUpvotes());
-  }, [dispatch]);
 
   return (
     <div className='Home'>
@@ -148,7 +153,26 @@ const Home = () => {
           <Marquee passIsMenuOpen={passIsMenuOpen} />
           {!isMobile && <CategoryBox />}
           {!isMobile && <RoadmapBox feedback={feedback} />}
-          {!isMobile && <UserAuth />}
+          {!isMobile && (
+            <UserBox
+              user={user}
+              feedbackLength={
+                currentUser &&
+                currentUser.feedbackId &&
+                currentUser.feedbackId.length
+              }
+              upvotesLength={
+                currentUser &&
+                currentUser.upvoteId &&
+                currentUser.upvoteId.length
+              }
+              commentsLength={
+                currentUser &&
+                currentUser.commentId &&
+                currentUser.commentId.length
+              }
+            />
+          )}
         </div>
         <div className='Home-right'>
           <Sidebar isMenuOpen={isMenuOpen} feedback={feedback} />

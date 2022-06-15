@@ -6,10 +6,12 @@ import '../styles/components/emptyFeedback.css';
 const EmptyFeedback = () => {
   return (
     <div className='EmptyFeedback border'>
-      <div className='container'>
+      <div className='EmptyFeedback-container'>
         <img src={IllustrationEmpty} alt='empty' width='130px' />
-        <h1 className='h1 text-darker-blue'>There is no feedback yet.</h1>
-        <p>
+        <h1 className='h1 text-darker-blue EmptyFeedback-h1'>
+          There is no feedback yet.
+        </h1>
+        <p className='EmptyFeedback-p'>
           Got a suggestion? Found a bug that needs to be squashed? We love
           hearing about new ideas to improve our app.
         </p>

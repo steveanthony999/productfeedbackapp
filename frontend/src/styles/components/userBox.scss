@@ -1,0 +1,44 @@
+@import '../helpers/variables.scss';
+
+.UserBox {
+  .UserBox-container {
+    width: 255px;
+    margin-top: 24px;
+    padding: 24px;
+    background-color: #fff;
+
+    .UserBox-top {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .UserBox-user-info {
+        text-align: right;
+      }
+    }
+
+    .UserBox-middle {
+      margin-top: 32px;
+
+      .UserBox-ul {
+        .UserBox-li {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+
+          .UserBox-span {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+          }
+        }
+      }
+    }
+  }
+
+  .UserBox-button {
+    width: 100%;
+    margin-top: 24px;
+  }
+}

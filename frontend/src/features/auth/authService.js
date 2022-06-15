@@ -30,7 +30,7 @@ const login = async (userData) => {
 };
 
 // Get Current User
-const getUser = async (token) => {
+const getCurrentUser = async (token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -46,7 +46,7 @@ const authService = {
   register,
   logout,
   login,
-  getUser,
+  getCurrentUser,
 };
 
 export default authService;
