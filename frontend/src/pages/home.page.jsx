@@ -28,6 +28,7 @@ import Sidebar from '../components/sidebar';
 
 const Home = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
+  const isTablet = useMediaQuery({ query: '(max-width: 1110px)' });
 
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -153,7 +154,7 @@ const Home = () => {
           <Marquee passIsMenuOpen={passIsMenuOpen} />
           {!isMobile && <CategoryBox />}
           {!isMobile && <RoadmapBox feedback={feedback} />}
-          {!isMobile && (
+          {!isMobile && !isTablet && (
             <UserBox
               user={user}
               feedbackLength={

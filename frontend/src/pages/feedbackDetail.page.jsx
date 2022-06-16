@@ -25,7 +25,7 @@ import '../styles/pages/feedbackPage.css';
 const FeedbackDetail = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { feedback, replies } = location.state;
+  const { feedback, replies, fromRoadmap } = location.state;
   const { feedbackId } = useParams();
 
   const { users } = useSelector((state) => state.users);
@@ -110,7 +110,10 @@ const FeedbackDetail = () => {
     <div className='FeedbackDetailPage'>
       <div className='container'>
         <div className='top-bar'>
-          <GoBack to='/' styles='text-grey-blue h4' />
+          <GoBack
+            to={fromRoadmap ? '/roadmap' : '/'}
+            styles='text-grey-blue h4'
+          />
           <Link
             to={`/edit-feedback${location.pathname}`}
             state={{ feedback, replies }}

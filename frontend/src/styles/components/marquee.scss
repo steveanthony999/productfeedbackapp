@@ -17,6 +17,21 @@
 @media screen and (max-width: 1110px) {
   .Marquee {
     width: 223px;
+    position: relative;
+
+    .Marquee-top {
+      width: 75%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      position: absolute;
+      top: 16px;
+
+      .Marquee-user-info {
+        text-align: right;
+      }
+    }
 
     .Marquee-h2 {
       margin-top: 108px;

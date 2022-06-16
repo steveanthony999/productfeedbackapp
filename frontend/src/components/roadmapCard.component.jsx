@@ -20,8 +20,10 @@ const RoadmapCard = ({
   dispatchDownvotes,
   commentsLength,
 }) => {
+  const fromRoadmap = true;
+
   return (
-    <Link to={`/feedback/${feedback._id}`} state={{ feedback }}>
+    <Link to={`/feedback/${feedback._id}`} state={{ feedback, fromRoadmap }}>
       <div
         className='RoadmapCard border'
         style={{

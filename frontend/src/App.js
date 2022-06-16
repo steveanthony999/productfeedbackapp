@@ -7,6 +7,7 @@ import EditFeedback from './pages/edit-feedback.page';
 import Roadmap from './pages/roadmap.page';
 import Login from './pages/login.page';
 import Register from './pages/register.page';
+import Profile from './pages/profile.page';
 
 import PrivateRoute from './components/privateRoute.component';
 
@@ -38,6 +39,9 @@ function App() {
         </Route>
         <Route path='/roadmap' element={<PrivateRoute />}>
           <Route path='/roadmap' element={<Roadmap />} />
+        </Route>
+        <Route path='/profile' element={<PrivateRoute />}>
+          <Route path='/profile' element={<Profile />} />
         </Route>
       </Routes>
     </Router>
