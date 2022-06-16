@@ -32,6 +32,10 @@
       .RoadmapPage-right {
         a {
           background-color: $purple;
+
+          &:hover {
+            background-color: $light-purple;
+          }
         }
       }
     }

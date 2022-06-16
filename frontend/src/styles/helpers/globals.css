@@ -31,8 +31,16 @@ input[type='radio']:checked + label {
   color: #fff;
 }
 
+.text-orange {
+  color: #f49f85;
+}
+
 .text-very-light {
   color: #f2f4fe;
+}
+
+.text-light-blue {
+  color: #62bcfa;
 }
 
 .text-blue {
@@ -49,6 +57,10 @@ input[type='radio']:checked + label {
 
 .text-purple {
   color: #ad1fea;
+}
+
+.text-light-purple {
+  color: #c75af6;
 }
 
 .icon-white {
@@ -104,7 +116,6 @@ input[type='radio']:checked + label {
 
 .button {
   padding: 12px 25px;
-  background-color: transparent;
   border: none;
   cursor: pointer;
 }
@@ -123,6 +134,14 @@ input[type='radio']:checked + label {
 
 .button-dark-blue:hover {
   background: #656ea3;
+}
+
+.button-blue {
+  background: #4661e6;
+}
+
+.button-blue:hover {
+  background: #7c91f9;
 }
 
 .button-purple {

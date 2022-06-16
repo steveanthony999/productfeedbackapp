@@ -55,6 +55,10 @@
   background-color: #ad1fea;
 }
 
+.RoadmapPage .RoadmapPage-container .RoadmapPage-top-bar .RoadmapPage-right a:hover {
+  background-color: #c75af6;
+}
+
 .RoadmapPage .RoadmapPage-container .RoadmapPage-middle-container {
   margin-top: 53px;
   display: -ms-grid;

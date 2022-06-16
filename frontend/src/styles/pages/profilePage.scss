@@ -1,0 +1,131 @@
+@import '../helpers/globals.scss';
+@import '../helpers/variables.scss';
+
+.ProfilePage {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .ProfilePage-top-container {
+    width: 540px;
+    display: flex;
+    flex-direction: column;
+
+    .ProfilePage-top-bar {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      a {
+        span {
+          margin-left: 1rem;
+        }
+
+        &:first-child {
+          span {
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        &:last-child {
+          background: $dark-blue;
+
+          &:hover {
+            background: $med-blue;
+          }
+        }
+      }
+    }
+
+    hr {
+      width: 100%;
+      display: block;
+      margin-top: 35px;
+      border-top: 1px solid #8c92b3;
+      opacity: 0.35;
+    }
+
+    .ProfilePage-container {
+      width: 540px;
+      margin-top: 100px;
+      padding: 40px 42px;
+      padding-top: 48px;
+      background: $white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-self: center;
+
+      .ProfilePage-top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+
+        .ProfilePage-user-image-container {
+          position: absolute;
+          top: -100px;
+
+          .ProfilePage-user-image {
+            border-radius: 50%;
+          }
+
+          .ProfilePage-edit-image {
+            width: 40px;
+            height: 40px;
+            background: $purple;
+            border: 6px solid $white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+
+        h1 {
+          margin-top: 27px;
+        }
+      }
+
+      .ProfilePage-middle {
+        width: 408px;
+        margin-top: 35px;
+
+        .ProfilePage-stats-container {
+          width: 100%;
+          margin-top: 35px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-evenly;
+        }
+      }
+
+      .ProfilePage-bottom {
+        width: 408px;
+        margin-top: 48px;
+        text-align: right;
+
+        div {
+          text-decoration: underline;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

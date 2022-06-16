@@ -48,7 +48,6 @@ const Comments = ({ commentProps, users, user, replies, dispatchReply }) => {
         </div>
         <button
           className='text-blue body-3'
-          // onClick={() => setIsReply((prevState) => !prevState)}>
           onClick={() => dispatch(toggleReplyBox({ isOpen, ...commentProps }))}>
           Reply
         </button>

@@ -33,8 +33,16 @@ input[type='radio']:checked + label {
   color: #fff;
 }
 
+.text-orange {
+  color: #f49f85;
+}
+
 .text-very-light {
   color: #f2f4fe;
+}
+
+.text-light-blue {
+  color: $light-blue;
 }
 
 .text-blue {
@@ -51,6 +59,10 @@ input[type='radio']:checked + label {
 
 .text-purple {
   color: $purple;
+}
+
+.text-light-purple {
+  color: $light-purple;
 }
 
 .icon-white {
@@ -105,7 +117,7 @@ input[type='radio']:checked + label {
 
 .button {
   padding: 12px 25px;
-  background-color: transparent;
+  // background-color: transparent;
   border: none;
   cursor: pointer;
 }
@@ -123,6 +135,14 @@ input[type='radio']:checked + label {
 
   &:hover {
     background: $hover-darker-blue;
+  }
+}
+
+.button-blue {
+  background: $dark-blue;
+
+  &:hover {
+    background: $hover-dark-blue;
   }
 }
 

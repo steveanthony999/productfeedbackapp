@@ -1,0 +1,362 @@
+body {
+  background-color: #f7f8fd;
+  margin-top: 94px;
+}
+
+a {
+  text-decoration: none;
+  background: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+input[type='radio'] {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+}
+
+input[type='radio']:checked + label {
+  background: #4661e6 !important;
+  color: #fff;
+}
+
+.border {
+  border-radius: 10px;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-orange {
+  color: #f49f85;
+}
+
+.text-very-light {
+  color: #f2f4fe;
+}
+
+.text-light-blue {
+  color: #62bcfa;
+}
+
+.text-blue {
+  color: #4661e6;
+}
+
+.text-darker-blue {
+  color: #3a4374;
+}
+
+.text-grey-blue {
+  color: #647196;
+}
+
+.text-purple {
+  color: #ad1fea;
+}
+
+.text-light-purple {
+  color: #c75af6;
+}
+
+.icon-white {
+  -webkit-filter: brightness(100);
+          filter: brightness(100);
+}
+
+.h1 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 35px;
+  letter-spacing: -0.33px;
+}
+
+.h2 {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 29px;
+  letter-spacing: -0.25px;
+}
+
+.h3 {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -0.25px;
+}
+
+.h4 {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.2px;
+}
+
+.body-1 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+}
+
+.body-2 {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.body-3 {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.button {
+  padding: 12px 25px;
+  border: none;
+  cursor: pointer;
+}
+
+.button-red {
+  background: #d73737;
+}
+
+.button-red:hover {
+  background: #e98888;
+}
+
+.button-dark-blue {
+  background: #3a4374;
+}
+
+.button-dark-blue:hover {
+  background: #656ea3;
+}
+
+.button-blue {
+  background: #4661e6;
+}
+
+.button-blue:hover {
+  background: #7c91f9;
+}
+
+.button-purple {
+  background: #ad1fea;
+}
+
+.button-purple:hover {
+  background: #c75af6;
+}
+
+.bullet-orange {
+  background-color: #f49f85;
+}
+
+.bullet-purple {
+  background-color: #ad1fea;
+}
+
+.bullet-blue {
+  background-color: #62bcfa;
+}
+
+.user-image {
+  width: 40px;
+  border-radius: 50%;
+}
+
+.bullet {
+  width: 8px;
+  height: 8px;
+  margin-right: 17px;
+  border-radius: 50%;
+}
+
+.input-field {
+  width: 100%;
+  padding: 15px 23px;
+  margin-top: 18px;
+  background: #f7f8fd;
+  border: none;
+}
+
+.ProfilePage {
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.ProfilePage .ProfilePage-top-container {
+  width: 540px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-top-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-top-bar a span {
+  margin-left: 1rem;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-top-bar a:first-child span:hover {
+  text-decoration: underline;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-top-bar a:last-child {
+  background: #4661e6;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-top-bar a:last-child:hover {
+  background: #8397f8;
+}
+
+.ProfilePage .ProfilePage-top-container hr {
+  width: 100%;
+  display: block;
+  margin-top: 35px;
+  border-top: 1px solid #8c92b3;
+  opacity: 0.35;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-container {
+  width: 540px;
+  margin-top: 100px;
+  padding: 40px 42px;
+  padding-top: 48px;
+  background: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-top .ProfilePage-user-image-container {
+  position: absolute;
+  top: -100px;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-top .ProfilePage-user-image-container .ProfilePage-user-image {
+  border-radius: 50%;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-top .ProfilePage-user-image-container .ProfilePage-edit-image {
+  width: 40px;
+  height: 40px;
+  background: #ad1fea;
+  border: 6px solid #ffffff;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-top .ProfilePage-user-image-container .ProfilePage-edit-image:hover {
+  cursor: pointer;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-top h1 {
+  margin-top: 27px;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-middle {
+  width: 408px;
+  margin-top: 35px;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-middle .ProfilePage-stats-container {
+  width: 100%;
+  margin-top: 35px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-bottom {
+  width: 408px;
+  margin-top: 48px;
+  text-align: right;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-bottom div {
+  text-decoration: underline;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-bottom div:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=profilePage.css.map */
