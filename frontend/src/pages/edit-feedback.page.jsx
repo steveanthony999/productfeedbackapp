@@ -184,8 +184,8 @@ const EditFeedback = () => {
                 onClick={() => navigate(-1)}>
                 Cancel
               </button>
-              <button className='button button-purple border h4 text-very-light'>
-                Add Feedback
+              <button className='EditFeedback-button button button-purple border h4 text-very-light'>
+                Update Feedback
               </button>
             </div>
           </form>

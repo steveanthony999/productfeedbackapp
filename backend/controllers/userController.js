@@ -46,6 +46,9 @@ const registerUser = asyncHandler(async (req, res) => {
       username: user.username,
       image: user.image,
       email: user.email,
+      upvoteId: user.upvoteId,
+      feedbackId: user.feedbackId,
+      commentId: user.commentId,
       token: generateToken(user._id),
     });
   } else {
@@ -71,6 +74,9 @@ const loginUser = asyncHandler(async (req, res) => {
       username: user.username,
       image: user.image,
       email: user.email,
+      upvoteId: user.upvoteId,
+      feedbackId: user.feedbackId,
+      commentId: user.commentId,
       token: generateToken(user._id),
     });
   } else {

@@ -8,7 +8,7 @@ import StatsBox from '../components/statsBox.component';
 import '../styles/pages/profilePage.css';
 
 const Profile = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { currentUser } = useSelector((state) => state.auth);
 
   return (
     <div className='ProfilePage'>
@@ -25,7 +25,7 @@ const Profile = () => {
           <div className='ProfilePage-top'>
             <div className='ProfilePage-user-image-container'>
               <img
-                src={user.image}
+                src={currentUser.image}
                 alt='user'
                 width='100px'
                 className='ProfilePage-user-image'
@@ -34,16 +34,28 @@ const Profile = () => {
                 <AiFillCamera color='white' />
               </div>
             </div>
-            <h1 className='h1 text-darker-blue'>{user.name}</h1>
-            <p className='body3 text-grey-blue'>@{user.username}</p>
+            <h1 className='h1 text-darker-blue'>{currentUser.name}</h1>
+            <p className='body3 text-grey-blue'>@{currentUser.username}</p>
           </div>
           <hr />
           <div className='ProfilePage-middle'>
             <h4 className='h4-text-darker-blue'>Stats</h4>
             <div className='ProfilePage-stats-container'>
-              <StatsBox title='Feedback' color='text-orange' />
-              <StatsBox title='Upvotes' color='text-light-purple' />
-              <StatsBox title='Comments' color='text-light-blue' />
+              <StatsBox
+                title='Feedback'
+                color='text-orange'
+                count={currentUser.feedbackId.length}
+              />
+              <StatsBox
+                title='Upvotes'
+                color='text-light-purple'
+                count={currentUser.upvoteId.length}
+              />
+              <StatsBox
+                title='Comments'
+                color='text-light-blue'
+                count={currentUser.commentId.length}
+              />
             </div>
           </div>
           <div className='ProfilePage-bottom'>

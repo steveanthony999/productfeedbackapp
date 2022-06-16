@@ -92,6 +92,10 @@
   margin-left: 0;
 }
 
+.EditFeedbackPage .EditFeedbackPage-container .EditFeedbackPage-middle form .edit-feedback-buttons .EditFeedback-button {
+  margin-left: 16px;
+}
+
 @media screen and (max-width: 588px) {
   .EditFeedbackPage {
     margin-top: 24px;

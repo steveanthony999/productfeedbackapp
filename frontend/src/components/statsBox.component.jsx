@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import '../styles/components/statsBox.css';
 
-const StatsBox = ({ title, color }) => {
+const StatsBox = ({ title, color, count }) => {
   return (
     <Link to='/'>
       <div className='StatsBox border'>
@@ -9,7 +9,7 @@ const StatsBox = ({ title, color }) => {
           <h4 className='StatsBox-h4 h4 text-white'>{title}</h4>
         </div>
         <div className='StatsBox-middle'>
-          <h1 className={`StatsBox-h1 h1 ${color}`}>4</h1>
+          <h1 className={`StatsBox-h1 h1 ${color}`}>{count}</h1>
         </div>
       </div>
     </Link>
