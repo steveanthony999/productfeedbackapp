@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 
 import BackgroundHeaderImg from '../assets/suggestions/desktop/background-header.png';
@@ -5,7 +7,6 @@ import BackgroundHeaderImg from '../assets/suggestions/desktop/background-header
 import HamburgerMenu from './hamburgerMenu';
 
 import '../styles/components/marquee.css';
-import { Link } from 'react-router-dom';
 
 const Marquee = ({ passIsMenuOpen }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
@@ -13,7 +14,7 @@ const Marquee = ({ passIsMenuOpen }) => {
     query: '(max-width: 1110px)',
   });
 
-  const user = JSON.parse(localStorage.getItem('user'));
+  const { currentUser } = useSelector((state) => state.auth);
 
   return (
     <div
@@ -27,15 +28,19 @@ const Marquee = ({ passIsMenuOpen }) => {
             <div className='Marquee-top'>
               <div className='Marquee-user-img'>
                 <img
-                  src={user && user.image}
+                  src={currentUser && currentUser.image}
                   alt='usr'
                   className='user-image'
                   crossOrigin='anonymous'
                 />
               </div>
               <div className='Marquee-user-info'>
-                <h4 className='h4 text-white'>{user && user.name}</h4>
-                <p className='body3 text-white'>@{user && user.username}</p>
+                <h4 className='h4 text-white'>
+                  {currentUser && currentUser.name}
+                </h4>
+                <p className='body3 text-white'>
+                  @{currentUser && currentUser.username}
+                </p>
               </div>
             </div>
           </Link>

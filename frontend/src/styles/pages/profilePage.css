@@ -166,6 +166,7 @@ input[type='radio']:checked + label {
 
 .user-image {
   width: 40px;
+  height: 40px;
   border-radius: 50%;
 }
 
@@ -292,6 +293,8 @@ input[type='radio']:checked + label {
 }
 
 .ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-top .ProfilePage-user-image-container .ProfilePage-user-image {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
 }
 

@@ -166,6 +166,7 @@ input[type='radio']:checked + label {
 
 .user-image {
   width: 40px;
+  height: 40px;
   border-radius: 50%;
 }
 

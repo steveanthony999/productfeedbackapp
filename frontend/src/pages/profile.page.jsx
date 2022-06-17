@@ -1,6 +1,11 @@
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AiFillCamera } from 'react-icons/ai';
+import axios from 'axios';
+
+import { getCurrentUser } from '../features/auth/authSlice';
+import { updateProfilePhoto } from '../features/auth/authSlice';
 
 import GoBack from '../components/goBack.component';
 import StatsBox from '../components/statsBox.component';
@@ -8,7 +13,37 @@ import StatsBox from '../components/statsBox.component';
 import '../styles/pages/profilePage.css';
 
 const Profile = () => {
+  const dispatch = useDispatch();
+
   const { currentUser } = useSelector((state) => state.auth);
+
+  const [userId, setUserId] = useState(currentUser._id);
+  const [selectedImage, setSelectedImage] = useState();
+  const [imageUrl, setImageUrl] = useState();
+
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (selectedImage !== undefined) {
+      const formData = new FormData();
+
+      formData.append('file', selectedImage);
+      formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
+
+      axios
+        .post(
+          `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`,
+          formData
+        )
+        .then((res) => setImageUrl(res.data.secure_url));
+    }
+  }, [selectedImage]);
+
+  useEffect(() => {
+    dispatch(updateProfilePhoto({ userId, imageUrl }));
+  }, [imageUrl]);
 
   return (
     <div className='ProfilePage'>
@@ -25,17 +60,26 @@ const Profile = () => {
           <div className='ProfilePage-top'>
             <div className='ProfilePage-user-image-container'>
               <img
-                src={currentUser.image}
+                src={currentUser && currentUser.image}
                 alt='user'
-                width='100px'
                 className='ProfilePage-user-image'
               />
-              <div className='ProfilePage-edit-image'>
+              <label className='ProfilePage-edit-image' htmlFor='profile-image'>
                 <AiFillCamera color='white' />
-              </div>
+                <input
+                  id='profile-image'
+                  type='file'
+                  hidden
+                  onChange={(e) => setSelectedImage(e.target.files[0])}
+                />
+              </label>
             </div>
-            <h1 className='h1 text-darker-blue'>{currentUser.name}</h1>
-            <p className='body3 text-grey-blue'>@{currentUser.username}</p>
+            <h1 className='h1 text-darker-blue'>
+              {currentUser && currentUser.name}
+            </h1>
+            <p className='body3 text-grey-blue'>
+              @{currentUser && currentUser.username}
+            </p>
           </div>
           <hr />
           <div className='ProfilePage-middle'>
@@ -44,17 +88,17 @@ const Profile = () => {
               <StatsBox
                 title='Feedback'
                 color='text-orange'
-                count={currentUser.feedbackId.length}
+                count={currentUser && currentUser.feedbackId.length}
               />
               <StatsBox
                 title='Upvotes'
                 color='text-light-purple'
-                count={currentUser.upvoteId.length}
+                count={currentUser && currentUser.upvoteId.length}
               />
               <StatsBox
                 title='Comments'
                 color='text-light-blue'
-                count={currentUser.commentId.length}
+                count={currentUser && currentUser.commentId.length}
               />
             </div>
           </div>

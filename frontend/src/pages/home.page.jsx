@@ -156,7 +156,6 @@ const Home = () => {
           {!isMobile && <RoadmapBox feedback={feedback} />}
           {!isMobile && !isTablet && (
             <UserBox
-              user={user}
               feedbackLength={
                 currentUser &&
                 currentUser.feedbackId &&

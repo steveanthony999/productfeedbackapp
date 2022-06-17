@@ -42,11 +42,25 @@ const getCurrentUser = async (token) => {
   return res.data;
 };
 
+// Update Profile Photo
+const updateProfilePhoto = async (userId, imageUrl, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.patch(API_URL + userId, imageUrl, config);
+
+  return res.data;
+};
+
 const authService = {
   register,
   logout,
   login,
   getCurrentUser,
+  updateProfilePhoto,
 };
 
 export default authService;

@@ -34,7 +34,8 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     name,
     username,
-    image,
+    image:
+      'https://res.cloudinary.com/dknh8hdvp/image/upload/v1655404591/profilepics/guest-user_griyvw.jpg',
     email,
     password: hashedPassword,
   });
@@ -92,7 +93,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // ======================================================================================
 const getMe = asyncHandler(async (req, res) => {
   const user = {
-    id: req.user._id,
+    _id: req.user._id,
     email: req.user.email,
     name: req.user.name,
     username: req.user.username,
@@ -153,6 +154,30 @@ const getUser = asyncHandler(async (req, res) => {
 });
 
 // ======================================================================================
+// @desc    Update User Profile Photo
+// @route   PUT /api/users/:id
+// @access  Private
+// ======================================================================================
+const updateProfilePhoto = asyncHandler(async (req, res) => {
+  // Get user using the id in the JWT
+  const user = await User.findById(req.user.id);
+
+  if (!user) {
+    res.status(401);
+
+    throw new Error('User not found');
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(
+    user._id,
+    { image: req.body.imageUrl },
+    { new: true }
+  );
+
+  res.status(200).json(updatedUser);
+});
+
+// ======================================================================================
 // ======================================================================================
 
 const generateToken = (id) => {
@@ -161,4 +186,11 @@ const generateToken = (id) => {
   });
 };
 
-module.exports = { registerUser, loginUser, getMe, getAll, getUser };
+module.exports = {
+  registerUser,
+  loginUser,
+  getMe,
+  getAll,
+  getUser,
+  updateProfilePhoto,
+};

@@ -1,13 +1,15 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { logout, reset } from '../features/auth/authSlice';
 
 import '../styles/components/userBox.css';
 
-const UserBox = ({ user, feedbackLength, upvotesLength, commentsLength }) => {
+const UserBox = ({ feedbackLength, upvotesLength, commentsLength }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const { currentUser } = useSelector((state) => state.auth);
 
   const onLogout = () => {
     dispatch(logout());
@@ -22,15 +24,19 @@ const UserBox = ({ user, feedbackLength, upvotesLength, commentsLength }) => {
           <div className='UserBox-top'>
             <div className='UserBox-user-img'>
               <img
-                src={user && user.image}
+                src={currentUser && currentUser.image}
                 alt='usr'
                 className='user-image'
                 crossOrigin='anonymous'
               />
             </div>
             <div className='UserBox-user-info'>
-              <h4 className='h4 text-darker-blue'>{user && user.name}</h4>
-              <p className='body3 text-grey-blue'>@{user && user.username}</p>
+              <h4 className='h4 text-darker-blue'>
+                {currentUser && currentUser.name}
+              </h4>
+              <p className='body3 text-grey-blue'>
+                @{currentUser && currentUser.username}
+              </p>
             </div>
           </div>
           <div className='UserBox-middle'>
