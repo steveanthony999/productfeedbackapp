@@ -178,6 +178,29 @@ const updateProfilePhoto = asyncHandler(async (req, res) => {
 });
 
 // ======================================================================================
+// @desc    Update Profile
+// @route   PUT /api/users/:id
+// @access  Private
+// ======================================================================================
+const updateProfileInfo = asyncHandler(async (req, res) => {
+  // Get user using the id in the JWT
+  const user = await User.findById(req.user.id);
+
+  if (!user) {
+    res.status(401);
+
+    throw new Error('User not found');
+  }
+
+  const updatedProfile = await User.findByIdAndUpdate(user._id, req.body, {
+    new: true,
+  });
+
+  console.log(updatedProfile);
+  res.status(200).json(updatedProfile);
+});
+
+// ======================================================================================
 // ======================================================================================
 
 const generateToken = (id) => {
@@ -193,4 +216,5 @@ module.exports = {
   getAll,
   getUser,
   updateProfilePhoto,
+  updateProfileInfo,
 };

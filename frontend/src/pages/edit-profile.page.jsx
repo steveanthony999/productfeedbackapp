@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import { updateProfileInfo } from '../features/auth/authSlice';
 
 import IconArrowLeft from '../assets/shared/icon-arrow-left.svg';
 import IconEditFeedback from '../assets/shared/icon-edit-feedback.svg';
@@ -9,17 +11,34 @@ import '../styles/pages/editProfilePage.css';
 
 const EditProfile = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { currentUser } = useSelector((state) => state.auth);
+
+  const userId = currentUser._id;
 
   const [name, setName] = useState(currentUser.name);
   const [username, setUsername] = useState(currentUser.username);
   const [email, setEmail] = useState(currentUser.email);
-  const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
 
   const handleSubmit = (e) => {
-    console.log('submitted');
+    e.preventDefault();
+
+    dispatch(
+      updateProfileInfo({
+        userId,
+        name,
+        username,
+        email,
+      })
+    );
+
+    setName('');
+    setUsername('');
+    setEmail('');
+    setTimeout(() => {
+      navigate('/profile');
+    }, 1000);
   };
 
   const onDeleteUser = (e) => {
@@ -70,22 +89,6 @@ const EditProfile = () => {
               className='input-field border body-2 text-darker-blue'
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-            />
-            <h4 className='h4 text-darker-blue'>Password</h4>
-            <p className='body-2 text-grey-blue'>Change your password</p>
-            <input
-              type='password'
-              className='input-field border body-2 text-darker-blue'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <h4 className='h4 text-darker-blue'>Confirm Password</h4>
-            <p className='body-2 text-grey-blue'>Confirm your new password</p>
-            <input
-              type='password'
-              className='input-field border body-2 text-darker-blue'
-              value={password2}
-              onChange={(e) => setPassword2(e.target.value)}
             />
             <div className='edit-profile-buttons'>
               <button

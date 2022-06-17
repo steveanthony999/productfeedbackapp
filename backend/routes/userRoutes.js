@@ -7,6 +7,7 @@ const {
   getAll,
   getUser,
   updateProfilePhoto,
+  updateProfileInfo,
 } = require('../controllers/userController');
 
 const { protect } = require('../middleware/authMiddleware');
@@ -22,5 +23,7 @@ router.get('/getAll', protect, getAll);
 router.get('/:id', protect, getUser);
 
 router.patch('/:id', protect, updateProfilePhoto);
+
+router.put('/:id', protect, updateProfileInfo);
 
 module.exports = router;

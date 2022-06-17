@@ -17,7 +17,7 @@ const Profile = () => {
 
   const { currentUser } = useSelector((state) => state.auth);
 
-  const [userId, setUserId] = useState(currentUser._id);
+  const userId = currentUser._id;
   const [selectedImage, setSelectedImage] = useState();
   const [imageUrl, setImageUrl] = useState();
 
@@ -28,10 +28,8 @@ const Profile = () => {
   useEffect(() => {
     if (selectedImage !== undefined) {
       const formData = new FormData();
-
       formData.append('file', selectedImage);
       formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
-
       axios
         .post(
           `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`,
@@ -42,7 +40,10 @@ const Profile = () => {
   }, [selectedImage]);
 
   useEffect(() => {
-    dispatch(updateProfilePhoto({ userId, imageUrl }));
+    if (imageUrl !== undefined) {
+      dispatch(updateProfilePhoto({ userId, imageUrl }));
+      setImageUrl();
+    }
   }, [imageUrl]);
 
   return (
@@ -60,7 +61,7 @@ const Profile = () => {
           <div className='ProfilePage-top'>
             <div className='ProfilePage-user-image-container'>
               <img
-                src={currentUser && currentUser.image}
+                src={currentUser && currentUser.image && currentUser.image}
                 alt='user'
                 className='ProfilePage-user-image'
               />
@@ -75,10 +76,10 @@ const Profile = () => {
               </label>
             </div>
             <h1 className='h1 text-darker-blue'>
-              {currentUser && currentUser.name}
+              {currentUser && currentUser.name && currentUser.name}
             </h1>
             <p className='body3 text-grey-blue'>
-              @{currentUser && currentUser.username}
+              @{currentUser && currentUser.username && currentUser.username}
             </p>
           </div>
           <hr />
@@ -88,17 +89,29 @@ const Profile = () => {
               <StatsBox
                 title='Feedback'
                 color='text-orange'
-                count={currentUser && currentUser.feedbackId.length}
+                count={
+                  currentUser &&
+                  currentUser.feedbackId &&
+                  currentUser.feedbackId.length
+                }
               />
               <StatsBox
                 title='Upvotes'
                 color='text-light-purple'
-                count={currentUser && currentUser.upvoteId.length}
+                count={
+                  currentUser &&
+                  currentUser.upvoteId &&
+                  currentUser.upvoteId.length
+                }
               />
               <StatsBox
                 title='Comments'
                 color='text-light-blue'
-                count={currentUser && currentUser.commentId.length}
+                count={
+                  currentUser &&
+                  currentUser.commentId &&
+                  currentUser.commentId.length
+                }
               />
             </div>
           </div>
