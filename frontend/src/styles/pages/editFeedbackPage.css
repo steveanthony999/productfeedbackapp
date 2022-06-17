@@ -21,6 +21,7 @@
 }
 
 .EditFeedbackPage .EditFeedbackPage-container .EditFeedbackPage-top-bar .navBack {
+  display: inline;
   cursor: pointer;
 }
 

@@ -1,0 +1,71 @@
+@import '../helpers/variables.scss';
+
+.EditProfilePage {
+  width: 100vw;
+  margin-bottom: 129px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .EditProfilePage-container {
+    width: 540px;
+
+    .EditProfilePage-top-bar {
+      .navBack {
+        display: inline;
+        cursor: pointer;
+
+        span {
+          margin-left: 1rem;
+        }
+
+        span {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .EditProfilePage-middle {
+      width: 100%;
+      margin-top: 72px;
+      padding: 40px 42px;
+      padding-top: 48px;
+      background: #fff;
+      position: relative;
+
+      .EditProfilePage-top-image {
+        position: absolute;
+        top: -31px;
+      }
+
+      form {
+        h4 {
+          margin-top: 40px;
+        }
+
+        .edit-profile-buttons {
+          width: 100%;
+          margin-top: 32px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-end;
+
+          button {
+            &:first-child {
+              margin-right: auto;
+              margin-left: 0;
+            }
+          }
+
+          .EditProfile-button {
+            margin-left: 16px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+.EditProfilePage {
+  width: 100vw;
+  margin-bottom: 129px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.EditProfilePage .EditProfilePage-container {
+  width: 540px;
+}
+
+.EditProfilePage .EditProfilePage-container .EditProfilePage-top-bar .navBack {
+  display: inline;
+  cursor: pointer;
+}
+
+.EditProfilePage .EditProfilePage-container .EditProfilePage-top-bar .navBack span {
+  margin-left: 1rem;
+}
+
+.EditProfilePage .EditProfilePage-container .EditProfilePage-top-bar .navBack span:hover {
+  text-decoration: underline;
+}
+
+.EditProfilePage .EditProfilePage-container .EditProfilePage-middle {
+  width: 100%;
+  margin-top: 72px;
+  padding: 40px 42px;
+  padding-top: 48px;
+  background: #fff;
+  position: relative;
+}
+
+.EditProfilePage .EditProfilePage-container .EditProfilePage-middle .EditProfilePage-top-image {
+  position: absolute;
+  top: -31px;
+}
+
+.EditProfilePage .EditProfilePage-container .EditProfilePage-middle form h4 {
+  margin-top: 40px;
+}
+
+.EditProfilePage .EditProfilePage-container .EditProfilePage-middle form .edit-profile-buttons {
+  width: 100%;
+  margin-top: 32px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.EditProfilePage .EditProfilePage-container .EditProfilePage-middle form .edit-profile-buttons button:first-child {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.EditProfilePage .EditProfilePage-container .EditProfilePage-middle form .edit-profile-buttons .EditProfile-button {
+  margin-left: 16px;
+}
+/*# sourceMappingURL=editProfilePage.css.map */

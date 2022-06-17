@@ -8,6 +8,7 @@ import Roadmap from './pages/roadmap.page';
 import Login from './pages/login.page';
 import Register from './pages/register.page';
 import Profile from './pages/profile.page';
+import EditProfile from './pages/edit-profile.page';
 
 import PrivateRoute from './components/privateRoute.component';
 
@@ -42,6 +43,9 @@ function App() {
         </Route>
         <Route path='/profile' element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
+        </Route>
+        <Route path='/edit-profile' element={<PrivateRoute />}>
+          <Route path='/edit-profile' element={<EditProfile />} />
         </Route>
       </Routes>
     </Router>
