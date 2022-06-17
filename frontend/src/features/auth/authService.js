@@ -65,7 +65,6 @@ const updateProfileInfo = async (userId, profileInfo, token) => {
 
   const res = await axios.put(API_URL + userId, profileInfo, config);
 
-  console.log(res.data);
   return res.data;
 };
 

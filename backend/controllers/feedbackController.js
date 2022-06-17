@@ -69,8 +69,6 @@ const createFeedback = asyncHandler(async (req, res) => {
     { new: true, upsert: true }
   );
 
-  //   updatedUser.save();
-
   res.status(201).json(feedback);
 });
 

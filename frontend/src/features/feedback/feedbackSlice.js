@@ -167,10 +167,9 @@ export const feedbackSlice = createSlice({
       .addCase(updateFeedback.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(updateFeedback.fulfilled, (state, action) => {
+      .addCase(updateFeedback.fulfilled, (state) => {
         state.isLoading = false;
         state.isSuccess = true;
-        console.log(action.payload);
       })
       .addCase(updateFeedback.rejected, (state, action) => {
         state.isLoading = false;

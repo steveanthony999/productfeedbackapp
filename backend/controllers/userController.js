@@ -196,7 +196,6 @@ const updateProfileInfo = asyncHandler(async (req, res) => {
     new: true,
   });
 
-  console.log(updatedProfile);
   res.status(200).json(updatedProfile);
 });
 
