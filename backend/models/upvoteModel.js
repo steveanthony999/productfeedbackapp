@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 const upvoteSchema = mongoose.Schema(
   {
+    createdByUserId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User',
+    },
     feedbackId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,

@@ -58,6 +58,7 @@ const createFeedback = asyncHandler(async (req, res) => {
 
   //   Create the upvotes for this feedback
   const upvote = await Upvote.create({
+    createdByUserId: user._id,
     feedbackId: feedback._id,
     upvotes: 1,
     userId: [user._id],

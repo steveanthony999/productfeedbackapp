@@ -21,13 +21,13 @@ const protect = asyncHandler(async (req, res, next) => {
     } catch (error) {
       console.log(error);
       res.status(401);
-      throw new Error('not authorized');
+      throw new Error('authMiddleware: error - not authorized');
     }
   }
 
   if (!token) {
     res.status(401);
-    throw new Error('not authorized');
+    throw new Error('authMiddleware: no token - not authorized');
   }
 });
 

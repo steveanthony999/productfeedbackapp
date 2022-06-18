@@ -3,6 +3,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/userModel');
+const Feedback = require('../models/feedbackModel');
+const Upvote = require('../models/upvoteModel');
+const Comment = require('../models/commentModel');
 
 // ======================================================================================
 // @desc    Register a user
@@ -121,7 +124,6 @@ const getAll = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
 
-  //   const feedback = await Feedback.find({ user: req.user.id });
   const users = await User.find();
 
   res.status(200).json(users);
@@ -155,7 +157,7 @@ const getUser = asyncHandler(async (req, res) => {
 
 // ======================================================================================
 // @desc    Update User Profile Photo
-// @route   PUT /api/users/:id
+// @route   PATCH /api/users/:id
 // @access  Private
 // ======================================================================================
 const updateProfilePhoto = asyncHandler(async (req, res) => {
@@ -178,7 +180,7 @@ const updateProfilePhoto = asyncHandler(async (req, res) => {
 });
 
 // ======================================================================================
-// @desc    Update Profile
+// @desc    Update Profile Info
 // @route   PUT /api/users/:id
 // @access  Private
 // ======================================================================================
@@ -200,6 +202,83 @@ const updateProfileInfo = asyncHandler(async (req, res) => {
 });
 
 // ======================================================================================
+// @desc    Delete All User Stats
+// @route   PATCH /api/users/:id
+// @access  Private
+// ======================================================================================
+const deleteStats = asyncHandler(async (req, res) => {
+  // Get user using the id in the JWT
+  const user = await User.findById(req.user.id);
+
+  if (!user) {
+    res.status(401);
+
+    throw new Error('User not found');
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(
+    user._id,
+    {
+      feedbackId: req.body.clearStats.feedbackId,
+      upvoteId: req.body.clearStats.upvoteId,
+      commentId: req.body.clearStats.commentId,
+    },
+    {
+      new: true,
+    }
+  );
+
+  // *** Decrements the upvoteCount on all feedbacks the user upvoted on
+  const upvoteData = await Upvote.find({ userId: user._id });
+
+  for (let i = 0; i < upvoteData.length; i++) {
+    await Feedback.findOneAndUpdate(
+      { _id: upvoteData[i].feedbackId },
+      { $inc: { upvoteCount: -1 } }
+    );
+  }
+
+  // *** Delete commentId from Feedback
+  const commentData = await Comment.find({ userId: user._id });
+
+  await Feedback.updateMany({
+    $pullAll: {
+      commentId: commentData.map((x) => x._id),
+    },
+  });
+
+  //   *** Deletes the comments created by the user
+  await Comment.deleteMany({
+    userId: { $eq: user._id },
+  });
+
+  //   *** Deletes the upvotes created by the user
+  await Upvote.deleteMany({
+    createdByUserId: { $eq: user._id },
+  });
+
+  //   *** Deletes the feedback associated with the user
+  await Feedback.deleteMany({
+    userId: { $eq: user._id },
+  });
+
+  // *** Decrements the upvotes on all feedbacks the user upvoted on
+  await Upvote.updateMany({ userId: user._id }, { $inc: { upvotes: -1 } });
+
+  // *** Delete the upvotes by the user on other user's feedback
+  await Upvote.updateMany({
+    $pullAll: {
+      userId: [user._id],
+    },
+  });
+
+  // *** Delete the comments by user on all feedbacks the user commented on
+  await Comment.deleteMany({ userId: { $eq: user._id } });
+
+  res.status(200).json(updatedUser);
+});
+
+// ======================================================================================
 // ======================================================================================
 
 const generateToken = (id) => {
@@ -216,4 +295,5 @@ module.exports = {
   getUser,
   updateProfilePhoto,
   updateProfileInfo,
+  deleteStats,
 };

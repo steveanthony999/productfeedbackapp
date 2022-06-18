@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AiFillCamera } from 'react-icons/ai';
 import axios from 'axios';
 
-import { getCurrentUser } from '../features/auth/authSlice';
+import { getCurrentUser, deleteStats } from '../features/auth/authSlice';
 import { updateProfilePhoto } from '../features/auth/authSlice';
 
 import GoBack from '../components/goBack.component';
@@ -45,6 +45,18 @@ const Profile = () => {
       setImageUrl();
     }
   }, [imageUrl]);
+
+  const handleDelete = () => {
+    const clearStats = {
+      feedbackId: [],
+      commentId: [],
+      upvoteId: [],
+    };
+
+    if (userId) {
+      dispatch(deleteStats({ userId, clearStats }));
+    }
+  };
 
   return (
     <div className='ProfilePage'>
@@ -116,7 +128,9 @@ const Profile = () => {
             </div>
           </div>
           <div className='ProfilePage-bottom'>
-            <div className='body-3 text-blue'>Delete All</div>
+            <div className='body-3 text-blue' onClick={handleDelete}>
+              Delete All
+            </div>
           </div>
         </div>
       </div>

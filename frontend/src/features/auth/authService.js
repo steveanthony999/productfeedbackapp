@@ -68,6 +68,23 @@ const updateProfileInfo = async (userId, profileInfo, token) => {
   return res.data;
 };
 
+// Delete Stats
+const deleteStats = async (userId, clearStats, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.patch(
+    API_URL + userId + '/deletestats',
+    clearStats,
+    config
+  );
+
+  return res.data;
+};
+
 const authService = {
   register,
   logout,
@@ -75,6 +92,7 @@ const authService = {
   getCurrentUser,
   updateProfilePhoto,
   updateProfileInfo,
+  deleteStats,
 };
 
 export default authService;
