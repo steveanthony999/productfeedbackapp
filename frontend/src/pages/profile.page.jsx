@@ -9,6 +9,9 @@ import { updateProfilePhoto } from '../features/auth/authSlice';
 
 import GoBack from '../components/goBack.component';
 import StatsBox from '../components/statsBox.component';
+import ProfileFeedback from '../components/profileFeedback.component';
+import ProfileUpvotes from '../components/profileUpvotes.component';
+import ProfileComments from '../components/profileComments.component';
 
 import '../styles/pages/profilePage.css';
 
@@ -20,6 +23,7 @@ const Profile = () => {
   const userId = currentUser._id;
   const [selectedImage, setSelectedImage] = useState();
   const [imageUrl, setImageUrl] = useState();
+  const [viewState, setViewState] = useState('');
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -98,33 +102,39 @@ const Profile = () => {
           <div className='ProfilePage-middle'>
             <h4 className='h4-text-darker-blue'>Stats</h4>
             <div className='ProfilePage-stats-container'>
-              <StatsBox
-                title='Feedback'
-                color='text-orange'
-                count={
-                  currentUser &&
-                  currentUser.feedbackId &&
-                  currentUser.feedbackId.length
-                }
-              />
-              <StatsBox
-                title='Upvotes'
-                color='text-light-purple'
-                count={
-                  currentUser &&
-                  currentUser.upvoteId &&
-                  currentUser.upvoteId.length
-                }
-              />
-              <StatsBox
-                title='Comments'
-                color='text-light-blue'
-                count={
-                  currentUser &&
-                  currentUser.commentId &&
-                  currentUser.commentId.length
-                }
-              />
+              <div onClick={() => setViewState('feedback')}>
+                <StatsBox
+                  title='Feedback'
+                  color='text-orange'
+                  count={
+                    currentUser &&
+                    currentUser.feedbackId &&
+                    currentUser.feedbackId.length
+                  }
+                />
+              </div>
+              <div onClick={() => setViewState('upvotes')}>
+                <StatsBox
+                  title='Upvotes'
+                  color='text-light-purple'
+                  count={
+                    currentUser &&
+                    currentUser.upvoteId &&
+                    currentUser.upvoteId.length
+                  }
+                />
+              </div>
+              <div onClick={() => setViewState('comments')}>
+                <StatsBox
+                  title='Comments'
+                  color='text-light-blue'
+                  count={
+                    currentUser &&
+                    currentUser.commentId &&
+                    currentUser.commentId.length
+                  }
+                />
+              </div>
             </div>
           </div>
           <div className='ProfilePage-bottom'>
@@ -133,6 +143,14 @@ const Profile = () => {
             </div>
           </div>
         </div>
+        {viewState !== '' && <div onClick={() => setViewState('')}>x</div>}
+        {viewState === 'feedback' ? (
+          <ProfileFeedback fucSelector='feedback' />
+        ) : viewState === 'upvotes' ? (
+          <ProfileFeedback fucSelector='upvotes' />
+        ) : (
+          viewState === 'comments' && <ProfileFeedback fucSelector='comments' />
+        )}
       </div>
     </div>
   );
