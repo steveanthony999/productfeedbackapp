@@ -228,6 +228,13 @@ const deleteStats = asyncHandler(async (req, res) => {
     }
   );
 
+  // *** Deletes all comments of the feedbacks deleted by user
+  const feedbackData = await Feedback.find({ userId: { $eq: user._id } });
+
+  for (let i = 0; i < feedbackData.length; i++) {
+    Comment.deleteMany({ feedbackId: { $eq: feedbackData[i]._id } });
+  }
+
   // *** Decrements the upvoteCount on all feedbacks the user upvoted on
   const upvoteData = await Upvote.find({ userId: user._id });
 
