@@ -232,7 +232,7 @@ const deleteStats = asyncHandler(async (req, res) => {
   const feedbackData = await Feedback.find({ userId: { $eq: user._id } });
 
   for (let i = 0; i < feedbackData.length; i++) {
-    Comment.deleteMany({ feedbackId: { $eq: feedbackData[i]._id } });
+    await Comment.deleteMany({ feedbackId: { $eq: feedbackData[i]._id } });
   }
 
   // *** Decrements the upvoteCount on all feedbacks the user upvoted on
