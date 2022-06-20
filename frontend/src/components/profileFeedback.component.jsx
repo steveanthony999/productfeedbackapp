@@ -1,20 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getFeedback, reset } from '../features/feedback/feedbackSlice';
+import { getFeedback } from '../features/feedback/feedbackSlice';
 import {
   getUpvotes,
   addUpvote,
   downvote,
   reset as upvotesReset,
 } from '../features/upvotes/upvoteSlice';
-import {
-  getComments,
-  reset as commentReset,
-} from '../features/feedback/commentSlice';
+import { getComments } from '../features/feedback/commentSlice';
 import { getCurrentUser } from '../features/auth/authSlice';
 
 import ProductFeedback from './productFeedback.component';
+
+import '../styles/components/profileFeedback.css';
 
 const ProfileFeedback = ({ fucSelector }) => {
   const dispatch = useDispatch();
@@ -27,7 +26,6 @@ const ProfileFeedback = ({ fucSelector }) => {
   const { currentUser } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    // dispatch(getCurrentUser());
     dispatch(getFeedback());
     dispatch(getComments());
     dispatch(getUpvotes());
@@ -63,18 +61,41 @@ const ProfileFeedback = ({ fucSelector }) => {
     dispatch(getCurrentUser());
   };
 
+  const [fuc, setFuc] = useState();
+
+  useEffect(() => {
+    if (fucSelector === 'upvotes') {
+      const temp = [];
+      for (let i = 0; i < feedback.length; i++) {
+        for (let j = 0; j < upvotes.length; j++) {
+          if (feedback[i].upvoteId === upvotes[j]._id) {
+            if (upvotes[j].userId.includes(currentUser._id)) {
+              temp.push(feedback[i]);
+            }
+          }
+        }
+      }
+      setFuc(temp);
+    } else if (fucSelector === 'comments') {
+      setFuc(
+        feedback.map(
+          (fb) =>
+            fb.commentId.map((id) =>
+              comments.map((comment) => comment._id === id)
+            )[0] && fb
+        )
+      );
+    } else if (fucSelector === 'feedback') {
+      setFuc(feedback.map((fb) => fb.userId === currentUser._id && fb));
+    }
+  }, [feedback, upvotes, fucSelector, comments, currentUser]);
+
   return (
-    <div>
+    <div className='ProfileFeedback'>
       {feedback.length > 0 &&
-        feedback
-          .filter((fb) =>
-            fucSelector === 'feedback'
-              ? fb.userId === currentUser._id
-              : fucSelector === 'comments' &&
-                fb.commentId.map((id) =>
-                  comments.map((comment) => comment._id === id)
-                )[0]
-          )
+        fuc &&
+        fuc
+          .filter((x) => x !== false && x !== undefined)
           .map((fb) => (
             <ProductFeedback
               key={fb._id}

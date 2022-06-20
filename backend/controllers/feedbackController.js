@@ -70,6 +70,11 @@ const createFeedback = asyncHandler(async (req, res) => {
     { new: true, upsert: true }
   );
 
+  await Feedback.findOneAndUpdate(
+    { _id: feedback._id },
+    { upvoteId: upvote._id }
+  );
+
   res.status(201).json(feedback);
 });
 

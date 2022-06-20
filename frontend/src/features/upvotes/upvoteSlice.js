@@ -101,7 +101,6 @@ export const upvoteSlice = createSlice({
       .addCase(addUpvote.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        console.log(action.payload);
         state.upvotes.push(action.payload);
       })
       .addCase(addUpvote.rejected, (state, action) => {
@@ -115,7 +114,6 @@ export const upvoteSlice = createSlice({
       .addCase(downvote.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        console.log(action.payload);
         state.upvotes.push(action.payload);
       })
       .addCase(downvote.rejected, (state, action) => {

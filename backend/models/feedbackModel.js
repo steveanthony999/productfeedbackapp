@@ -30,6 +30,10 @@ const feedbackSchema = mongoose.Schema(
     commentId: [
       { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Comment' },
     ],
+    upvoteId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Upvote',
+    },
     upvoteCount: { type: Number, required: true, default: 1 },
   },
   {
