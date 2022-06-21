@@ -25,6 +25,7 @@ import UserBox from '../components/userBox.component';
 
 import '../styles/pages/home.css';
 import Sidebar from '../components/sidebar';
+import LoadingHome from '../components/loadingHome.component';
 
 const Home = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
@@ -33,7 +34,9 @@ const Home = () => {
   const user = JSON.parse(localStorage.getItem('user'));
 
   const { currentUser } = useSelector((state) => state.auth);
-  const { feedback, isSuccess } = useSelector((state) => state.feedback);
+  const { feedback, isSuccess, isLoading } = useSelector(
+    (state) => state.feedback
+  );
   const { comments, isSuccess: isCommentSuccess } = useSelector(
     (state) => state.comments
   );
@@ -46,6 +49,7 @@ const Home = () => {
   const [sortOrder, setSortOrder] = useState();
   const [sortedFeedback, setSortedFeedback] = useState(feedback);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isFeedbackLoading, setIsFeedbackLoading] = useState(true);
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -53,6 +57,14 @@ const Home = () => {
     dispatch(getComments());
     dispatch(getUpvotes());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isLoading) {
+      setIsFeedbackLoading(true);
+    } else {
+      setIsFeedbackLoading(false);
+    }
+  }, [isLoading]);
 
   useEffect(() => {
     return () => {
@@ -177,7 +189,9 @@ const Home = () => {
         <div className='Home-right'>
           <Sidebar isMenuOpen={isMenuOpen} feedback={feedback} />
           <TopBarHome passSortOrder={passSortOrder} />
-          {feedback.length === 0 ? (
+          {isFeedbackLoading ? (
+            <LoadingHome />
+          ) : feedback.length === 0 ? (
             <EmptyFeedback />
           ) : (
             <>
