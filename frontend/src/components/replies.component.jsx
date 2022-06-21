@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
 
 import { toggleReplyBox } from '../features/feedback/replySlice';
 
@@ -18,7 +19,11 @@ const Replies = ({
   const { isOpen, replyId } = useSelector((state) => state.replies);
 
   return (
-    <div className='Replies'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className='Replies'>
       {repliesLength > 1 ? (
         <div className='Replies-line-multi'></div>
       ) : (
@@ -62,7 +67,7 @@ const Replies = ({
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default Replies;

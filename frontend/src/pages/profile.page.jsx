@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AiFillCamera } from 'react-icons/ai';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
 import { getCurrentUser, deleteStats } from '../features/auth/authSlice';
 import { updateProfilePhoto } from '../features/auth/authSlice';
@@ -10,8 +11,6 @@ import { updateProfilePhoto } from '../features/auth/authSlice';
 import GoBack from '../components/goBack.component';
 import StatsBox from '../components/statsBox.component';
 import ProfileFeedback from '../components/profileFeedback.component';
-import ProfileUpvotes from '../components/profileUpvotes.component';
-import ProfileComments from '../components/profileComments.component';
 
 import '../styles/pages/profilePage.css';
 
@@ -48,7 +47,7 @@ const Profile = () => {
       dispatch(updateProfilePhoto({ userId, imageUrl }));
       setImageUrl();
     }
-  }, [imageUrl]);
+  }, [imageUrl, dispatch, userId]);
 
   const handleDelete = () => {
     const clearStats = {
@@ -63,7 +62,11 @@ const Profile = () => {
   };
 
   return (
-    <div className='ProfilePage'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className='ProfilePage'>
       <div className='ProfilePage-top-container'>
         <div className='ProfilePage-top-bar'>
           <GoBack to='/' styles='text-grey-blue h4' />
@@ -152,7 +155,7 @@ const Profile = () => {
           viewState === 'comments' && <ProfileFeedback fucSelector='comments' />
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default Profile;

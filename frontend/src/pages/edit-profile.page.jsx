@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 import { updateProfileInfo } from '../features/auth/authSlice';
 
@@ -46,7 +47,11 @@ const EditProfile = () => {
   };
 
   return (
-    <div className='EditProfilePage'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className='EditProfilePage'>
       <div className='EditProfilePage-container'>
         <div className='EditProfilePage-top-bar'>
           <div
@@ -108,7 +113,7 @@ const EditProfile = () => {
           </form>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default EditProfile;

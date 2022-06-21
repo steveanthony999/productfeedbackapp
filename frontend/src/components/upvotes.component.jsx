@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 import IconArrowUp from '../assets/shared/icon-arrow-up.svg';
 
@@ -42,7 +43,8 @@ const Upvotes = ({
   };
 
   return (
-    <div
+    <motion.div
+      whileTap={{ scale: 0.8 }}
       className='upvote-btn'
       style={{ background: isUpvote && '#4661e6' }}
       onClick={handleUpvoteClick}>
@@ -54,7 +56,7 @@ const Upvotes = ({
       <p className='h4 text-darker-blue' style={{ color: isUpvote && '#fff' }}>
         {upvotes}
       </p>
-    </div>
+    </motion.div>
   );
 };
 export default Upvotes;

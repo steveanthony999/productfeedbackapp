@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 import { createFeedback, reset } from '../features/feedback/feedbackSlice';
 
@@ -65,7 +66,11 @@ const NewFeedback = () => {
   };
 
   return (
-    <div className='NewFeedbackPage'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className='NewFeedbackPage'>
       <div className='NewFeedbackPage-container'>
         <div className='NewFeedbackPage-top-bar'>
           <GoBack to='/' styles='text-grey-blue h4' />
@@ -119,7 +124,7 @@ const NewFeedback = () => {
           </form>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default NewFeedback;

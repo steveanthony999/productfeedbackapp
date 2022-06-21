@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
+import { motion } from 'framer-motion';
 
 import { getFeedback, reset } from '../features/feedback/feedbackSlice';
 import { getComments } from '../features/feedback/commentSlice';
@@ -105,7 +106,11 @@ const Roadmap = () => {
 
   if (isMobile) {
     return (
-      <div className='RoadmapPage'>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className='RoadmapPage'>
         <div className='RoadmapPage-container'>
           <div className='RoadmapPage-top-bar border'>
             <div className='RoadmapPage-top-bar-container'>
@@ -298,12 +303,16 @@ const Roadmap = () => {
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   }
 
   return (
-    <div className='RoadmapPage'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className='RoadmapPage'>
       <div className='RoadmapPage-container'>
         <div className='RoadmapPage-top-bar border'>
           <div className='RoadmapPage-left'>
@@ -456,7 +465,7 @@ const Roadmap = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default Roadmap;

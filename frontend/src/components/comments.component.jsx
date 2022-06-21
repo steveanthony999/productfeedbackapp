@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 import { getComments } from '../features/feedback/commentSlice';
 import { toggleReplyBox } from '../features/feedback/replySlice';
@@ -29,7 +30,11 @@ const Comments = ({ commentProps, users, user, replies, dispatchReply }) => {
   }, [commentProps, replies]);
 
   return (
-    <div className='Comments'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className='Comments'>
       {replies &&
         replies.length > 0 &&
         replies.find((reply) => reply.commentId === commentProps._id) && (
@@ -90,7 +95,7 @@ const Comments = ({ commentProps, users, user, replies, dispatchReply }) => {
               dispatchReply={dispatchReply}
             />
           ))}
-    </div>
+    </motion.div>
   );
 };
 export default Comments;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
+import { motion } from 'framer-motion';
 
 import { getCurrentUser } from '../features/auth/authSlice';
 import { getFeedback, reset } from '../features/feedback/feedbackSlice';
@@ -31,7 +32,7 @@ const Home = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
   const isTablet = useMediaQuery({ query: '(max-width: 1110px)' });
 
-  const user = JSON.parse(localStorage.getItem('user'));
+  // const user = JSON.parse(localStorage.getItem('user'));
 
   const { currentUser } = useSelector((state) => state.auth);
   const { feedback, isSuccess, isLoading } = useSelector(
@@ -50,6 +51,16 @@ const Home = () => {
   const [sortedFeedback, setSortedFeedback] = useState(feedback);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFeedbackLoading, setIsFeedbackLoading] = useState(true);
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+      },
+    },
+  };
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -160,7 +171,11 @@ const Home = () => {
   };
 
   return (
-    <div className='Home'>
+    <motion.div
+      className='Home'
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}>
       <div className='Home-container'>
         <div className='Home-left'>
           <Marquee passIsMenuOpen={passIsMenuOpen} />
@@ -194,7 +209,7 @@ const Home = () => {
           ) : feedback.length === 0 ? (
             <EmptyFeedback />
           ) : (
-            <>
+            <motion.div variants={container} initial='hidden' animate='show'>
               {sortedFeedback.length > 0 &&
                 sortedFeedback.map((fb) => (
                   <ProductFeedback
@@ -222,19 +237,23 @@ const Home = () => {
                     }
                     dispatchUpvotes={dispatchUpvotes}
                     dispatchDownvotes={dispatchDownvotes}
-                    user={user}
+                    // user={user}
+                    user={currentUser}
                     didCurrentUserUpvote={
                       upvotes
                         .filter((upvote) => upvote.feedbackId === fb._id)
-                        .map((upvote) => upvote.userId.includes(user._id))[0]
+                        // .map((upvote) => upvote.userId.includes(user._id))[0]
+                        .map((upvote) =>
+                          upvote.userId.includes(currentUser._id)
+                        )[0]
                     }
                   />
                 ))}
-            </>
+            </motion.div>
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default Home;

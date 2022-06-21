@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 import IconArrowDown from '../assets/shared/icon-arrow-down.svg';
 import IconArrowUp from '../assets/shared/icon-arrow-up.svg';
@@ -68,9 +69,11 @@ const CategoryStatusSelect = ({
       <h4 className='h4 text-darker-blue'>{title}</h4>
       <p className='body-2 text-grey-blue'>{subtitle}</p>
       <div
+        tabIndex='0'
         className={`category-status-select-field border ${
           isOpen && 'category-status-select-active'
         }`}
+        onKeyDown={(e) => e.key === 'Enter' && toggling()}
         onClick={toggling}
         style={{ opacity: isOpen ? 0.8 : 1 }}>
         <span className='body-2 text-darker-blue'>{selectedOption}</span>
@@ -81,7 +84,10 @@ const CategoryStatusSelect = ({
         />
       </div>
       {isOpen && (
-        <div
+        <motion.div
+          initial={{ scaleY: 0, originY: 0 }}
+          animate={{ scaleY: 1 }}
+          exit={{ scaleY: 0 }}
           className='category-status-select-list-container'
           style={{ bottom: secondary === true && '-13rem' }}>
           <ul className='category-status-select-list border'>
@@ -95,7 +101,7 @@ const CategoryStatusSelect = ({
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
       )}
     </div>
   );

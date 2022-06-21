@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaUserAlt } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 import { login, reset } from '../features/auth/authSlice';
 
@@ -58,7 +59,11 @@ const Login = () => {
   }
 
   return (
-    <div className='LoginPage'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className='LoginPage'>
       <div className='LoginPage-container border'>
         <div className='LoginPage-icon'>
           <FaUserAlt color='white' />
@@ -105,7 +110,7 @@ const Login = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default Login;

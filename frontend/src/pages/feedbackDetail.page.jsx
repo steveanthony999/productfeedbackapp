@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
+import { motion } from 'framer-motion';
 
 // State
 import { getUsers } from '../features/users/userSlice';
@@ -107,7 +108,11 @@ const FeedbackDetail = () => {
   }, [dispatch]);
 
   return (
-    <div className='FeedbackDetailPage'>
+    <motion.div
+      className='FeedbackDetailPage'
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}>
       <div className='container'>
         <div className='top-bar'>
           <GoBack
@@ -241,7 +246,7 @@ const FeedbackDetail = () => {
           </form>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default FeedbackDetail;

@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+
 import IconArrowDown from '../assets/shared/icon-arrow-down.svg';
 import IconArrowUp from '../assets/shared/icon-arrow-up.svg';
 import IconCheck from '../assets/shared/icon-check.svg';
@@ -54,7 +56,11 @@ const TopbarSelect = ({ passSortOrder, options }) => {
           />
         </div>
         {isOpen && (
-          <div className='select-list-container'>
+          <motion.div
+            initial={{ scaleY: 0, originY: 0 }}
+            animate={{ scaleY: 1 }}
+            exit={{ scaleY: 0 }}
+            className='select-list-container'>
             <ul className='select-list border'>
               {options.map((option, index) => (
                 <li
@@ -66,7 +72,7 @@ const TopbarSelect = ({ passSortOrder, options }) => {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         )}
       </div>
     </>

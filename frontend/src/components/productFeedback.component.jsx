@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
 
 import { getComments } from '../features/feedback/commentSlice';
 
@@ -17,16 +18,22 @@ const ProductFeedback = ({
   upvotes,
   dispatchUpvotes,
   dispatchDownvotes,
-  user,
+  // user,
   didCurrentUserUpvote,
 }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
 
   const dispatch = useDispatch();
 
+  // const { currentUser } = useSelector((state) => state.auth);
   const { comments } = useSelector((state) => state.comments);
 
   const [isHover, setIsHover] = useState(false);
+
+  const item = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1 },
+  };
 
   useEffect(() => {
     dispatch(getComments());
@@ -65,7 +72,8 @@ const ProductFeedback = ({
                   }
                   dispatchUpvotes={dispatchUpvotes}
                   dispatchDownvotes={dispatchDownvotes}
-                  user={user}
+                  // user={user}
+                  // user={currentUser}
                   didCurrentUserUpvote={didCurrentUserUpvote}
                 />
               </div>
@@ -95,7 +103,7 @@ const ProductFeedback = ({
       className='ProductFeedback border'
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}>
-      <div className='ProductFeedback-container border'>
+      <motion.div variants={item} className='ProductFeedback-container border'>
         <div className='ProductFeedback-left'>
           <Upvotes
             feedback={feedback}
@@ -104,7 +112,8 @@ const ProductFeedback = ({
             }
             dispatchUpvotes={dispatchUpvotes}
             dispatchDownvotes={dispatchDownvotes}
-            user={user}
+            // user={user}
+            // user={currentUser}
             didCurrentUserUpvote={didCurrentUserUpvote}
           />
         </div>
@@ -129,7 +138,7 @@ const ProductFeedback = ({
                 .length}
           </p>
         </div>
-      </div>
+      </motion.div>
     </Link>
   );
 };
