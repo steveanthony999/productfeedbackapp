@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AiFillCamera } from 'react-icons/ai';
 import axios from 'axios';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaTimesCircle } from 'react-icons/fa';
 
 import { getCurrentUser, deleteStats } from '../features/auth/authSlice';
 import { updateProfilePhoto } from '../features/auth/authSlice';
@@ -23,6 +24,16 @@ const Profile = () => {
   const [selectedImage, setSelectedImage] = useState();
   const [imageUrl, setImageUrl] = useState();
   const [viewState, setViewState] = useState('');
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+      },
+    },
+  };
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -76,10 +87,31 @@ const Profile = () => {
             Edit Profile
           </Link>
         </div>
-        <div className='ProfilePage-container border'>
+        <motion.div
+          initial={{ y: 0, height: '540px', background: '#ffffff' }}
+          animate={{
+            y: viewState !== '' ? -65 : 0,
+            height: viewState !== '' ? '200px' : '540px',
+            background: viewState !== '' ? '#3a4374ee' : '#ffffff',
+          }}
+          className='ProfilePage-container border'>
           <div className='ProfilePage-top'>
-            <div className='ProfilePage-user-image-container'>
-              <img
+            <motion.div
+              initial={{ x: 0, y: 0, scale: 1 }}
+              animate={{
+                x: viewState !== '' ? -190 : 0,
+                y: viewState !== '' ? 75 : 0,
+                scale: viewState !== '' ? 0.8 : 1,
+              }}
+              className='ProfilePage-user-image-container'>
+              <motion.img
+                initial={{ border: '0px solid #ffffff00' }}
+                animate={{
+                  border:
+                    viewState !== ''
+                      ? '6px solid #ffffff'
+                      : '0px solid #ffffff00',
+                }}
                 src={currentUser && currentUser.image && currentUser.image}
                 alt='user'
                 className='ProfilePage-user-image'
@@ -93,17 +125,50 @@ const Profile = () => {
                   onChange={(e) => setSelectedImage(e.target.files[0])}
                 />
               </label>
-            </div>
-            <h1 className='h1 text-darker-blue'>
+            </motion.div>
+            <motion.h1
+              initial={{ x: 0, y: 0, color: '#3a4374' }}
+              animate={{
+                x: viewState !== '' ? 150 : 0,
+                y: viewState !== '' ? -25 : 0,
+                color: viewState !== '' ? '#ffffff' : '#3a4374',
+              }}
+              className='h1 text-darker-blue'>
               {currentUser && currentUser.name && currentUser.name}
-            </h1>
-            <p className='body3 text-grey-blue'>
+            </motion.h1>
+            <motion.p
+              initial={{ x: 0, color: '#647196' }}
+              animate={{
+                x: viewState !== '' ? 192 : 0,
+                y: viewState !== '' ? -25 : 0,
+                color: viewState !== '' ? '#ffffff' : '#647196',
+              }}
+              className='body3 text-grey-blue'>
               @{currentUser && currentUser.username && currentUser.username}
-            </p>
+            </motion.p>
           </div>
-          <hr />
-          <div className='ProfilePage-middle'>
-            <h4 className='h4-text-darker-blue'>Stats</h4>
+          <motion.hr
+            initial={{ visibility: 'visible' }}
+            animate={{
+              visibility: viewState !== '' ? 'hidden' : 'visible',
+            }}
+          />
+          <motion.div
+            initial={{ y: 0, x: 0, scale: 1 }}
+            animate={{
+              y: viewState !== '' ? -130 : 0,
+              x: viewState !== '' ? 90 : 0,
+              scale: viewState !== '' ? 0.75 : 1,
+            }}
+            className='ProfilePage-middle'>
+            <motion.h4
+              initial={{ visibility: 'visible' }}
+              animate={{
+                visibility: viewState !== '' ? 'hidden' : 'visible',
+              }}
+              className='h4-text-darker-blue'>
+              Stats
+            </motion.h4>
             <div className='ProfilePage-stats-container'>
               <div onClick={() => setViewState('feedback')}>
                 <StatsBox
@@ -139,21 +204,57 @@ const Profile = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className='ProfilePage-bottom'>
+          </motion.div>
+          <motion.div
+            initial={{ visibility: 'visible' }}
+            animate={{ visibility: viewState !== '' ? 'hidden' : 'visible' }}
+            className='ProfilePage-bottom'>
             <div className='body-3 text-blue' onClick={handleDelete}>
               Delete All
             </div>
-          </div>
-        </div>
-        {viewState !== '' && <div onClick={() => setViewState('')}>x</div>}
-        {viewState === 'feedback' ? (
-          <ProfileFeedback fucSelector='feedback' />
-        ) : viewState === 'upvotes' ? (
-          <ProfileFeedback fucSelector='upvotes' />
-        ) : (
-          viewState === 'comments' && <ProfileFeedback fucSelector='comments' />
-        )}
+          </motion.div>
+        </motion.div>
+        <AnimatePresence>
+          {viewState !== '' && (
+            <motion.div
+              key='button-container'
+              variants={container}
+              initial='hidden'
+              animate='show'
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className='ProfilePage-close-button-container'>
+              <h3 className='h3 text-darker-blue'>
+                Viewing {currentUser.name}'s{' '}
+                {viewState === 'feedback'
+                  ? 'feedback'
+                  : viewState === 'upvotes'
+                  ? 'upvotes'
+                  : viewState === 'comments' && 'comments'}
+              </h3>
+              <motion.div
+                whileHover={{ scale: 0.8 }}
+                onClick={() => setViewState('')}>
+                <FaTimesCircle size={30} color='#3a4374' />
+              </motion.div>
+            </motion.div>
+          )}
+          {viewState === 'feedback' ? (
+            <motion.div variants={container} initial='hidden' animate='show'>
+              <ProfileFeedback fucSelector='feedback' />
+            </motion.div>
+          ) : viewState === 'upvotes' ? (
+            <motion.div variants={container} initial='hidden' animate='show'>
+              <ProfileFeedback fucSelector='upvotes' />
+            </motion.div>
+          ) : (
+            viewState === 'comments' && (
+              <motion.div variants={container} initial='hidden' animate='show'>
+                <ProfileFeedback fucSelector='comments' />
+              </motion.div>
+            )
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   );

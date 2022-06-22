@@ -103,7 +103,11 @@ const ProductFeedback = ({
       className='ProductFeedback border'
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}>
-      <motion.div variants={item} className='ProductFeedback-container border'>
+      <motion.div
+        variants={item}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        className='ProductFeedback-container border'>
         <div className='ProductFeedback-left'>
           <Upvotes
             feedback={feedback}

@@ -13,6 +13,20 @@
     display: flex;
     flex-direction: column;
 
+    .ProfilePage-close-button-container {
+      margin-top: 35px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      div {
+        svg {
+          cursor: pointer;
+        }
+      }
+    }
+
     .ProfilePage-top-bar {
       display: flex;
       flex-direction: row;

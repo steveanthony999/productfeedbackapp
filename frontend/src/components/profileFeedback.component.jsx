@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import { getFeedback } from '../features/feedback/feedbackSlice';
 import {
@@ -77,60 +78,72 @@ const ProfileFeedback = ({ fucSelector }) => {
       }
       setFuc(temp);
     } else if (fucSelector === 'comments') {
-      setFuc(
-        feedback.map(
-          (fb) =>
-            fb.commentId.map((id) =>
-              comments.map((comment) => comment._id === id)
-            )[0] && fb
-        )
+      const filteredComments = comments.filter(
+        (comment) => comment.userId === currentUser._id
       );
+
+      const temp = [];
+
+      for (let i = 0; i < feedback.length; i++) {
+        for (let j = 0; j < filteredComments.length; j++) {
+          if (feedback[i].commentId.includes(filteredComments[j]._id)) {
+            temp.push(feedback[i]);
+          }
+        }
+      }
+      setFuc(temp);
     } else if (fucSelector === 'feedback') {
       setFuc(feedback.map((fb) => fb.userId === currentUser._id && fb));
     }
   }, [feedback, upvotes, fucSelector, comments, currentUser]);
 
   return (
-    <div className='ProfileFeedback'>
-      {feedback.length > 0 &&
-        fuc &&
-        fuc
-          .filter((x) => x !== false && x !== undefined)
-          .map((fb) => (
-            <ProductFeedback
-              key={fb._id}
-              feedback={fb}
-              feedbackId={fb._id}
-              commentsFromProps={comments.filter(
-                (comment) =>
-                  comment.feedbackId === fb._id &&
-                  comment.commentId === null &&
-                  comment.isReply === false
-              )}
-              replies={comments.filter(
-                (reply) =>
-                  reply.feedbackId === fb._id &&
-                  reply.commentId !== null &&
-                  reply.isReply === true &&
-                  reply.isReplyingToReply === false
-              )}
-              upvotes={
-                upvotes &&
-                upvotes
-                  .filter((upvote) => upvote.feedbackId === fb._id)
-                  .map((upvt) => upvt.upvotes)
-              }
-              dispatchUpvotes={dispatchUpvotes}
-              dispatchDownvotes={dispatchDownvotes}
-              user={currentUser}
-              didCurrentUserUpvote={
-                upvotes
-                  .filter((upvote) => upvote.feedbackId === fb._id)
-                  .map((upvote) => upvote.userId.includes(currentUser._id))[0]
-              }
-            />
-          ))}
-    </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className='ProfileFeedback'>
+      <AnimatePresence>
+        {feedback.length > 0 &&
+          fuc &&
+          fuc
+            .filter((x) => x !== false && x !== undefined)
+            .map((fb, index) => (
+              <ProductFeedback
+                key={index}
+                feedback={fb}
+                feedbackId={fb._id}
+                commentsFromProps={comments.filter(
+                  (comment) =>
+                    comment.feedbackId === fb._id &&
+                    comment.commentId === null &&
+                    comment.isReply === false
+                )}
+                replies={comments.filter(
+                  (reply) =>
+                    reply.feedbackId === fb._id &&
+                    reply.commentId !== null &&
+                    reply.isReply === true &&
+                    reply.isReplyingToReply === false
+                )}
+                upvotes={
+                  upvotes &&
+                  upvotes
+                    .filter((upvote) => upvote.feedbackId === fb._id)
+                    .map((upvt) => upvt.upvotes)
+                }
+                dispatchUpvotes={dispatchUpvotes}
+                dispatchDownvotes={dispatchDownvotes}
+                user={currentUser}
+                didCurrentUserUpvote={
+                  upvotes
+                    .filter((upvote) => upvote.feedbackId === fb._id)
+                    .map((upvote) => upvote.userId.includes(currentUser._id))[0]
+                }
+              />
+            ))}
+      </AnimatePresence>
+    </motion.div>
   );
 };
 export default ProfileFeedback;

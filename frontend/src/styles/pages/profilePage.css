@@ -213,6 +213,27 @@ input[type='radio']:checked + label {
           flex-direction: column;
 }
 
+.ProfilePage .ProfilePage-top-container .ProfilePage-close-button-container {
+  margin-top: 35px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.ProfilePage .ProfilePage-top-container .ProfilePage-close-button-container div svg {
+  cursor: pointer;
+}
+
 .ProfilePage .ProfilePage-top-container .ProfilePage-top-bar {
   display: -webkit-box;
   display: -ms-flexbox;
