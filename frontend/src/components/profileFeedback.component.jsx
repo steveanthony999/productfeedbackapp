@@ -84,14 +84,17 @@ const ProfileFeedback = ({ fucSelector }) => {
 
       const temp = [];
 
-      for (let i = 0; i < feedback.length; i++) {
-        for (let j = 0; j < filteredComments.length; j++) {
-          if (feedback[i].commentId.includes(filteredComments[j]._id)) {
-            temp.push(feedback[i]);
-          }
-        }
-      }
-      setFuc(temp);
+      feedback.forEach((fb) =>
+        filteredComments.forEach(
+          (comment) => fb.commentId.includes(comment._id) && temp.push(fb)
+        )
+      );
+
+      setFuc(
+        temp.filter((feedback, index) => {
+          return temp.indexOf(feedback) === index;
+        })
+      );
     } else if (fucSelector === 'feedback') {
       setFuc(feedback.map((fb) => fb.userId === currentUser._id && fb));
     }
