@@ -50,7 +50,11 @@ const ProductFeedback = ({
         className='ProductFeedback-mobile border'
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}>
-        <div className='ProductFeedback-container-mobile border'>
+        <motion.div
+          variants={item}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className='ProductFeedback-container-mobile border'>
           <div className='ProductFeedback-middle-mobile'>
             <h3 className={`h3 ${isHover ? 'text-blue' : 'text-darker-blue'}`}>
               {feedback.title}
@@ -88,7 +92,7 @@ const ProductFeedback = ({
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </Link>
     );
   }

@@ -3,6 +3,7 @@
 
 .RoadmapPage {
   width: 100vw;
+  padding: 2rem;
   margin-bottom: 129px;
   display: flex;
   flex-direction: row;
@@ -44,12 +45,14 @@
       margin-top: 53px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
     }
   }
 }
 
 @media screen and (max-width: 738px) {
   .RoadmapPage {
+    padding: 0;
     position: absolute;
     top: 0;
     overflow-x: hidden;
@@ -109,9 +112,12 @@
 
       .RoadmapPage-middle-mobile {
         display: flex;
+        align-items: center;
         justify-content: center;
 
         .RoadmapPage-cards {
+          width: calc(100% - 48px);
+
           h3 {
             margin-top: 30px;
           }

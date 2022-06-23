@@ -1,5 +1,6 @@
 .RoadmapPage {
   width: 100vw;
+  padding: 2rem;
   margin-bottom: 129px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -65,10 +66,12 @@
   display: grid;
   -ms-grid-columns: (1fr)[3];
       grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
 }
 
 @media screen and (max-width: 738px) {
   .RoadmapPage {
+    padding: 0;
     position: absolute;
     top: 0;
     overflow-x: hidden;
@@ -138,9 +141,15 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+  }
+  .RoadmapPage .RoadmapPage-container .RoadmapPage-middle-mobile .RoadmapPage-cards {
+    width: calc(100% - 48px);
   }
   .RoadmapPage .RoadmapPage-container .RoadmapPage-middle-mobile .RoadmapPage-cards h3 {
     margin-top: 30px;
