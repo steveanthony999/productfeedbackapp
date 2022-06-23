@@ -383,4 +383,127 @@ input[type='radio']:checked + label {
 .ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-bottom div:hover {
   cursor: pointer;
 }
+
+@media screen and (max-width: 738px) {
+  .ProfilePage {
+    margin-top: 0;
+    position: absolute;
+    top: 0;
+  }
+  .ProfilePage .ProfilePage-top-container {
+    width: calc(100% - 48px);
+    margin-left: 0;
+    margin-top: 24px;
+  }
+  .ProfilePage .ProfilePage-top-container .ProfilePage-close-button-container {
+    margin-top: 16px;
+  }
+  .ProfilePage .ProfilePage-top-container hr {
+    display: none;
+  }
+  .ProfilePage .ProfilePage-top-container .ProfilePage-container {
+    width: calc(100% - 48px);
+    margin-top: 100px;
+    padding: 40px 42px;
+    padding-top: 48px;
+    background: #ffffff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-item-align: center;
+        align-self: center;
+  }
+  .ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-top {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    position: relative;
+  }
+  .ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-top .ProfilePage-user-image-container {
+    position: absolute;
+    top: -100px;
+  }
+  .ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-top .ProfilePage-user-image-container .ProfilePage-user-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+  .ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-top .ProfilePage-user-image-container .ProfilePage-edit-image {
+    width: 40px;
+    height: 40px;
+    background: #ad1fea;
+    border: 6px solid #ffffff;
+    border-radius: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+  }
+  .ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-top .ProfilePage-user-image-container .ProfilePage-edit-image:hover {
+    cursor: pointer;
+  }
+  .ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-top h1 {
+    margin-top: 27px;
+  }
+  .ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-middle {
+    width: 100%;
+    margin-top: 0;
+  }
+  .ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-middle .ProfilePage-middle-h4 {
+    display: none;
+  }
+  .ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-middle .ProfilePage-stats-container {
+    width: 100%;
+    margin-top: 35px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-middle .ProfilePage-stats-container div {
+    width: 100%;
+  }
+  .ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-bottom {
+    width: calc(100% - 48px);
+    margin-top: 24px;
+    text-align: center;
+  }
+  .ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-bottom div {
+    text-decoration: underline;
+  }
+  .ProfilePage .ProfilePage-top-container .ProfilePage-container .ProfilePage-bottom div:hover {
+    cursor: pointer;
+  }
+}
 /*# sourceMappingURL=profilePage.css.map */

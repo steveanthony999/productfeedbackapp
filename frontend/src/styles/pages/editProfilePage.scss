@@ -69,3 +69,42 @@
     }
   }
 }
+
+@media screen and (max-width: 588px) {
+  .EditProfilePage {
+    margin-top: 24px;
+    position: absolute;
+    top: 0;
+
+    .EditProfilePage-container {
+      width: calc(100% - 48px);
+      margin-left: 24px;
+      margin-right: 24px;
+
+      .EditProfilePage-middle {
+        form {
+          .edit-profile-buttons {
+            flex-direction: column;
+            flex-flow: column-reverse;
+
+            button {
+              width: 100%;
+              margin-left: 0;
+              &:nth-child(1) {
+                margin-top: 16px;
+              }
+
+              &:nth-child(2) {
+                margin-top: 16px;
+              }
+            }
+
+            .EditProfile-button {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

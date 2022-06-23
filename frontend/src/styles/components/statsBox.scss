@@ -21,3 +21,35 @@
     }
   }
 }
+
+@media screen and (max-width: 738px) {
+  .StatsBox {
+    width: 100%;
+    height: 100%;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    .StatsBox-top {
+      margin-left: 12px;
+    }
+
+    .StatsBox-middle {
+      width: 100%;
+      height: 100%;
+      margin-top: 0;
+      margin-right: 12px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+
+      .StatsBox-h1 {
+        font-size: 1rem;
+      }
+    }
+  }
+}

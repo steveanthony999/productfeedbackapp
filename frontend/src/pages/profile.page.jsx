@@ -166,7 +166,7 @@ const Profile = () => {
               animate={{
                 visibility: viewState !== '' ? 'hidden' : 'visible',
               }}
-              className='h4-text-darker-blue'>
+              className='h4-text-darker-blue ProfilePage-middle-h4'>
               Stats
             </motion.h4>
             <div className='ProfilePage-stats-container'>
