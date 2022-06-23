@@ -5,6 +5,7 @@ import { AiFillCamera } from 'react-icons/ai';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaTimesCircle } from 'react-icons/fa';
+import { useMediaQuery } from 'react-responsive';
 
 import { getCurrentUser, deleteStats } from '../features/auth/authSlice';
 import { updateProfilePhoto } from '../features/auth/authSlice';
@@ -16,6 +17,8 @@ import ProfileFeedback from '../components/profileFeedback.component';
 import '../styles/pages/profilePage.css';
 
 const Profile = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
+
   const dispatch = useDispatch();
 
   const { currentUser } = useSelector((state) => state.auth);
@@ -88,10 +91,14 @@ const Profile = () => {
           </Link>
         </div>
         <motion.div
-          initial={{ y: 0, height: '540px', background: '#ffffff' }}
+          initial={{
+            y: 0,
+            height: isMobile ? '470px' : '540px',
+            background: '#ffffff',
+          }}
           animate={{
-            y: viewState !== '' ? -65 : 0,
-            height: viewState !== '' ? '200px' : '540px',
+            y: viewState !== '' ? (isMobile ? -15 : -65) : 0,
+            height: viewState !== '' ? '200px' : isMobile ? '470px' : '540px',
             background: viewState !== '' ? '#3a4374ee' : '#ffffff',
           }}
           className='ProfilePage-container border'>
@@ -99,7 +106,7 @@ const Profile = () => {
             <motion.div
               initial={{ x: 0, y: 0, scale: 1 }}
               animate={{
-                x: viewState !== '' ? -190 : 0,
+                x: viewState !== '' ? (isMobile ? -90 : -190) : 0,
                 y: viewState !== '' ? 75 : 0,
                 scale: viewState !== '' ? 0.8 : 1,
               }}
@@ -129,9 +136,14 @@ const Profile = () => {
             <motion.h1
               initial={{ x: 0, y: 0, color: '#3a4374' }}
               animate={{
-                x: viewState !== '' ? 150 : 0,
-                y: viewState !== '' ? -25 : 0,
-                color: viewState !== '' ? '#ffffff' : '#3a4374',
+                x: viewState !== '' ? (isMobile ? 0 : 150) : 0,
+                y: viewState !== '' ? (isMobile ? -142 : -25) : 0,
+                color:
+                  viewState !== ''
+                    ? isMobile
+                      ? '#3a4374'
+                      : '#ffffff'
+                    : '#3a4374',
               }}
               className='h1 text-darker-blue'>
               {currentUser && currentUser.name && currentUser.name}
@@ -139,9 +151,14 @@ const Profile = () => {
             <motion.p
               initial={{ x: 0, color: '#647196' }}
               animate={{
-                x: viewState !== '' ? 192 : 0,
-                y: viewState !== '' ? -25 : 0,
-                color: viewState !== '' ? '#ffffff' : '#647196',
+                x: viewState !== '' ? (isMobile ? 0 : 192) : 0,
+                y: viewState !== '' ? (isMobile ? -142 : -25) : 0,
+                color:
+                  viewState !== ''
+                    ? isMobile
+                      ? '#647196'
+                      : '#ffffff'
+                    : '#647196',
               }}
               className='body3 text-grey-blue'>
               @{currentUser && currentUser.username && currentUser.username}
@@ -156,8 +173,8 @@ const Profile = () => {
           <motion.div
             initial={{ y: 0, x: 0, scale: 1 }}
             animate={{
-              y: viewState !== '' ? -130 : 0,
-              x: viewState !== '' ? 90 : 0,
+              y: viewState !== '' ? (isMobile ? -174 : -130) : 0,
+              x: viewState !== '' ? (isMobile ? 54 : 90) : 0,
               scale: viewState !== '' ? 0.75 : 1,
             }}
             className='ProfilePage-middle'>
@@ -225,7 +242,7 @@ const Profile = () => {
               transition={{ duration: 0.5 }}
               className='ProfilePage-close-button-container'>
               <h3 className='h3 text-darker-blue'>
-                Viewing {currentUser.name}'s{' '}
+                Viewing {!isMobile && `${currentUser.name}'s`}{' '}
                 {viewState === 'feedback'
                   ? 'feedback'
                   : viewState === 'upvotes'

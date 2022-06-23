@@ -396,7 +396,11 @@ input[type='radio']:checked + label {
     margin-top: 24px;
   }
   .ProfilePage .ProfilePage-top-container .ProfilePage-close-button-container {
+    width: calc(100% - 48px);
     margin-top: 16px;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
   }
   .ProfilePage .ProfilePage-top-container hr {
     display: none;

@@ -158,7 +158,9 @@
       margin-top: 24px;
 
       .ProfilePage-close-button-container {
+        width: calc(100% - 48px);
         margin-top: 16px;
+        align-self: center;
       }
 
       hr {
