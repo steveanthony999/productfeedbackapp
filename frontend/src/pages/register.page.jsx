@@ -56,7 +56,7 @@ const Register = () => {
         name,
         username,
         image:
-          'https://res.cloudinary.com/dknh8hdvp/image/upload/v1649954298/profilepics/image-suzanne_tkjsnr.jpg',
+          'https://res.cloudinary.com/dknh8hdvp/image/upload/v1655404591/profilepics/guest-user_griyvw.jpg',
         email,
         password,
       };

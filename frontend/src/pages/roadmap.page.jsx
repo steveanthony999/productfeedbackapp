@@ -23,7 +23,8 @@ const Roadmap = () => {
   const { comments } = useSelector((state) => state.comments);
   const { upvotes } = useSelector((state) => state.upvotes);
 
-  const user = JSON.parse(localStorage.getItem('user'));
+  // const user = JSON.parse(localStorage.getItem('user'));
+  const { currentUser } = useSelector((state) => state.auth);
 
   const [isActive, setIsActive] = useState('planned');
 
@@ -168,7 +169,7 @@ const Roadmap = () => {
                       status='Planned'
                       color='orange'
                       feedback={fdbk}
-                      user={user}
+                      user={currentUser}
                       title={fdbk.title}
                       description={fdbk.description}
                       category={
@@ -189,7 +190,9 @@ const Roadmap = () => {
                       didCurrentUserUpvote={
                         upvotes
                           .filter((upvote) => upvote.feedbackId === fdbk._id)
-                          .map((upvote) => upvote.userId.includes(user._id))[0]
+                          .map((upvote) =>
+                            upvote.userId.includes(currentUser._id)
+                          )[0]
                       }
                       commentsLength={
                         comments &&
@@ -216,7 +219,7 @@ const Roadmap = () => {
                       status='In Progress'
                       color='purple'
                       feedback={fdbk}
-                      user={user}
+                      user={currentUser}
                       title={fdbk.title}
                       description={fdbk.description}
                       category={
@@ -237,7 +240,9 @@ const Roadmap = () => {
                       didCurrentUserUpvote={
                         upvotes
                           .filter((upvote) => upvote.feedbackId === fdbk._id)
-                          .map((upvote) => upvote.userId.includes(user._id))[0]
+                          .map((upvote) =>
+                            upvote.userId.includes(currentUser._id)
+                          )[0]
                       }
                       commentsLength={
                         comments &&
@@ -265,7 +270,7 @@ const Roadmap = () => {
                         status='Live'
                         color='light-blue'
                         feedback={fdbk}
-                        user={user}
+                        user={currentUser}
                         title={fdbk.title}
                         description={fdbk.description}
                         category={
@@ -287,7 +292,7 @@ const Roadmap = () => {
                           upvotes
                             .filter((upvote) => upvote.feedbackId === fdbk._id)
                             .map((upvote) =>
-                              upvote.userId.includes(user._id)
+                              upvote.userId.includes(currentUser._id)
                             )[0]
                         }
                         commentsLength={
@@ -343,7 +348,7 @@ const Roadmap = () => {
                   status='Planned'
                   color='orange'
                   feedback={fdbk}
-                  user={user}
+                  user={currentUser}
                   title={fdbk.title}
                   description={fdbk.description}
                   category={
@@ -364,7 +369,9 @@ const Roadmap = () => {
                   didCurrentUserUpvote={
                     upvotes
                       .filter((upvote) => upvote.feedbackId === fdbk._id)
-                      .map((upvote) => upvote.userId.includes(user._id))[0]
+                      .map((upvote) =>
+                        upvote.userId.includes(currentUser._id)
+                      )[0]
                   }
                   commentsLength={
                     comments &&
@@ -388,7 +395,7 @@ const Roadmap = () => {
                   status='In Progress'
                   color='purple'
                   feedback={fdbk}
-                  user={user}
+                  user={currentUser}
                   title={fdbk.title}
                   description={fdbk.description}
                   category={
@@ -409,7 +416,9 @@ const Roadmap = () => {
                   didCurrentUserUpvote={
                     upvotes
                       .filter((upvote) => upvote.feedbackId === fdbk._id)
-                      .map((upvote) => upvote.userId.includes(user._id))[0]
+                      .map((upvote) =>
+                        upvote.userId.includes(currentUser._id)
+                      )[0]
                   }
                   commentsLength={
                     comments &&
@@ -431,7 +440,7 @@ const Roadmap = () => {
                   status='Live'
                   color='light-blue'
                   feedback={fdbk}
-                  user={user}
+                  user={currentUser}
                   title={fdbk.title}
                   description={fdbk.description}
                   category={
@@ -452,7 +461,9 @@ const Roadmap = () => {
                   didCurrentUserUpvote={
                     upvotes
                       .filter((upvote) => upvote.feedbackId === fdbk._id)
-                      .map((upvote) => upvote.userId.includes(user._id))[0]
+                      .map((upvote) =>
+                        upvote.userId.includes(currentUser._id)
+                      )[0]
                   }
                   commentsLength={
                     comments &&

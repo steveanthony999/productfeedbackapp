@@ -32,8 +32,6 @@ const Home = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 738px)' });
   const isTablet = useMediaQuery({ query: '(max-width: 1110px)' });
 
-  // const user = JSON.parse(localStorage.getItem('user'));
-
   const { currentUser } = useSelector((state) => state.auth);
   const { feedback, isSuccess, isLoading } = useSelector(
     (state) => state.feedback
@@ -242,7 +240,6 @@ const Home = () => {
                     didCurrentUserUpvote={
                       upvotes
                         .filter((upvote) => upvote.feedbackId === fb._id)
-                        // .map((upvote) => upvote.userId.includes(user._id))[0]
                         .map((upvote) =>
                           upvote.userId.includes(currentUser._id)
                         )[0]

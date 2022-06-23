@@ -19,7 +19,7 @@ const NewFeedback = () => {
     (state) => state.feedback
   );
 
-  const user = JSON.parse(localStorage.getItem('user'));
+  const { currentUser } = useSelector((state) => state.auth);
 
   const [category, setCategory] = useState('Feature');
   const [submitted, setSubmitted] = useState(false);
@@ -46,7 +46,7 @@ const NewFeedback = () => {
     setSubmitted(true);
     dispatch(
       createFeedback({
-        userId: user._id,
+        userId: currentUser._id,
         title,
         description,
         category,

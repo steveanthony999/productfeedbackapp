@@ -35,7 +35,7 @@ const FeedbackDetail = () => {
     (state) => state.upvotes
   );
 
-  const user = JSON.parse(localStorage.getItem('user'));
+  const { currentUser } = useSelector((state) => state.auth);
 
   const [content, setContent] = useState('');
   const [textLength, setTextLength] = useState(0);
@@ -53,7 +53,7 @@ const FeedbackDetail = () => {
       e.preventDefault();
 
       const commentData = {
-        userId: user._id,
+        userId: currentUser._id,
         feedbackId,
         content,
         parentCommentId: nanoid(),
@@ -63,7 +63,7 @@ const FeedbackDetail = () => {
 
       setContent('');
     },
-    [content, dispatch, feedbackId, user._id]
+    [content, dispatch, feedbackId, currentUser._id]
   );
 
   const handleChange = (e) => {
@@ -157,12 +157,12 @@ const FeedbackDetail = () => {
             .map((upvt) => upvt.upvotes)}
           dispatchUpvotes={dispatchUpvotes}
           dispatchDownvotes={dispatchDownvotes}
-          user={user}
+          user={currentUser}
           didCurrentUserUpvote={
             upvotes &&
             upvotes
               .filter((upvote) => upvote.feedbackId === feedback._id)
-              .map((upvote) => upvote.userId.includes(user._id))[0]
+              .map((upvote) => upvote.userId.includes(currentUser._id))[0]
           }
         />
         <div className='comments-container border'>
