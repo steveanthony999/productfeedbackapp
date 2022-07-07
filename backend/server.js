@@ -1,3 +1,4 @@
+const http = require('http');
 const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv').config();
@@ -29,6 +30,10 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   app.get('/', (req, res) => res.status(200).json({ message: 'Sup' }));
 }
+
+setInterval(function () {
+  http.get('https://fementorproductfeedback.herokuapp.com/');
+}, 300000); // every 5 minutes (300000)
 
 app.use(errorHandler);
 

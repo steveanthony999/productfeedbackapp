@@ -23,7 +23,6 @@ const Roadmap = () => {
   const { comments } = useSelector((state) => state.comments);
   const { upvotes } = useSelector((state) => state.upvotes);
 
-  // const user = JSON.parse(localStorage.getItem('user'));
   const { currentUser } = useSelector((state) => state.auth);
 
   const [isActive, setIsActive] = useState('planned');
